@@ -20,7 +20,10 @@ public class Bird extends Entities{
         screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getHeight(), dimension.getLength()),  ' ');
     }
 
-    public void slap(){
-        position.updateY(-slapHeight);
+    public void slap(int limit){
+        if(position.getY()-slapHeight >= limit)
+            position.updateY(-slapHeight);
+        else
+            position.setY(limit);
     }
 }

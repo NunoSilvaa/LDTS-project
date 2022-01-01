@@ -22,12 +22,21 @@ class BirdTest extends Specification{
             bird.getPosition() == new Position(20, 22)
     }
 
-    def"Slap test"(){
+    def"Slap test limits"(){
         when:
-            bird.slap();
+            for(int i = 0; i < 11; i++)
+                bird.slap(0)
 
         then:
-            bird.getPosition() == new Position(20, 17)
+            bird.getPosition() == new Position(20, 0)
+    }
+
+    def"Slap test"(){
+        when:
+        bird.slap(0)
+
+        then:
+        bird.getPosition() == new Position(20, 17)
     }
 
     def"Draw test"(){
