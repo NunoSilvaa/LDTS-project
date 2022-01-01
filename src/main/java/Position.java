@@ -23,9 +23,11 @@ public class Position {
 
     public void increaseSpeed(int delta){this.speed += delta;}
 
-    public void increaseX(int delta){this.x += delta;}
-
     public void increaseY(int delta){this.y += delta;}
+
+    public void updateX(){this.x -= speed;}
+
+    public void updateY(){this.y -= speed;}
 
     @Override
     public boolean equals(Object o) {
