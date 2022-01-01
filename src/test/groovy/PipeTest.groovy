@@ -1,33 +1,25 @@
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
-class BirdTest extends Specification{
+class PipeTest extends Specification{
     def given(){
         Position position = new Position(20,20,2)
         Dimension dimension = new Dimension(10,10)
-        Bird bird = new Bird(position, dimension, 3)
+        Pipe pipe = new Pipe(position, dimension)
         def screen = Mock(TextGraphics)
     }
 
-    def"Gravity test"(){
+    def"Update test"(){
         when:
-            bird.update();
+            pipe.update()
 
         then:
-            bird.getPosition() == new Position(20, 22, 2)
-    }
-
-    def"Slap test"(){
-        when:
-            bird.slap();
-
-        then:
-            bird.getPosition() == new Position(20, 17, 2)
+            pipe.getPosition() == new Position(18, 20, 2)
     }
 
     def"Draw test"(){
         when:
-            bird.draw()
+            pipe.draw()
 
         then:
             1 * screen.setBackgroundColor(_)
