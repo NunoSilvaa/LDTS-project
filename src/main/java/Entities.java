@@ -9,6 +9,14 @@ abstract class Entities {
         this.dimension = dimension;
     }
 
+    public Position getPosition(){
+        return position;
+    }
+
+    public Dimension getDimension(){
+        return dimension;
+    }
+
     abstract void update();
     abstract void render();
 
