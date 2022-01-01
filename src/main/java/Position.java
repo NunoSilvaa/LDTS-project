@@ -3,12 +3,10 @@ import java.util.Objects;
 public class Position {
     private int x;
     private int y;
-    private int speed;
 
-    public Position(int x, int y, int speed){
+    public Position(int x, int y){
         this.x = x;
         this.y = y;
-        this.speed = speed;
     }
 
     public int getX() {
@@ -19,15 +17,11 @@ public class Position {
         return y;
     }
 
-    public int getSpeed(){return speed;}
-
-    public void increaseSpeed(int delta){this.speed += delta;}
-
     public void increaseY(int delta){this.y += delta;}
 
-    public void updateX(){this.x -= speed;}
+    public void updateX(int speed){this.x -= speed;}
 
-    public void updateY(){this.y -= speed;}
+    public void updateY(int speed){this.y += speed;}
 
     @Override
     public boolean equals(Object o) {

@@ -2,11 +2,16 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
 class PipeTest extends Specification{
-    def given(){
-        Position position = new Position(20,20,2)
-        Dimension dimension = new Dimension(10,10)
-        Pipe pipe = new Pipe(position, dimension)
-        def screen = Mock(TextGraphics)
+    private Position position
+    private Dimension dimension
+    private Pipe pipe
+    private TextGraphics screen;
+
+    def setup(){
+        position = new Position(20,20)
+        dimension = new Dimension(10,10)
+        pipe = new Pipe(position, dimension, 2)
+        screen = Mock(TextGraphics)
     }
 
     def"Update test"(){
@@ -14,17 +19,17 @@ class PipeTest extends Specification{
             pipe.update()
 
         then:
-            pipe.getPosition() == new Position(18, 20, 2)
+            pipe.getPosition() == new Position(18, 20)
     }
 
     def"Draw test"(){
         when:
-            pipe.draw()
+            pipe.draw(screen)
 
         then:
             1 * screen.setBackgroundColor(_)
         then:
-            1 * screen.fillRectangle(_)
+            1 * screen.fillRectangle(_,_,_)
 
     }
 }
