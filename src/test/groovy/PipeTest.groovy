@@ -6,6 +6,7 @@ class PipeTest extends Specification{
     private Dimension dimension
     private Pipe pipe
     private TextGraphics screen;
+    private boolean result
 
     def setup(){
         position = new Position(20,20)
@@ -14,9 +15,19 @@ class PipeTest extends Specification{
         screen = Mock(TextGraphics)
     }
 
+    def"Update test limits"(){
+        when:
+        for(int i = 0; i < 11; i++)
+            result = pipe.update(0);
+
+        then:
+            pipe.getPosition() == new Position(0, 20)
+            result = true
+    }
+
     def"Update test"(){
         when:
-            pipe.update()
+            result = pipe.update(0)
 
         then:
             pipe.getPosition() == new Position(18, 20)
