@@ -21,7 +21,7 @@ class BirdTest extends Specification{
 
         then:
             bird.getPosition() == new Position(20, 22)
-            result = false
+            result == false
     }
 
     def"Gravity test limits"(){
@@ -31,7 +31,7 @@ class BirdTest extends Specification{
 
         then:
             bird.getPosition() == new Position(20, 30)
-            result = true
+            result == true
     }
 
     def"Slap test limits"(){

@@ -10,9 +10,15 @@ public class Bird extends Entities{
         this.slapHeight = slapHeight;
     }
     @Override
-    public void update(){
+    public boolean update(int limit) {
+        if (position.getY() + speed > limit) {
+            position.setY(limit);
+            return true;
+        }
         position.updateY(speed);
+        return false;
     }
+
 
     @Override
     public void draw(TextGraphics screen){

@@ -23,7 +23,7 @@ abstract class Entities {
 
     public void increaseSpeed(int delta){this.speed += delta;}
 
-    abstract bool update();
+    abstract boolean update(int limit);
 
     abstract void draw(TextGraphics screen);
 }

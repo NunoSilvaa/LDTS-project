@@ -15,7 +15,12 @@ public class Pipe extends Entities{
     }
 
     @Override
-    public void update(){
+    public boolean update(int limit) {
+        if (position.getX() - speed < limit) {
+            position.setX(limit);
+            return true;
+        }
         position.updateX(speed);
+        return false;
     }
 }

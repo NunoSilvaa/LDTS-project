@@ -22,7 +22,7 @@ class PipeTest extends Specification{
 
         then:
             pipe.getPosition() == new Position(0, 20)
-            result = true
+            result == true
     }
 
     def"Update test"(){
@@ -31,6 +31,7 @@ class PipeTest extends Specification{
 
         then:
             pipe.getPosition() == new Position(18, 20)
+            result == false
     }
 
     def"Draw test"(){
