@@ -30,7 +30,7 @@ public class ArenaTest {
 
     def"Creating Pipes Test"(){
         when:
-        arena.createPipes()
+            arena.createPipes()
         then:
 
 
