@@ -38,6 +38,11 @@ class BirdTest extends Specification{
         1 * screen.setBackgroundColor(_)
         then:
         1 * screen.fillRectangle(_,_,_)
+    }
+
+    def"Death test"(){
+        expect:
+        bird.isDead() == false
 
     }
 }

@@ -32,4 +32,18 @@ class PipeTest extends Specification{
             1 * screen.fillRectangle(_,_,_)
 
     }
+
+    def"Collision Test - should not collide"(){
+        pipe:
+            pipe.collided(pos) == bool
+
+        where:
+        pos | bool
+        new Position(25,20) | false
+        new Position(25,15) | false
+        new Position(20,20) | true
+        new Position(17,20) | true
+        new Position(17,17) | true
+
+    }
 }
