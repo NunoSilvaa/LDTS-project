@@ -5,7 +5,8 @@ import com.googlecode.lanterna.TextColor
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.screen.Screen
-
+import menus.Gui
+import menus.Moves
 import spock.lang.Specification
 import static com.googlecode.lanterna.input.KeyType.*;
 
@@ -80,7 +81,6 @@ class GuiTest extends Specification{
 
             1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK)
             1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
-            //loadedFont.deriveFont(30);
             1 * textGraphics.putString(15, 3, "Flappy Bird", SGR.BOLD)
 
             1 * textGraphics.putString(18, 7, "Play", SGR.BLINK)
@@ -112,7 +112,6 @@ class GuiTest extends Specification{
         1 * textGraphics.fillRectangle(new TerminalPosition(0, 15), new TerminalSize(40, 1), ' ')
         1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
-        //loadedFont.deriveFont(30);
         1 * textGraphics.putString(17, 7, "Resume", SGR.BLINK);
         1 * textGraphics.putString(187, 10, "Quit");
     }
