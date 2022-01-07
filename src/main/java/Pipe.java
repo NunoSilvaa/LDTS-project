@@ -3,7 +3,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Pipe extends Entities{
+abstract class Pipe extends Entities{
+
     public Pipe(Position position, Dimension dimension, int speed){
         super(position,dimension, speed);
     }
@@ -11,11 +12,18 @@ public class Pipe extends Entities{
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#006400"));
-        screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getHeight(), dimension.getLength()),  ' ');
+        screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getWidth(),dimension.getHeight()),  ' ');
     }
 
     @Override
-    public void update(){
+    public boolean update(int limit) {
+        if (position.getX() + dimension.getWidth() < limit) {
+            return false;
+        }
         position.updateX(speed);
+        return true;
     }
+
+    abstract boolean overlap(Position birdPos);
+
 }

@@ -1,5 +1,6 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+
 abstract class Entities {
     protected  Position position;
     protected  Dimension dimension;
@@ -23,7 +24,7 @@ abstract class Entities {
 
     public void increaseSpeed(int delta){this.speed += delta;}
 
-    abstract void update();
+    abstract boolean update(int limit);
 
     abstract void draw(TextGraphics screen);
 }
