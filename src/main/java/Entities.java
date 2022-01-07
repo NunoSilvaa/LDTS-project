@@ -1,5 +1,6 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+
 abstract class Entities {
     protected  Position position;
     protected  Dimension dimension;

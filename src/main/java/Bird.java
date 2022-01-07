@@ -3,17 +3,17 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Bird extends Entities {
+
+public class Bird extends Entities{
     private int slapHeight;
     private boolean dead;
 
 
-    public Bird(Position position, Dimension dimension, int speed, int slapHeight) {
-        super(position, dimension, speed);
+    public Bird(Position position, Dimension dimension, int speed, int slapHeight){
+        super(position,dimension, speed);
         this.slapHeight = slapHeight;
         dead = false;
     }
-
     @Override
     public boolean update(int limit) {
 
@@ -23,7 +23,7 @@ public class Bird extends Entities {
             return true;
         }
 
-        if (position.getY() < 0) {
+        if(position.getY() < 0 ){
             position.setY(0);
             return true;
         }
@@ -34,18 +34,19 @@ public class Bird extends Entities {
 
 
     @Override
-    public void draw(TextGraphics screen) {
+    public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-        screen.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(dimension.getWidth(), dimension.getHeight()), ' ');
+        screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getWidth(), dimension.getHeight()),  ' ');
     }
 
-    public void slap(int limit) {
-        if (position.getY() - slapHeight >= limit)
+    public void slap(int limit){
+        if(position.getY()-slapHeight >= limit)
             position.updateY(-slapHeight);
         else
             position.setY(limit);
     }
 
-    public boolean isDead() {return dead;}
+    public boolean isDead(){
+        return dead;
+    }
 }
-

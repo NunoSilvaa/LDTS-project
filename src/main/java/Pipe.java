@@ -17,13 +17,13 @@ abstract class Pipe extends Entities{
 
     @Override
     public boolean update(int limit) {
-        position.updateX(speed);
-        if (position.getX() + dimension.getWidth() > limit) {
+        if (position.getX() + dimension.getWidth() < limit) {
             return false;
         }
+        position.updateX(speed);
         return true;
     }
 
-    abstract boolean overlap(Position birdPos, Dimension birdDimension);
+    abstract boolean overlap(Position birdPos);
 
 }

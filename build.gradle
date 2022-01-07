@@ -1,11 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
     id 'groovy'
-    id 'info.solidsoft.pitest' version '1.6.0'
-    id "org.kordamp.gradle.errorprone" version "0.47.0"
 }
 
-group 'org.example'
+group 'com.TWEgit.example'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -18,14 +17,16 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+
 }
 
 test {
     useJUnitPlatform()
 }
 
-pitest {
-    junit5PluginVersion = '0.12'
-    excludedMethods = ['min','max', 'sort']
+application {
+    mainClass.set("Application")
 }
