@@ -35,7 +35,7 @@ class PipeTest extends Specification{
 
     def"Collision Test - should not collide"(){
         pipe:
-            pipe.collided(pos) == bool
+            pipe.overlap(pos) == bool
 
         where:
         pos | bool
@@ -44,6 +44,6 @@ class PipeTest extends Specification{
         new Position(20,20) | true
         new Position(17,20) | true
         new Position(17,17) | true
-
     }
+
 }
