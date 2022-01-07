@@ -2,38 +2,36 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
 
-public class ArenaTest {
+class ArenaTest extends Specification{
     private Arena arena
     private TextGraphics screen
 
     def setup(){
-        arena = new Arena(40,20)
+        arena = new Arena(42,42)
         screen = Mock(TextGraphics)
     }
 
     def"Draw Test"(){
         when:
-        arena.draw(screen)
+            arena.draw(screen)
         then:
-        1 * screen.setBackgroundColor(_)
+            1 * screen.setBackgroundColor(_)
+            1 * screen.fillRectangle(_,_,_)
         then:
-        1 * screen.fillRectangle(_,_,_)
+            1 * screen.setBackgroundColor(_)
+            1 * screen.fillRectangle(_,_,_)
         then:
-        1 * bird.draw()
-        then:
-        2 * pipes.draw()
-    }
-
-    def"Getting Number of Pipes"(){
-
+            screen.setBackgroundColor(_)
+            screen.fillRectangle(_,_,_)
     }
 
     def"Creating Pipes Test"(){
+        given:
+            int start = arena.getNumberPipes();
         when:
             arena.createPipes()
         then:
-
-
+            arena.getNumberPipes() - start==2
     }
 
     def"Collision of all Pipes Test"(){
