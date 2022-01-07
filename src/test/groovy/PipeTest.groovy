@@ -7,8 +7,8 @@ class PipeTest extends Specification{
     private def screen;
 
     def setup(){
-        topPipe = new topPipe(new Position(20,0), new Dimension(10,10), 2)
-        bottomPipe = new bottomPipe(new Position(20,30), new Dimension(10,10), 2)
+        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2)
+        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2)
         screen = Mock(TextGraphics)
     }
 
@@ -17,7 +17,7 @@ class PipeTest extends Specification{
             boolean result = bottomPipe.update(0)
 
         then:
-            bottomPipe.getPosition() == new Position(18, 20)
+            bottomPipe.getPosition() == new Position(18, 30)
             result == false
     }
 
@@ -26,7 +26,7 @@ class PipeTest extends Specification{
             boolean result = topPipe.update(0)
 
         then:
-            topPipe.getPosition() == new Position(18, 20)
+            topPipe.getPosition() == new Position(18, 0)
             result == false
     }
 
@@ -35,11 +35,11 @@ class PipeTest extends Specification{
             boolean result
 
         when:
-        for(int i = 0; i < 11; i++)
+        for(int i = 0; i < 20; i++)
             result = bottomPipe.update(0);
 
         then:
-            bottomPipe.getPosition() == new Position(0, 20)
+            bottomPipe.getPosition() == new Position(-20, 30)
             result == true
     }
 
@@ -50,11 +50,11 @@ class PipeTest extends Specification{
             boolean result
 
         when:
-        for(int i = 0; i < 11; i++)
+        for(int i = 0; i < 20; i++)
             result = topPipe.update(0);
 
         then:
-            topPipe.getPosition() == new Position(0, 20)
+            topPipe.getPosition() == new Position(-20, 0)
             result == true
     }
 
@@ -82,17 +82,17 @@ class PipeTest extends Specification{
 
     def"Collision Test (Top)"(){
         expect:
-        topPipe.overlap(pos) == bool
+        topPipe.overlap(pos, dimensions) == bool
 
         where:
-        pos | bool
+        pos | dimensions | bool
         new Position(18,0) | new Dimension(1,1) |false
         new Position(31,0) | new Dimension(1,1) |false
         new Position(25,11) | new Dimension(1,1) |false
         new Position(19,0) | new Dimension(1,1) |true
         new Position(29,0) | new Dimension(1,1) |true
-        new Position(19,11) | new Dimension(1,1) |true
-        new Position(29,11) | new Dimension(1,1) |true
+        new Position(19,10) | new Dimension(1,1) |true
+        new Position(29,10) | new Dimension(1,1) |true
         new Position(25,5) | new Dimension(1,1) | true
 
     }
@@ -105,11 +105,11 @@ class PipeTest extends Specification{
         pos | dimensions | bool
         new Position(19,0) | new Dimension(1,1) | false
         new Position(20,15) | new Dimension(1,1) |false
-        new Position(30,40) | new Dimension(1,1) |false
+        new Position(31,39) | new Dimension(1,1) | false
         new Position(19,39) | new Dimension(1,1) |true
-        new Position(29,39) | new Dimension(1,1) |true
+        new Position(30,39) | new Dimension(1,1) |true
         new Position(19,29) | new Dimension(1,1) |true
-        new Position(29,29) | new Dimension(1,1) |true
+        new Position(30,29) | new Dimension(1,1) |true
         new Position(25,35) | new Dimension(1,1) |true
 
     }

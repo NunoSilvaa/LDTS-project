@@ -2,11 +2,11 @@ import java.util.Objects;
 
 public class Dimension {
     private int height;
-    private int length;
+    private int width;
 
-    public Dimension(int height, int length) {
+    public Dimension(int height, int width) {
         this.height = height;
-        this.length = length;
+        this.width = width;
     }
 
     public int getHeight() {
@@ -17,12 +17,12 @@ public class Dimension {
         this.height = height;
     }
 
-    public int getLength() {
-        return length;
+    public int getWidth() {
+        return width;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     @Override
@@ -30,11 +30,11 @@ public class Dimension {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dimension dimension = (Dimension) o;
-        return height == dimension.height && length == dimension.length;
+        return height == dimension.height && width == dimension.width;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, length);
+        return Objects.hash(height, width);
     }
 }
