@@ -10,7 +10,8 @@ public class GameStateEnd extends GameState{
 
     @Override
     public boolean execute(Gui gui) throws Throwable {
-        return false;
-
+        gui.endMenu(game.getScore());
+        Thread.sleep(5000);
+        return true;
     }
 }
