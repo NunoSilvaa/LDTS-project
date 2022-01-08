@@ -72,7 +72,7 @@ public class Game {
             counter++;
 
             draw();
-            Thread.sleep(50);
+            Thread.sleep(20);
         }
     }
 }

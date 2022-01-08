@@ -68,6 +68,7 @@ class GameStateTest extends Specification{
             gui.mainMenu(option)
         }
 
+
     }
 
     def 'InitialGameState'(){
@@ -76,7 +77,6 @@ class GameStateTest extends Specification{
         def gui = Mock(Gui.class)
         def gameState = Mock(InitialGameState.class)
         gameState.setGame(game)
-
         gameState.processOption(gui) >> 3
 
         when:
@@ -85,8 +85,6 @@ class GameStateTest extends Specification{
 
         then:
         1 * gameState.(_)
-
-
     }
 
     def 'GameStateRun'(){
