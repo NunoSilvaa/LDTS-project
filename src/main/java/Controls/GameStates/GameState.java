@@ -10,5 +10,11 @@ public abstract class GameState {
         this.game = game;
     }
 
+    public GameState(){}
+
     public abstract boolean execute(Gui gui) throws Throwable;
+
+    void setGame(Game game){
+        this.game = game;
+    }
 }

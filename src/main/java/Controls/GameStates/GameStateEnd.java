@@ -7,6 +7,7 @@ public class GameStateEnd extends GameState{
     public GameStateEnd(Game game) {
         super(game);
     }
+    public GameStateEnd() {super();}
 
     @Override
     public boolean execute(Gui gui) throws Throwable {

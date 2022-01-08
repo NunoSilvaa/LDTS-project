@@ -11,6 +11,9 @@ public class InitialGameState extends GameState {
     public InitialGameState(Game game){
         super(game);
     }
+    public InitialGameState(){
+        super();
+    }
 
     @Override
     public boolean execute(Gui gui) throws Throwable {

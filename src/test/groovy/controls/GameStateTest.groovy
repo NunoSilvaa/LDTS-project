@@ -1,8 +1,7 @@
 package controls
 
 import Controls.Game
-import Controls.GameStates.GameStateEnd
-import Controls.GameStates.GameStateRun
+import Controls.GameStates.InitialGameState
 import menus.Gui
 import spock.lang.Specification
 
@@ -52,19 +51,17 @@ class GameStateTest extends Specification{
         given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
-        def k = Mock(KeyStroke.class)
-        def process = Mock(InitialGameState.class)
-        def initial = process(game)
+        def gameState = Mock(InitialGameState.class)
+        gameState.setGame(game)
 
-        gui.getKeyStroke(_) >> k
-        initial.processOption(gui) >> 3
+        gameState.processOption(gui) >> 3
 
         when:
 
-        initial.execute(gui)
+        gameState.execute(gui)
 
         then:
-        1 * game.changeGameState(_)
+        1 * gameState.(_)
 
     }
 
