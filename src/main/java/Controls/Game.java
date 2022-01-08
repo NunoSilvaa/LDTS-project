@@ -15,25 +15,16 @@ import menus.Gui;
 
 public class Game {
     private Arena arena;
-    private Terminal terminal;
-    private Screen screen;
     private Gui gui;
     private GameState gameState;
     private int score;
+    private int counter;
     public boolean gameOver;
 
 
     public Game(Gui gui) throws IOException {
         this.gui = gui;
         this.gameState = new InitialGameState(this);
-        /*TerminalSize terminalSize = new TerminalSize(42, 42);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        terminal = terminalFactory.createTerminal();
-        screen = new TerminalScreen(terminal);
-
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();*/
         arena = new Arena(40, 20);
         gameOver = false;
     }
@@ -57,33 +48,11 @@ public class Game {
     }
 
     public void run() throws IOException, InterruptedException {
+        counter = 0;
         score = 0;
         boolean pressArrowUp;
-        //draw();
 
-        //Thread.sleep(5000);
-
-        /*KeyStroke key = gui.getTerminal().pollInput();
-        if (key != null && key.getKeyType() == KeyType.ArrowUp)
-            pressArrowUp = true;
-        else
-            pressArrowUp = false;
-
-        if(!arena.update(pressArrowUp) || arena.verifyPipeCollisions()){
-            gameOver = true;
-            //continue;
-        }
-
-        if(score == 25){
-            arena.createPipes();
-            score = 0;
-        }
-        score++;
-
-        draw();
-        Thread.sleep(50);*/
-
-        /*while(!gameOver) {
+        while(!gameOver) {
             KeyStroke key = gui.getTerminal().pollInput();
             if (key != null && key.getKeyType() == KeyType.ArrowUp)
                 pressArrowUp = true;
@@ -99,12 +68,11 @@ public class Game {
                 arena.createPipes();
                 counter = 0;
             }
+            score++;
             counter++;
 
             draw();
-            Thread.sleep(20);
-        }*/
-        //Thread.sleep(1000);
-        //gui.getScreen().close();
+            Thread.sleep(50);
+        }
     }
 }

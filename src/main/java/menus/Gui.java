@@ -24,6 +24,7 @@ import java.net.URL;
 
 public class Gui {
     private Screen screen;
+    private Terminal terminal;
 
     public Gui(){
         try {
@@ -40,9 +41,9 @@ public class Gui {
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             factory.setTerminalEmulatorFontConfiguration(fontConfig);
             factory.setForceAWTOverSwing(true);
-            factory.setInitialTerminalSize(new TerminalSize(46, 46));
+            factory.setInitialTerminalSize(new TerminalSize(40, 20));
 
-            Terminal terminal = factory.createTerminal();
+            terminal = factory.createTerminal();
             ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -66,8 +67,14 @@ public class Gui {
         return screen;
     }
 
+    public Terminal getTerminal() {return terminal;}
+
     public void setScreen(Screen screen) {
         this.screen = screen;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
     }
 
     public void startScreen() throws IOException {

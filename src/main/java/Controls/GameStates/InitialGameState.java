@@ -12,6 +12,10 @@ public class InitialGameState extends GameState {
         super(game);
     }
 
+    public InitialGameState(){
+        super();
+    }
+
     @Override
     public boolean execute(Gui gui) throws Throwable {
         gui.mainMenu(3);
