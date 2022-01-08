@@ -11,40 +11,52 @@ import com.googlecode.lanterna.input.KeyType;
 class GameStateTest extends Specification{
 
     def 'rangeLimiter'(){
-        /*def num = Integer
+        def game = Mock(Game)
+        def gameState = new InitialGameState(game)
 
-        when:
-        num > 3*/
+        expect:
+        gameState.rangeLimiter(4) == 3
+        gameState.rangeLimiter(2) == 2
+        gameState.rangeLimiter(-1) == 1
 
     }
 
-    def 'processOption'(){
+    def 'processOption (ArrowDown)'(){
         given:
         def gui = Mock(Gui.class)
+        def game = Mock(Game)
         def option = 3
         def k = Mock(KeyStroke.class)
-
-        //gui.getKeyStroke() >> k
-
-        k.getKeyType() >> KeyType.ArrowDown >> KeyType.Enter
-        k.getKeyType() >> KeyType.ArrowUp >> KeyType.Enter
+        def gameState = Mock(InitialGameState.class)
+        gameState.setGame(game)
         gui.getKeyStroke() >> k
+        k.getKeyType() >> KeyType.ArrowDown >> KeyType.Enter
+        gameState.rangeLimiter(3) >> 2
 
         when:
-        k == KeyType.ArrowDown
-
+            gameState.processOption(gui)
         then:
-        1 * option - 1
-        //1 * rangeLimiter(option)
-        //0 * gui.mainMenu(option)
+            option-1 == 2
+
+    }
+
+    def 'processOption (ArrowUP)'(){
+        given:
+        def gui = Mock(Gui.class)
+        def game = Mock(Game)
+        def option = 2
+        def k = Mock(KeyStroke.class)
+        def gameState = Mock(InitialGameState.class)
+        gameState.setGame(game)
+        gui.getKeyStroke() >> k
+        k.getKeyType() >> KeyType.ArrowDown >> KeyType.Enter
+        gameState.rangeLimiter(3) >> 3
 
         when:
-        k == KeyType.ArrowUp
-
+        gameState.processOption(gui)
         then:
-        1 * option + 1
-        //1 * rangeLimiter(option)
-        //0 * gui.mainMenu(option)
+        option+1 == 3
+
     }
 
     def 'InitialGameState'(){
@@ -53,7 +65,6 @@ class GameStateTest extends Specification{
         def gui = Mock(Gui.class)
         def gameState = Mock(InitialGameState.class)
         gameState.setGame(game)
-
         gameState.processOption(gui) >> 3
 
         when:
