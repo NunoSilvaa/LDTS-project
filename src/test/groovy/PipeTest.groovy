@@ -2,48 +2,116 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
 class PipeTest extends Specification{
-    private Position position
-    private Dimension dimension
-    private Pipe pipe
-    private TextGraphics screen;
+    private def topPipe
+    private def bottomPipe
+    private def screen;
 
     def setup(){
-        position = new Position(20,20)
-        dimension = new Dimension(10,10)
-        pipe = new TopPipe(position, dimension, 2)
+        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2)
+        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2)
         screen = Mock(TextGraphics)
     }
 
-    def"Update test"(){
+    def"Update test (Bottom Pipe)"(){
         when:
-        pipe.update()
+            boolean result = bottomPipe.update(0)
 
         then:
-        pipe.getPosition() == new Position(18, 20)
+            bottomPipe.getPosition() == new Position(18, 30)
+            result == false
     }
 
-    def"Draw test"(){
+    def"Update test (Top Pipe)"(){
         when:
-        pipe.draw(screen)
+            boolean result = topPipe.update(0)
 
         then:
-        1 * screen.setBackgroundColor(_)
+            topPipe.getPosition() == new Position(18, 0)
+            result == false
+    }
+
+    def"Update test limits (Bottom Pipe)"(){
+        given:
+            boolean result
+
+        when:
+        for(int i = 0; i < 20; i++)
+            result = bottomPipe.update(0);
+
         then:
-        1 * screen.fillRectangle(_,_,_)
+            bottomPipe.getPosition() == new Position(-20, 30)
+            result == true
+    }
+
+
+
+    def"Update test limits (Top Pipe)"(){
+        given:
+            boolean result
+
+        when:
+        for(int i = 0; i < 20; i++)
+            result = topPipe.update(0);
+
+        then:
+            topPipe.getPosition() == new Position(-20, 0)
+            result == true
+    }
+
+    def"Draw test(Bottom Pipe)"(){
+        when:
+            bottomPipe.draw(screen)
+
+        then:
+            1 * screen.setBackgroundColor(_)
+        then:
+            1 * screen.fillRectangle(_,_,_)
 
     }
 
-    def"Collision Test - should not collide"(){
-        pipe:
-        pipe.overlap(pos) == bool
+    def"Draw test(Top Pipe)"(){
+        when:
+            topPipe.draw(screen)
+
+        then:
+            1 * screen.setBackgroundColor(_)
+        then:
+            1 * screen.fillRectangle(_,_,_)
+
+    }
+
+    def"Collision Test (Top)"(){
+        expect:
+        topPipe.overlap(pos, dimensions) == bool
 
         where:
-        pos | bool
-        new Position(25,20) | false
-        new Position(25,15) | false
-        new Position(20,20) | true
-        new Position(17,20) | true
-        new Position(17,17) | true
+        pos | dimensions | bool
+        new Position(18,0) | new Dimension(1,1) |false
+        new Position(31,0) | new Dimension(1,1) |false
+        new Position(25,11) | new Dimension(1,1) |false
+        new Position(19,0) | new Dimension(1,1) |true
+        new Position(29,0) | new Dimension(1,1) |true
+        new Position(19,10) | new Dimension(1,1) |true
+        new Position(29,10) | new Dimension(1,1) |true
+        new Position(25,5) | new Dimension(1,1) | true
+
     }
 
+    def"Collision Test (Bottom)"(){
+        expect:
+        bottomPipe.overlap(pos, dimensions) == bool
+
+        where:
+        pos | dimensions | bool
+        new Position(19,0) | new Dimension(1,1) | false
+        new Position(20,15) | new Dimension(1,1) |false
+        new Position(31,39) | new Dimension(1,1) | false
+        new Position(19,39) | new Dimension(1,1) |true
+        new Position(30,39) | new Dimension(1,1) |true
+        new Position(19,29) | new Dimension(1,1) |true
+        new Position(30,29) | new Dimension(1,1) |true
+        new Position(25,35) | new Dimension(1,1) |true
+
+    }
 }
+

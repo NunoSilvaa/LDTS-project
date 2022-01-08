@@ -4,13 +4,11 @@ public class TopPipe extends Pipe{
     }
 
     @Override
-    public boolean overlap(Position birdPos){
-        if(birdPos.getX() >= position.getX() && birdPos.getX() <= position.getX() + dimension.getWidth()){
-            if(birdPos.getY() >= 0 && birdPos.getY() <= dimension.getHeight() ){
+    public boolean overlap(Position birdPos, Dimension birdDimension){
+        if(!(position.getX() + dimension.getHeight() < birdPos.getX() || birdPos.getX()+birdDimension.getWidth() < position.getX())){
+            if(birdPos.getY() <= dimension.getHeight())
                 return true;
-            }
         }
         return false;
     }
-
 }
