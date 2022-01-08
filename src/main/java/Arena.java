@@ -32,8 +32,6 @@ public class Arena {
     }
 
 
-
-
     public void createPipes() {
         Random random = new Random();
         int heightPipe = random.nextInt(height/2) + 7;
@@ -75,9 +73,13 @@ public class Arena {
 
     public boolean verifyPipeCollisions(){
         for(Pipe pipe: pipes)
-            if(pipe.overlap(bird.getPosition())){
+            if(pipe.overlap(bird.getPosition(), bird.getDimension())){
                 return true;
             }
         return false;
+    }
+
+    public int getNumberPipes(){
+        return pipes.size();
     }
 }
