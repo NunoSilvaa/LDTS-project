@@ -120,17 +120,17 @@ public class Gui {
         //loadedFont.deriveFont(30);
         textGraphics.putString(15, 3, "Flappy Bird", SGR.BOLD);
 
-        if(i == 0){
+        if(i == 3){
             textGraphics.putString(18, 7, "Play", SGR.BLINK);
             textGraphics.putString(16, 10, "Scoreboard");
             textGraphics.putString(18, 13, "Quit");
         }
-        else if(i == -1){
+        else if(i == 2){
             textGraphics.putString(18, 7, "Play");
             textGraphics.putString(16, 10, "Scoreboard", SGR.BLINK);
             textGraphics.putString(18, 13, "Quit");
         }
-        else if(i == -2){
+        else if(i == 1){
             textGraphics.putString(18, 7, "Play");
             textGraphics.putString(16, 10, "Scoreboard");
             textGraphics.putString(18, 13, "Quit", SGR.BLINK);
@@ -165,7 +165,7 @@ public class Gui {
         screen.refresh();
     }
 
-    public void endMenu() throws IOException{
+    public void endMenu(int score) throws IOException{
         screen.clear();
         TextGraphics textGraphics = screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
@@ -179,6 +179,8 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
 
         textGraphics.putString(16, 7, "Game Over", SGR.BOLD);
+        textGraphics.putString(17, 10, "Score:");
+        textGraphics.putString(23, 10, String.valueOf(score));
 
         screen.refresh();
     }
