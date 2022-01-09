@@ -39,6 +39,25 @@ This project was developed by *Daniel Rodrigues* (*up202006562*@fe.up.pt), *Nuno
 <img src="https://user-images.githubusercontent.com/80840262/148662762-b21bd9dc-12f6-4574-8e1f-60c106ac4c9b.png" width = "700">
 <img src="https://user-images.githubusercontent.com/80840262/148662768-9043a3e7-4eb9-446a-82e7-66382cd3f963.png" width = "450">
 
+### DESIGN
+
+#### The different "menus"/game states SHOULD BEHAVE DIFFERENTLY DEPENDING ON THEIR STATE
+
+**Problem in Context**
+
+The game must have different states such as playing or pause, implementing this in one class would lead to much confusion and an inneficient code
+
+**The Pattern**
+
+We have applied the State pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+
+
+**Consequences**
+
+The use of the State Pattern in the current design allows the following benefits:
+
+- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
+- There are now more classes and instances to manage, but still in a reasonable number.
 
 ### SELF-EVALUATION
 
