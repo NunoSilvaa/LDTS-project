@@ -49,8 +49,7 @@ The game must have different states such as playing or pause, implementing this 
 
 **The Pattern**
 
-We have applied the State pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
-
+We have applied the State pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass).
 
 **Consequences**
 
@@ -58,6 +57,9 @@ The use of the State Pattern in the current design allows the following benefits
 
 - We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
 - There are now more classes and instances to manage, but still in a reasonable number.
+
+
+![image](https://user-images.githubusercontent.com/80840262/148678602-e7b91873-2ce3-472f-ab2f-72d11478000b.png)
 
 ### SELF-EVALUATION
 
