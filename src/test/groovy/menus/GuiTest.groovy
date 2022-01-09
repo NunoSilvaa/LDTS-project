@@ -77,7 +77,7 @@ class GuiTest extends Specification{
             1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"))
             1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ')
             1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"))
-            1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ')
+            1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ')
 
             1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK)
             1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
@@ -109,7 +109,7 @@ class GuiTest extends Specification{
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"))
         1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ')
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"))
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ')
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ')
         1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
         1 * textGraphics.putString(19, 7, "Resume", SGR.BLINK);
@@ -134,7 +134,7 @@ class GuiTest extends Specification{
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ');
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
 
         1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));

@@ -41,7 +41,7 @@ public class Gui {
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             factory.setTerminalEmulatorFontConfiguration(fontConfig);
             factory.setForceAWTOverSwing(true);
-            factory.setInitialTerminalSize(new TerminalSize(46, 46));
+            factory.setInitialTerminalSize(new TerminalSize(42, 42));
 
             terminal = factory.createTerminal();
             ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
@@ -120,7 +120,7 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
@@ -155,7 +155,7 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
@@ -180,7 +180,7 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(46, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
