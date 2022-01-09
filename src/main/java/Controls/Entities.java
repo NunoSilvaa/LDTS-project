@@ -1,3 +1,5 @@
+package Controls;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
