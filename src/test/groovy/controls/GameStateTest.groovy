@@ -47,7 +47,7 @@ class GameStateTest extends Specification{
 
     }
 
-    def 'processOption (ArrowUP)'(){
+    def 'processOption (ArrowUP)'() {
         given:
         def gui = Mock(Gui.class)
         def game = Mock(Game)
@@ -61,14 +61,11 @@ class GameStateTest extends Specification{
 
         when:
         gameState.processOption(gui)
-
         then:
         verifyAll {
             option + 1 == 3
             gui.mainMenu(option)
         }
-
-
     }
 
     def 'InitialGameState'(){
