@@ -25,7 +25,7 @@ public class Game {
     public Game(Gui gui) throws IOException {
         this.gui = gui;
         this.gameState = new InitialGameState(this);
-        arena = new Arena(40, 20);
+        arena = new Arena(46, 46);
         gameOver = false;
     }
 
