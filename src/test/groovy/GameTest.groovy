@@ -7,43 +7,28 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
 
 class GameTest extends Specification{
-    private Game game
-    private TextGraphics screen
 
-    def setup(){
-        game = new Game()
-        screen = Mock(TextGraphics)
-    }
-
-
-    def"Constructor test - creating a terminal"(){
-        given:
-        DefaultTerminalFactory terminalFactory = Mock()
-        when:
-        new Game()
-        then:
-        1*terminalFactory.createTerminal(_)
-    }
-
-    def"Constructor test - creating an Arena"(){
-        when:
-        new Game()
-        then:
-        1*new Arena(42,42)
-    }
 
     def"Draw test"(){
         given:
-        Arena arena = Mock()
+        def screen = Mock(Screen.class)
+        def game = new Game()
+        def arena = Mock(Arena.class)
+
+        game.setArena(arena)
+        game.setScreen(screen)
 
         when:
         game.draw()
+
         then:
-        1*arena.draw(screen)
+        1*screen.clear()
+        1*arena.draw(_)
+        1*screen.refresh()
 
     }
 
-    def"Run test - input is asked for"(){
+    def"Run test - with input"(){
         given:
         Terminal terminal = Mock()
         when:

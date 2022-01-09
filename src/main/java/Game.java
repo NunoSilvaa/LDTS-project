@@ -27,6 +27,14 @@ public class Game {
         gameOver = false;
     }
 
+    public void setArena(Arena arena){
+        this.arena = arena;
+    }
+
+    public void setScreen(Screen screen){
+        this.screen = screen;
+    }
+
 
     private void draw() throws IOException{
         screen.clear();
