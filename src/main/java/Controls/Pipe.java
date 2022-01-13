@@ -1,5 +1,7 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;

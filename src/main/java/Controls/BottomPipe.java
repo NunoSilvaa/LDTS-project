@@ -1,5 +1,8 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
+
 public class BottomPipe extends Pipe{
 
     public BottomPipe(Position position, Dimension dimension, int speed){

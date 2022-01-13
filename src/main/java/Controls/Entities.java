@@ -1,11 +1,13 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
 abstract class Entities {
-    protected  Position position;
-    protected  Dimension dimension;
+    protected Position position;
+    protected Dimension dimension;
     protected  int speed;
 
     public Entities(Position position, Dimension dimension, int speed){

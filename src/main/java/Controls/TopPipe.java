@@ -1,5 +1,8 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
+
 public class TopPipe extends Pipe{
     public TopPipe(Position position, Dimension dimension, int speed){
         super(position,dimension, speed);
