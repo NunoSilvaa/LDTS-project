@@ -15,13 +15,7 @@ public class Rectangle {
         Position l2 = new Position(otherRectangle.getX(), otherRectangle.getY());
         Position r2 = new Position(otherRectangle.getX() + otherRectangle.getWidth(), otherRectangle.getY()+otherRectangle.getHeight());
 
-        if(l1.getY()>r2.getY())
-            return false;
-        if(r1.getY() < l2.getY())
-            return false;
-        if(l1.getX()>r2.getX())
-            return false;
-        if(r1.getX()<l2.getX())
+        if(l1.getY()>r2.getY() || r1.getY() < l2.getY() || l1.getX()>r2.getX() || r1.getX()<l2.getX())
             return false;
         return true;
     }
