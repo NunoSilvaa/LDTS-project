@@ -14,8 +14,7 @@ abstract class PowerUp extends Entities{
     }
 
     @Override
-    public void draw(TextGraphics screen){
-    }
+    abstract void draw(TextGraphics screen);
 
     @Override
     public boolean update(int limit) {
@@ -24,6 +23,8 @@ abstract class PowerUp extends Entities{
 
     abstract boolean effect(ArrayList<Pipe> pipes, Bird bird);
 
-    abstract boolean overlap(Position birdPos);
+    public boolean overlap(Position birdPos){
+        return false;
+    };
 
 }
