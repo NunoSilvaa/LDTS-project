@@ -1,5 +1,7 @@
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
+import Controls.*
+import Rectangle.*
 
 class BirdTest extends Specification{
     private Position position

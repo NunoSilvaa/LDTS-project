@@ -1,3 +1,6 @@
+import Controls.*
+import menus.*
+import Rectangle.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory

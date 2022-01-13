@@ -1,3 +1,5 @@
+import Controls.*
+import Rectangle.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 

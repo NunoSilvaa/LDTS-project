@@ -20,8 +20,6 @@ public class Rectangle {
 
     public void setY(int y){}
 
-    public void increaseY(int delta){}
-
     public void updateX(int speed){}
 
     public void updateY(int speed){}

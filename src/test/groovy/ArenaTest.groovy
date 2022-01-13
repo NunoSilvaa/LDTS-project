@@ -1,5 +1,9 @@
+import Controls.*
+import menus.*
+import Rectangle.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
+
 
 class ArenaTest extends Specification{
 

@@ -22,11 +22,8 @@ public class Position {
 
     public void setY(int y){this.y = y;}
 
-    public void increaseY(int delta){this.y += delta;}
-
     public void updateX(int speed){this.x -= speed;}
 
     public void updateY(int speed){this.y += speed;}
-
 
 }
