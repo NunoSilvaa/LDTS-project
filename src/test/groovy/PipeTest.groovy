@@ -10,7 +10,7 @@ class PipeTest extends Specification{
     def setup(){
         position = new Position(20,20)
         dimension = new Dimension(10,10)
-        pipe = new TopPipe(position, dimension, 2)
+        pipe = new Pipe(position, dimension, 2)
         screen = Mock(TextGraphics)
     }
 
