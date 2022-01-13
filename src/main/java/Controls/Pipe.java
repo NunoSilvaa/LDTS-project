@@ -26,6 +26,8 @@ abstract class Pipe extends Entities{
         return true;
     }
 
+
+
     abstract boolean overlap(Position birdPos);
 
 }

@@ -1,3 +1,4 @@
+import Controls.Arena
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 

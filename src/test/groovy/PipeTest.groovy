@@ -1,3 +1,7 @@
+import Controls.BottomPipe
+import Controls.Dimension
+import Controls.Position
+import Controls.TopPipe
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 

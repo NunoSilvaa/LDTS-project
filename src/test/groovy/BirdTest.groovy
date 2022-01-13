@@ -1,3 +1,6 @@
+import Controls.Bird
+import Controls.Dimension
+import Controls.Position
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
