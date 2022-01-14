@@ -1,9 +1,6 @@
 import Controls.*
-import menus.*
-import Rectangle.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
-
 
 class ArenaTest extends Specification{
 
@@ -46,8 +43,8 @@ class ArenaTest extends Specification{
         def pipe1 = Mock(Pipe)
         def pipe2 = Mock(Pipe)
 
-        pipe1.intersect(_) >> false
-        pipe2.intersect(_) >> true
+        bird.intersect(pipe1) >> false
+        bird.intersect(pipe2) >> true
 
         arena.addPipe(pipe1)
         arena.addPipe(pipe2)
@@ -66,8 +63,8 @@ class ArenaTest extends Specification{
         def pipe1 = Mock(Pipe)
         def pipe2 = Mock(Pipe)
 
-        pipe1.overlap(_,_) >> false
-        pipe2.overlap(_,_) >> false
+        bird.intersect(pipe1) >> false
+        bird.intersect(pipe2) >> false
 
         arena.addPipe(pipe1)
         arena.addPipe(pipe2)

@@ -24,6 +24,13 @@ public class Arena {
         createPipes();
     }
 
+    public Arena(int width, int height, Bird bird){
+        this.height = height;
+        this.width = width;
+        this.bird = bird;
+        pipes = new ArrayList<Pipe>();
+    }
+
 
     public void createPipes() {
         Random random = new Random();
@@ -74,5 +81,9 @@ public class Arena {
 
     public int getNumberPipes(){
         return pipes.size();
+    }
+
+    public void addPipe(Pipe pipe){
+        pipes.add(pipe);
     }
 }
