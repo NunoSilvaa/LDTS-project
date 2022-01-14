@@ -10,7 +10,7 @@ This project was developed by *Daniel Rodrigues* (*up202006562*@fe.up.pt), *Nuno
 
 - Pipe (rectangles that kill flappy if he touches them)
 - Flappy Bird (flies when arrow up is pressed
-- Game Views & States 
+- flappyBird.game Views & States 
 - Random Pipe Creation
 - Collision Detection
 
@@ -23,7 +23,7 @@ This project was developed by *Daniel Rodrigues* (*up202006562*@fe.up.pt), *Nuno
 
 - Pipe (rectangles that kill flappy if he touches them)
 - Flappy Bird (flies when arrow up is pressed
-- Game Views & States 
+- flappyBird.game Views & States 
 - Random Pipe Creation
 - Collision Detection
 - Hovering Pipes
@@ -41,7 +41,7 @@ This project was developed by *Daniel Rodrigues* (*up202006562*@fe.up.pt), *Nuno
 
 ### DESIGN
 
-#### The different "menus"/game states SHOULD BEHAVE DIFFERENTLY DEPENDING ON THEIR STATE
+#### The different "flappyBird.menus"/game states SHOULD BEHAVE DIFFERENTLY DEPENDING ON THEIR STATE
 
 **Problem in Context**
 
