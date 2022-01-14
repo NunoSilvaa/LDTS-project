@@ -71,4 +71,8 @@ public class Arena {
             }
         return false;
     }
+
+    public int getNumberPipes(){
+        return pipes.size();
+    }
 }

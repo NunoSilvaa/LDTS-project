@@ -20,7 +20,7 @@ class PipeTest extends Specification{
 
         then:
             bottomPipe.getPosition() == new Position(18, 30)
-            result == false
+            result == true
     }
 
     def"Update test (Top Pipe)"(){
@@ -29,7 +29,7 @@ class PipeTest extends Specification{
 
         then:
             topPipe.getPosition() == new Position(18, 0)
-            result == false
+            result == true
     }
 
     def"Update test limits (Bottom Pipe)"(){
@@ -41,8 +41,7 @@ class PipeTest extends Specification{
             result = bottomPipe.update(0);
 
         then:
-            bottomPipe.getPosition() == new Position(-20, 30)
-            result == true
+            result == false
     }
 
 
@@ -56,8 +55,7 @@ class PipeTest extends Specification{
             result = topPipe.update(0);
 
         then:
-            topPipe.getPosition() == new Position(-20, 0)
-            result == true
+            result == false
     }
 
     def"Draw test(Bottom Pipe)"(){
@@ -82,38 +80,5 @@ class PipeTest extends Specification{
 
     }
 
-    def"Collision Test (Top)"(){
-        expect:
-        topPipe.overlap(pos, dimensions) == bool
-
-        where:
-        pos | dimensions | bool
-        new Position(18,0) | new Dimension(1,1) |false
-        new Position(31,0) | new Dimension(1,1) |false
-        new Position(25,11) | new Dimension(1,1) |false
-        new Position(19,0) | new Dimension(1,1) |true
-        new Position(29,0) | new Dimension(1,1) |true
-        new Position(19,10) | new Dimension(1,1) |true
-        new Position(29,10) | new Dimension(1,1) |true
-        new Position(25,5) | new Dimension(1,1) | true
-
-    }
-
-    def"Collision Test (Bottom)"(){
-        expect:
-        bottomPipe.overlap(pos, dimensions) == bool
-
-        where:
-        pos | dimensions | bool
-        new Position(19,0) | new Dimension(1,1) | false
-        new Position(20,15) | new Dimension(1,1) |false
-        new Position(31,39) | new Dimension(1,1) | false
-        new Position(19,39) | new Dimension(1,1) |true
-        new Position(30,39) | new Dimension(1,1) |true
-        new Position(19,29) | new Dimension(1,1) |true
-        new Position(30,29) | new Dimension(1,1) |true
-        new Position(25,35) | new Dimension(1,1) |true
-
-    }
 }
 

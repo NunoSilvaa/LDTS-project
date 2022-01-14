@@ -46,8 +46,8 @@ class ArenaTest extends Specification{
         def pipe1 = Mock(Pipe)
         def pipe2 = Mock(Pipe)
 
-        pipe1.overlap(_,_) >> false
-        pipe2.overlap(_,_) >> true
+        pipe1.intersect(_) >> false
+        pipe2.intersect(_) >> true
 
         arena.addPipe(pipe1)
         arena.addPipe(pipe2)
