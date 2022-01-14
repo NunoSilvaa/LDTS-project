@@ -1,5 +1,7 @@
 package Rectangle;
 
+import javax.xml.crypto.dsig.SignatureMethod;
+
 public class Rectangle {
     private Position position;
     private Dimension dimension;
@@ -18,6 +20,22 @@ public class Rectangle {
         if(l1.getY()>r2.getY() || r1.getY() < l2.getY() || l1.getX()>r2.getX() || r1.getX()<l2.getX())
             return false;
         return true;
+    }
+
+    public Position getPosition(){
+        return position;
+    }
+
+    public Dimension getDimension(){
+        return dimension;
+    }
+
+    public void setPosition(Position position){
+        this.position = position;
+    }
+
+    public void setDimension(Dimension dimension){
+        this.dimension = dimension;
     }
 
     public int getX() {

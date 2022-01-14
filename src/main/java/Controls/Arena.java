@@ -66,7 +66,7 @@ public class Arena {
 
     public boolean verifyPipeCollisions(){
         for(Pipe pipe: pipes)
-            if(pipe.overlap(bird.getPosition())){
+            if(bird.intersect(pipe)){
                 return true;
             }
         return false;

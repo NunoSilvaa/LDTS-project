@@ -2,6 +2,10 @@ package Controls;
 
 import Rectangle.Dimension;
 import Rectangle.Position;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class TopPipe extends Pipe{
     public TopPipe(Position position, Dimension dimension, int speed){
@@ -9,12 +13,8 @@ public class TopPipe extends Pipe{
     }
 
     @Override
-    public boolean overlap(Position birdPos){
-        if(birdPos.getX() >= position.getX() && birdPos.getX() <= position.getX() + dimension.getWidth()){
-            if(birdPos.getY() >= 0 && birdPos.getY() <= dimension.getHeight() ){
-                return true;
-            }
-        }
-        return false;
+    public void draw(TextGraphics screen){
+        screen.setBackgroundColor(TextColor.Factory.fromString("#006400"));
+        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(),rectangle.getHeight()),  ' ');
     }
 }
