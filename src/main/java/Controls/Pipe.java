@@ -1,5 +1,7 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -11,21 +13,16 @@ abstract class Pipe extends Entities{
         super(position,dimension, speed);
     }
 
-    @Override
-    public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#006400"));
-        screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getWidth(),dimension.getHeight()),  ' ');
-    }
+    abstract void draw(TextGraphics screen);//to be implemented later
 
     @Override
     public boolean update(int limit) {
-        if (position.getX() + dimension.getWidth() < limit) {
+        if (rectangle.getX() + rectangle.getWidth() < limit) {
             return false;
         }
-        position.updateX(speed);
+        rectangle.updateX(speed);
         return true;
     }
 
-    abstract boolean overlap(Position birdPos);
 
 }

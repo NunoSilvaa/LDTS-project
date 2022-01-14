@@ -1,30 +1,37 @@
 package Controls;
 
+import Rectangle.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
 abstract class Entities {
-    protected  Position position;
-    protected  Dimension dimension;
+    Rectangle rectangle;
     protected  int speed;
 
     public Entities(Position position, Dimension dimension, int speed){
-        this.position = position;
-        this.dimension = dimension;
+        this.rectangle = new Rectangle(position, dimension);
         this.speed = speed;
     }
 
+    public Rectangle getRectangle(){return rectangle;}
+
     public Position getPosition(){
-        return position;
+        return rectangle.getPosition();
     }
 
-    public void setPosition(Position position){this.position = position;}
+    public void setPosition(Position position){rectangle.setPosition(position);}
 
     public Dimension getDimension(){
-        return dimension;
+        return rectangle.getDimension();
     }
 
+    public void setDimension(Dimension dimension){rectangle.setDimension(dimension);}
+
     public void increaseSpeed(int delta){this.speed += delta;}
+
+    public boolean intersect(Entities entity){
+        return rectangle.intersect(entity.getRectangle());
+    }
 
     abstract boolean update(int limit);
 

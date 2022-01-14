@@ -1,5 +1,7 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -20,17 +22,17 @@ public class Bird extends Entities{
     public boolean update(int limit) {
 
 
-        if (position.getY() + speed > limit) {
+        if (rectangle.getY() + speed > limit) {
             dead = true;
             return true;
         }
 
-        if(position.getY() < 0 ){
-            position.setY(0);
+        if(rectangle.getY() < 0 ){
+            rectangle.setY(0);
             return true;
         }
 
-        position.updateY(speed);
+        rectangle.updateY(speed);
         return false;
     }
 
@@ -38,14 +40,14 @@ public class Bird extends Entities{
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-        screen.fillRectangle(new TerminalPosition(position.getX(),position.getY()), new TerminalSize(dimension.getWidth(), dimension.getHeight()),  ' ');
+        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
     }
 
     public void slap(int limit){
-        if(position.getY()-slapHeight >= limit)
-            position.updateY(-slapHeight);
+        if(rectangle.getY()-slapHeight >= limit)
+            rectangle.updateY(-slapHeight);
         else
-            position.setY(limit);
+            rectangle.setY(limit);
     }
 
     public boolean isDead(){

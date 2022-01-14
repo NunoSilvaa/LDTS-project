@@ -1,5 +1,7 @@
 package Controls;
 
+import Rectangle.Dimension;
+import Rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -20,6 +22,13 @@ public class Arena {
         bird = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,5);
         pipes = new ArrayList<Pipe>();
         createPipes();
+    }
+
+    public Arena(int width, int height, Bird bird){
+        this.height = height;
+        this.width = width;
+        this.bird = bird;
+        pipes = new ArrayList<Pipe>();
     }
 
 
@@ -64,9 +73,17 @@ public class Arena {
 
     public boolean verifyPipeCollisions(){
         for(Pipe pipe: pipes)
-            if(pipe.overlap(bird.getPosition())){
+            if(bird.intersect(pipe)){
                 return true;
             }
         return false;
+    }
+
+    public int getNumberPipes(){
+        return pipes.size();
+    }
+
+    public void addPipe(Pipe pipe){
+        pipes.add(pipe);
     }
 }
