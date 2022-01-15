@@ -5,7 +5,7 @@ import flappyBird.entities.weapons.Sting
 import spock.lang.Specification
 
 class StingTest extends Specification{
-    def"Laser Sword Test"(){
+    def"Sting Test"(){
         given:
         def bird = Mock(Bird.class)
         Sting weapon = new Sting()

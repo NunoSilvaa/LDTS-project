@@ -5,7 +5,7 @@ import flappyBird.entities.weapons.Poison
 import spock.lang.Specification
 
 class PoisonTest extends Specification{
-    def"Laser Sword Test"(){
+    def"Poison Test"(){
         given:
         def bird = Mock(Bird.class)
         Poison weapon = new Poison()

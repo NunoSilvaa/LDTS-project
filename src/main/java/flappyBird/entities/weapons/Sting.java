@@ -6,6 +6,6 @@ public class Sting extends Weapon {
 
     @Override
     void attackBird(Bird bird) {
-
+        bird.decreaseHealth(25);
     }
 }
