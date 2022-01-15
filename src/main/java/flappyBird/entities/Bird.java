@@ -10,20 +10,20 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Bird extends Entities{
     private int slapHeight;
-    private boolean dead;
+    private int lives;
 
 
-    public Bird(Position position, Dimension dimension, int speed, int slapHeight){
+    public Bird(Position position, Dimension dimension, int speed, int slapHeight, int lives){
         super(position,dimension, speed);
         this.slapHeight = slapHeight;
-        dead = false;
+        this.lives = lives;
     }
     @Override
     public boolean update(int limit) {
 
 
         if (rectangle.getY() + speed > limit) {
-            dead = true;
+            lives--;
             return true;
         }
 
@@ -51,6 +51,6 @@ public class Bird extends Entities{
     }
 
     public boolean isDead(){
-        return dead;
+        return lives == 0;
     }
 }

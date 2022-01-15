@@ -19,7 +19,7 @@ public class Arena {
     public Arena(int width, int height){
         this.height = height;
         this.width = width;
-        bird = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,5);
+        bird = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,5,1);
         pipes = new ArrayList<Pipe>();
         createPipes();
     }
