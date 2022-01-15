@@ -16,7 +16,7 @@ class BirdTest extends Specification{
     def setup(){
         position = new Position(20,20)
         dimension = new Dimension(10,10)
-        bird = new Bird(position, dimension, 2, 3, 1)
+        bird = new Bird(position, dimension, 2, 3, 5)
         screen = Mock(TextGraphics)
     }
 
@@ -65,5 +65,53 @@ class BirdTest extends Specification{
         then:
         1 * screen.fillRectangle(_,_,_)
 
+    }
+    def"Increase Lives"(){
+        when:
+        bird.increaseLives(3)
+        then:
+        bird.getLives() == 8
+    }
+
+    def"Decrease Lives"(){
+        expect:
+        bird.decreaseLives(lives)
+        bird.getLives() == solutionLive
+        bird.getHealth() == solutionHealth
+
+        where:
+        lives | solutionLive | solutionHealth
+        1 | 4 | 100
+        9 | 0 | 0
+    }
+
+    def"Decrease Lives - Also tests health"(){
+        expect:
+        bird.setHealth(40)
+        bird.decreaseLives(lives)
+        bird.getLives() == solutionLive
+        bird.getHealth() == solutionHealth
+
+        where:
+        lives | solutionLive | solutionHealth
+        1 | 4 | 100
+        9 | 0 | 0
+    }
+
+    def"Decrease Health"(){
+        when:
+        bird.decreaseHealth(50)
+
+        then:
+        bird.getHealth() == 50
+    }
+
+    def"Decrease Health - 2"(){
+        given:
+        def specialBird = Mock(Bird.class)
+        when:
+        specialBird.decreaseHealth(120)
+        then:
+        1 * specialBird.decreaseLives(_)
     }
 }

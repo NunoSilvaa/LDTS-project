@@ -3,9 +3,9 @@ import flappyBird.rectangle.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 
-abstract class Entities {
+public abstract class Entities {
     Rectangle rectangle;
-    protected  int speed;
+    protected int speed;
 
     public Entities(Position position, Dimension dimension, int speed){
         this.rectangle = new Rectangle(position, dimension);
