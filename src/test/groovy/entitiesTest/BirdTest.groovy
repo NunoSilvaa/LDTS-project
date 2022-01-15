@@ -109,8 +109,10 @@ class BirdTest extends Specification{
     def"Decrease Health - 2"(){
         given:
         def specialBird = Mock(Bird.class)
+
         when:
         specialBird.decreaseHealth(120)
+
         then:
         1 * specialBird.decreaseLives(_)
     }
