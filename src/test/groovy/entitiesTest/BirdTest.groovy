@@ -1,4 +1,4 @@
-package entitiesTest
+package groovy.entitiesTest
 
 import flappyBird.entities.Bird
 import flappyBird.rectangle.Dimension
@@ -16,7 +16,7 @@ class BirdTest extends Specification{
     def setup(){
         position = new Position(20,20)
         dimension = new Dimension(10,10)
-        bird = new Bird(position, dimension, 2, 3)
+        bird = new Bird(position, dimension, 2, 3, 1)
         screen = Mock(TextGraphics)
     }
 
