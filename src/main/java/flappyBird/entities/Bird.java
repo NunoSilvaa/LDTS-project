@@ -54,7 +54,7 @@ public class Bird extends Entities{
     }
 
     public boolean isDead(){
-        return lives == 0;
+        return lives == 0 && health == 0;
     }
 
     public int getLives(){return lives;}
