@@ -36,7 +36,6 @@ public abstract class Enemy extends Entities{
             observer.energyChanged(this);
     }
 
-    public
 
     public Weapon getWeapon(){
         return weapon;
