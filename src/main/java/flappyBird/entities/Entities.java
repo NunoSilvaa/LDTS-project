@@ -32,7 +32,10 @@ public abstract class Entities {
         return rectangle.intersect(entity.getRectangle());
     }
 
+    public void setSpeed(int speed){this.speed = speed;}
+
     abstract boolean update(int limit);
 
     abstract void draw(TextGraphics screen);
+
 }
