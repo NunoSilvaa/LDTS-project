@@ -4,7 +4,7 @@ import flappyBird.entities.Bird;
 
 public class Bite extends Weapon {
     @Override
-    void attackBird(Bird bird) {
+    public void attackBird(Bird bird) {
         bird.decreaseHealth(50);
     }
 }
