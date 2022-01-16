@@ -34,6 +34,10 @@ public abstract class Entities {
 
     public void setSpeed(int speed){this.speed = speed;}
 
+    public void updateX(){rectangle.updateX(speed);}
+
+    public void updateY(){rectangle.updateY(speed);}
+
     abstract boolean update(int limit);
 
     abstract void draw(TextGraphics screen);

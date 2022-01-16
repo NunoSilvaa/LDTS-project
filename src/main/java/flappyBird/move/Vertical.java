@@ -6,7 +6,7 @@ import flappyBird.rectangle.Position;
 
 public class Vertical implements Move{
     @Override
-    public Position update(Entities entity) {
-        return null;
+    public void update(Entities entity) {
+         entity.updateY();
     }
 }

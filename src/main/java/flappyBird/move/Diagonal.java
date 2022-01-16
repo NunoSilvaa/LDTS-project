@@ -5,7 +5,8 @@ import flappyBird.rectangle.Position;
 
 public class Diagonal implements Move{
     @Override
-    public Position update(Entities entity) {
-        return null;
+    public void update(Entities entity) {
+        entity.updateX();
+        entity.updateY();
     }
 }
