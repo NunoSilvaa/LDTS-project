@@ -1,30 +1,31 @@
 package flappyBird.entities.enemies;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.entities.weapons.Sting;
 import flappyBird.entities.weapons.Weapon;
+import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 
 public class Bee extends Enemy{
 
-    public Bee(Position position, Dimension Dimension, int speed){
-
+    public Bee(Position position, Dimension dimension, int speed, Move move){
+        super(position, dimension, speed, move);
     }
-
 
     @Override
     protected Weapon createWeapon() {
-        return null;
+        return new Sting();
     }
 
-    @Override
-    public boolean update(int limit) {
-        return false;
-    }
 
     @Override
     public void draw(TextGraphics screen) {
-
+        screen.setBackgroundColor(TextColor.Factory.fromString("#E1DD19"));
+        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
     }
 
 }

@@ -1,5 +1,6 @@
 package flappyBird.entities;
 
+import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -9,8 +10,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class BottomPipe extends Pipe{
 
-    public BottomPipe(Position position, Dimension dimension, int speed){
-        super(position,dimension, speed);
+    public BottomPipe(Position position, Dimension dimension, int speed, Move move){
+        super(position,dimension, speed, move);
     }
 
     @Override
