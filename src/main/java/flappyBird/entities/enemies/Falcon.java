@@ -1,20 +1,27 @@
 package flappyBird.entities.enemies;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.weapons.Weapon;
+import flappyBird.rectangle.Dimension;
+import flappyBird.rectangle.Position;
 
-public class Falcons implements Enemy{
+public class Falcon extends Enemy{
+
+    public Falcon(Position position, Dimension dimension, int speed) {
+    }
+
     @Override
     protected Weapon createWeapon() {
         return null;
     }
 
     @Override
-    void update() {
-
+    boolean update(int limit) {
+        return false;
     }
 
     @Override
-    void draw() {
+    void draw(TextGraphics screen) {
 
     }
 }

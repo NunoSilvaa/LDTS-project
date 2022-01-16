@@ -90,4 +90,6 @@ public class Bird extends Entities{
     public void setHealth(int health){
         this.health = health;
     }
+
+    public void setLives(int lives){this.lives = lives;}
 }
