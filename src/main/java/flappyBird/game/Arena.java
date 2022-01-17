@@ -137,4 +137,16 @@ public class Arena {
     public void injectPipe(Pipe pipe){
         pipes.add(pipe);
     }
+
+    public Bird getBird() {
+        return bird;
+    }
+
+    public List<Pipe> getPipes() {
+        return pipes;
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
 }

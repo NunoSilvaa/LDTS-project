@@ -63,8 +63,6 @@ public class Bird extends Entities{
             this.lives -= numOfLives;
             this.health = 100;
         }
-
-
     }
 
     public void increaseLives(int numOfLives){
