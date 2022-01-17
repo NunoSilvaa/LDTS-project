@@ -9,8 +9,8 @@ import java.util.List;
 
 
 public abstract class Entities {
-    protected final List<EntitiesObserver> observers;
-    protected final Move move;
+    protected List<EntitiesObserver> observers;
+    protected Move move;
     protected Rectangle rectangle;
     protected int speed;
 
@@ -20,6 +20,8 @@ public abstract class Entities {
         this.move = move;
         observers = new ArrayList<>();
     }
+
+    public void setMove(Move move){this.move = move;}
 
     public void addObserver(EntitiesObserver observer){
         observers.add(observer);
@@ -58,6 +60,6 @@ public abstract class Entities {
         }
     }
 
-    abstract void draw(TextGraphics screen);
+    public abstract void draw(TextGraphics screen);
 
 }

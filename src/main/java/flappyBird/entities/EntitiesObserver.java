@@ -1,5 +1,5 @@
 package flappyBird.entities;
 
-interface EntitiesObserver {
+public interface EntitiesObserver {
     void positionChanged(Entities entity);
 }

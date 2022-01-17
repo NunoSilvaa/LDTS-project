@@ -2,8 +2,8 @@ package entitiesTest
 
 import flappyBird.rectangle.*
 
-import flappyBird.entities.BottomPipe
-import flappyBird.entities.TopPipe
+import flappyBird.entities.pipes.BottomPipe
+import flappyBird.entities.pipes.TopPipe
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 

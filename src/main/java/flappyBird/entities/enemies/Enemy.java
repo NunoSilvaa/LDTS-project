@@ -32,5 +32,4 @@ public abstract class Enemy extends Entities{
 
     protected abstract Weapon createWeapon();
 
-    abstract void draw(TextGraphics screen);
 }

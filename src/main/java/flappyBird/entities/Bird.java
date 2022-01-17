@@ -1,6 +1,7 @@
 package flappyBird.entities;
 
 import flappyBird.move.Move;
+import flappyBird.move.Vertical;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -14,13 +15,13 @@ public class Bird extends Entities{
     private int lives;
     private int health;
 
-
-    public Bird(Position position, Dimension dimension, int speed, Move move, int slapHeight, int lives){
-        super(position,dimension, speed, move);
+    public Bird(Position position, Dimension dimension, int speed, Move move, int slapHeight, int lives) {
+        super(position, dimension, speed, move);
         this.slapHeight = slapHeight;
         this.lives = lives;
         health = 100;
     }
+
 
     @Override
     public void draw(TextGraphics screen){
@@ -62,6 +63,7 @@ public class Bird extends Entities{
             this.lives -= numOfLives;
             this.health = 100;
         }
+
 
     }
 
