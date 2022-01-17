@@ -1,56 +1,48 @@
 package groovy.entitiesTest
 
 import flappyBird.entities.Bird
+import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
 import com.googlecode.lanterna.graphics.TextGraphics
 import spock.lang.Specification
 
 class BirdTest extends Specification{
-    private Position position
-    private Dimension dimension
     private Bird bird
     private TextGraphics screen;
-    private boolean result;
 
     def setup(){
-        position = new Position(20,20)
-        dimension = new Dimension(10,10)
-        bird = new Bird(position, dimension, 2, 3, 5)
+        bird = new Bird(new Position(20,20), new Dimension(10,10), 2, new Vertical(), 3, 5)
         screen = Mock(TextGraphics)
+    }
+
+    def"Decrease Health - 2"(){
+        when:
+        bird.decreaseHealth(110)
+        then:
+        bird.getLives() == 4
+        bird.getHealth() == 100
+    }
+
+    def"Decrease Health - 3"(){
+        when:
+        bird.decreaseHealth(90)
+        then:
+        bird.getLives() == 5
+        bird.getHealth() == 10
     }
 
     def"Gravity test"(){
         when:
-        result = bird.update(30);
+        bird.move()
 
         then:
-        bird.getPosition() == new Position(20, 22)
-        result == false
-    }
-
-    def"Gravity test limits"(){
-        when:
-        for(int i = 0; i < 11; i++)
-            result = bird.update(30);
-
-        then:
-        bird.getPosition() == new Position(20, 30)
-        result == true
-    }
-
-    def"Slap test limits"(){
-        when:
-        for(int i = 0; i < 11; i++)
-            bird.slap(0)
-
-        then:
-        bird.getPosition() == new Position(20, 0)
+        bird.getPosition() == new Position(20,22)
     }
 
     def"Slap test"(){
         when:
-        bird.slap(0)
+        bird.slap()
 
         then:
         bird.getPosition() == new Position(20, 17)
@@ -106,14 +98,39 @@ class BirdTest extends Specification{
         bird.getHealth() == 50
     }
 
-    def"Decrease Health - 2"(){
+
+
+    def"isDead - True(Lives == 0 && Health == 0)"(){
         given:
-        def specialBird = Mock(Bird.class)
+        bird.setLives(0)
+        bird.setHealth(0)
 
+        expect:
+        bird.isDead() == true
+    }
+
+    def"isDead - False(Lives == 0 && Health != 0)"(){
+        given:
+        bird.setLives(0)
+        bird.setHealth(50)
+
+        expect:
+        bird.isDead() == false
+    }
+
+    def"isDead - False"(){
+        given:
+        bird.setLives(3)
+        bird.setLives(50)
+
+        expect:
+        bird.isDead() == false
+    }
+
+    def"Increase Speed"(){
         when:
-        specialBird.decreaseHealth(120)
-
+        bird.increaseSpeed(2)
         then:
-        1 * specialBird.decreaseLives(_)
+        bird.getSpeed() == 4
     }
 }

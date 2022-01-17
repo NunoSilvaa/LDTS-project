@@ -46,7 +46,7 @@ public class Bird extends Entities{
 
     public void decreaseHealth(int health){
         int finalHealth = this.health - health;
-        if(finalHealth < 0) {
+        if(finalHealth <= 0) {
             this.decreaseLives(1);
         }
         else{

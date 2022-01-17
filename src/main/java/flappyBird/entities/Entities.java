@@ -29,6 +29,8 @@ public abstract class Entities {
 
     public Rectangle getRectangle(){return rectangle;}
 
+    public void setRectangle(Rectangle rectangle){this.rectangle = rectangle;}
+
     public Position getPosition(){
         return rectangle.getPosition();
     }
@@ -44,6 +46,8 @@ public abstract class Entities {
     public void setSpeed(int speed){this.speed = speed;}
 
     public void increaseSpeed(int delta){this.speed += delta;}
+
+    public int getSpeed(){return speed;}
 
     public boolean intersect(Entities entity){
         return rectangle.intersect(entity.getRectangle());

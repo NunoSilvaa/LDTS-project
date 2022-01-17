@@ -1,6 +1,9 @@
 package entitiesTest
 
+import flappyBird.entities.pipes.Pipe
+import flappyBird.move.Horizontal
 import flappyBird.rectangle.*
+import flappyBird.entities.*
 
 import flappyBird.entities.pipes.BottomPipe
 import flappyBird.entities.pipes.TopPipe
@@ -13,53 +16,25 @@ class PipeTest extends Specification{
     private def screen;
 
     def setup(){
-        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2)
-        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2)
+        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2, new Horizontal())
+        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2, new Horizontal())
         screen = Mock(TextGraphics)
     }
 
     def"Update test (Bottom Pipe)"(){
         when:
-            boolean result = bottomPipe.update(0)
+            bottomPipe.move()
 
         then:
             bottomPipe.getPosition() == new Position(18, 30)
-            result == true
     }
 
     def"Update test (Top Pipe)"(){
         when:
-            boolean result = topPipe.update(0)
+            topPipe.move()
 
         then:
             topPipe.getPosition() == new Position(18, 0)
-            result == true
-    }
-
-    def"Update test limits (Bottom Pipe)"(){
-        given:
-            boolean result
-
-        when:
-        for(int i = 0; i < 20; i++)
-            result = bottomPipe.update(0);
-
-        then:
-            result == false
-    }
-
-
-
-    def"Update test limits (Top Pipe)"(){
-        given:
-            boolean result
-
-        when:
-        for(int i = 0; i < 20; i++)
-            result = topPipe.update(0);
-
-        then:
-            result == false
     }
 
     def"Draw test(Bottom Pipe)"(){
@@ -82,6 +57,19 @@ class PipeTest extends Specification{
         then:
             1 * screen.fillRectangle(_,_,_)
 
+    }
+
+    def"Bird Collide"(){
+        given:
+        def specialPipe = Mock(Pipe.class)
+        def specialBird = Mock(Bird.class)
+        specialPipe.intersect(specialBird) >> true
+
+        when:
+        specialPipe.collideBird(specialBird)
+
+        then:
+        1 * specialBird.decreaseLives(_ as int)
     }
 
 }
