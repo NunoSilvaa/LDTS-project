@@ -2,6 +2,7 @@ package entitiesTest
 
 import flappyBird.entities.pipes.Pipe
 import flappyBird.move.Horizontal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.*
 import flappyBird.entities.*
 
@@ -59,7 +60,7 @@ class PipeTest extends Specification{
 
     }
 
-    def"Bird Collide"(){
+    def"Bird Collide - True"(){
         given:
         def specialPipe = Mock(Pipe.class)
         def specialBird = Mock(Bird.class)
@@ -69,7 +70,39 @@ class PipeTest extends Specification{
         specialPipe.collideBird(specialBird)
 
         then:
-        1 * specialBird.decreaseLives(_ as int)
+        1 * specialBird.decreaseLives(1)
+
+    }
+
+    def"Bird Collide - False"(){
+        given:
+        def specialPipe = Mock(Pipe.class)
+        def specialBird = Mock(Bird.class)
+        specialPipe.intersect(specialBird) >> false
+
+        when:
+        specialPipe.collideBird(specialBird)
+
+        then:
+        0 * specialBird.decreaseLives(1)
+    }
+
+    def"Increase Speed"(){
+        when:
+        bottomPipe.increaseSpeed(2)
+        then:
+        bottomPipe.getSpeed() == 4
+    }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = bottomPipe.getNumObserver();
+        bottomPipe.addObserver(observer)
+        int end = bottomPipe.getNumObserver();
+        then:
+        end - begin == 1
     }
 
 }

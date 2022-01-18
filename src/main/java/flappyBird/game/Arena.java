@@ -21,9 +21,9 @@ public class Arena {
     private static Bird singleton = null;
     private int width;
     private int height;
-    private final Bird bird;
-    private final List<Pipe> pipes;
-    private final List<Enemy> enemies;
+    private Bird bird;
+    private List<Pipe> pipes;
+    private List<Enemy> enemies;
 
     public Arena(int width, int height){
         this.height = height;

@@ -27,6 +27,8 @@ public abstract class Entities {
         observers.add(observer);
     }
 
+    public int getNumObserver(){return observers.size();}
+
     public Rectangle getRectangle(){return rectangle;}
 
     public void setRectangle(Rectangle rectangle){this.rectangle = rectangle;}

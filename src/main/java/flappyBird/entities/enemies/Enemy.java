@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Enemy extends Entities{
-    private final Weapon weapon;
+    private Weapon weapon;
 
     public Enemy(Position position, Dimension dimension, int speed, Move move) {
         super(position, dimension, speed, move);
@@ -23,6 +23,8 @@ public abstract class Enemy extends Entities{
     public Weapon getWeapon(){
         return weapon;
     }
+
+    public void setWeapon(Weapon weapon){this.weapon = weapon;}
 
     public void attack(Bird bird){
         if(this.intersect(bird)){

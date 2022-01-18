@@ -1,6 +1,8 @@
 package groovy.entitiesTest
 
 import flappyBird.entities.Bird
+import flappyBird.entities.Entities
+import flappyBird.entities.EntitiesObserver
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
@@ -132,5 +134,16 @@ class BirdTest extends Specification{
         bird.increaseSpeed(2)
         then:
         bird.getSpeed() == 4
+    }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = bird.getNumObserver();
+        bird.addObserver(observer)
+        int end = bird.getNumObserver();
+        then:
+        end - begin == 1
     }
 }

@@ -4,22 +4,31 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.enemies.*
 import flappyBird.entities.weapons.*
 import flappyBird.entities.*
+import flappyBird.move.Diagonal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
 import spock.lang.Specification
 
 class BeeTest extends Specification{
-    def"Create Weapon"(){
-        given:
-        def bee = Mock(Bee)
+    private Bee bee
+    private Bee specialBee
 
-        expect:
-        Sting in bee.getWeapon()
+    void setup(){
+        bee = new Bee(new Position(25,25), new Dimension(10,10),2, new Diagonal())
+        specialBee = Mock(Bee.class)
+    }
+
+    def"Create Weapon"(){
+        when:
+        def weapon = bee.getWeapon()
+
+        then:
+        weapon instanceof Sting
     }
 
     def"Draw"(){
         given:
-        def bee = Mock(Bee)
         def screen = Mock(TextGraphics)
 
         when:
@@ -33,32 +42,17 @@ class BeeTest extends Specification{
     }
 
     def"Attack Bird-(True)"(){
-        given:
-        def bird = Mock(Bird.class)
-        def bee = Mock(Bee.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        bee.intersect(bird) >> true
-
-        when:
-        bee.attack(bird)
-
-        then:
-        bird.getHealth() == 75
-        bird.getLives() == 4
-
     }
 
     def"Attack Bird-(False)"(){
         given:
         def bird = Mock(Bird.class)
-        def bee = Mock(Bee.class)
         bird.setHealth(100)
         bird.setLives(4)
-        bee.intersect(bird) >> false
+        specialBee.intersect(bird) >> false
 
         when:
-        bee.attack(bird)
+        specialBee.attack(bird)
 
         then:
         bird.getHealth() == 100
@@ -67,29 +61,29 @@ class BeeTest extends Specification{
     }
 
     def"Update Bee"(){
-        given:
-
-        Bee  bee = new Bee(new Position(25,25),new Dimension(1,1), 2)
-
         when:
-        boolean result = bee.update(0)
+        bee.move()
 
         then:
-        bee.getPosition() == new Position(23, 23)
-        result == false
+        bee.getPosition() == new Position(23, 27)
     }
 
-    def"Update Bee - Limits"(){
-        given:
-
-        Bee  bee = new Bee(new Position(25,25),new Dimension(1,1), 2)
-        boolean result
-
+    def"Increase Speed"(){
         when:
-        for(int i = 0; i < 15; i++)
-            result = bee.update(30);
-
+        bee.increaseSpeed(2)
         then:
-        result == true
+        bee.getSpeed() == 4
     }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = bee.getNumObserver();
+        bee.addObserver(observer)
+        int end = bee.getNumObserver();
+        then:
+        end - begin == 1
+    }
+
 }
