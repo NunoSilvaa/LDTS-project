@@ -31,8 +31,7 @@ public class Dimension {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dimension dimension = (Dimension) o;
+        if (!(o instanceof Dimension)) { return false; }Dimension dimension = (Dimension) o;
         return height == dimension.height && width == dimension.width;
     }
 

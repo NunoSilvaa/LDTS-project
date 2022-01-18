@@ -12,6 +12,7 @@ public class NormalState extends ArenaState {
         arena.addPipes();
     };
 
+    @Override
     public void collideEntities(){
         arena.collideEntities();
     };

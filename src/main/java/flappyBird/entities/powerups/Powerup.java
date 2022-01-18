@@ -13,6 +13,7 @@ public abstract class Powerup extends Entities {
         super(position, dimension, speed, move);
     }
 
+    @Override
     public abstract void draw(TextGraphics screen);
 
     public abstract void effect(Arena arena);
