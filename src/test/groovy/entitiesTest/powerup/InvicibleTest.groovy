@@ -24,7 +24,7 @@ class InvicibleTest extends Specification {
         def screen = Mock(TextGraphics)
 
         when:
-        faster.draw(screen)
+        invincible.draw(screen)
 
         then:
         1 * screen.setBackgroundColor(_)

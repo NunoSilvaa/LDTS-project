@@ -4,10 +4,25 @@ import flappyBird.entities.pipes.Pipe
 import flappyBird.game.Arena
 import flappyBird.entities.*
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.game.states.ArenaState
+import flappyBird.move.Vertical
+import flappyBird.rectangle.Dimension
+import flappyBird.rectangle.Position
 import spock.lang.Specification
 
 class ArenaTest extends Specification{
+    private Arena arena;
+    private TextGraphics screen;
+    private ArenaState state;
 
+    def setup(){
+        arena = new Arena(42,42)
+        screen = Mock(TextGraphics)
+    }
+
+    def"Instance"(){
+        when:
+    }
 
     def"Draw Test"(){
         given:
