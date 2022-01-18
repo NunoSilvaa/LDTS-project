@@ -21,6 +21,13 @@ public abstract class Entities {
         observers = new ArrayList<>();
     }
 
+    public Entities(Rectangle rectangle, int speed, Move move){
+        this.rectangle = rectangle;
+        this.speed = speed;
+        this.move = move;
+        observers = new ArrayList<>();
+    }
+
     public void setMove(Move move){this.move = move;}
 
     public void addObserver(EntitiesObserver observer){

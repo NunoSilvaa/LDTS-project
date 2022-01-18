@@ -8,6 +8,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.rectangle.Rectangle;
 
 
 public class Bird extends Entities{
@@ -17,6 +18,13 @@ public class Bird extends Entities{
 
     public Bird(Position position, Dimension dimension, int speed, Move move, int slapHeight, int lives) {
         super(position, dimension, speed, move);
+        this.slapHeight = slapHeight;
+        this.lives = lives;
+        health = 100;
+    }
+
+    public Bird(Rectangle rectangle, int speed, Move move, int slapHeight, int lives) {
+        super(rectangle, speed, move);
         this.slapHeight = slapHeight;
         this.lives = lives;
         health = 100;

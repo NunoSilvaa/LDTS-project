@@ -1,5 +1,6 @@
 package flappyBird.entities.pipes;
 
+import flappyBird.entities.Bird;
 import flappyBird.entities.pipes.Pipe;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
@@ -8,6 +9,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.rectangle.Rectangle;
 
 public class BottomPipe extends Pipe {
 
@@ -15,10 +17,15 @@ public class BottomPipe extends Pipe {
         super(position,dimension, speed, move);
     }
 
+    public BottomPipe(Rectangle rectangle, int speed, Move move){
+        super(rectangle, speed, move);
+    }
+
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#006400"));
         screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(),rectangle.getHeight()),  ' ');
     }
+
 
 }

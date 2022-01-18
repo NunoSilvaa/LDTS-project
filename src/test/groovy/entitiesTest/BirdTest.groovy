@@ -108,7 +108,7 @@ class BirdTest extends Specification{
         bird.setHealth(0)
 
         expect:
-        bird.isDead() == true
+        bird.isDead()
     }
 
     def"isDead - False(Lives == 0 && Health != 0)"(){
@@ -117,7 +117,7 @@ class BirdTest extends Specification{
         bird.setHealth(50)
 
         expect:
-        bird.isDead() == false
+        !bird.isDead()
     }
 
     def"isDead - False"(){
@@ -126,7 +126,7 @@ class BirdTest extends Specification{
         bird.setLives(50)
 
         expect:
-        bird.isDead() == false
+        !bird.isDead()
     }
 
     def"Increase Speed"(){

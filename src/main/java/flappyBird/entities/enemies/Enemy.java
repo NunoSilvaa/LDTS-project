@@ -19,7 +19,6 @@ public abstract class Enemy extends Entities{
         this.weapon = createWeapon();
     }
 
-
     public Weapon getWeapon(){
         return weapon;
     }
@@ -27,6 +26,7 @@ public abstract class Enemy extends Entities{
     public void setWeapon(Weapon weapon){this.weapon = weapon;}
 
     public void attack(Bird bird){
+
         if(this.intersect(bird)){
             weapon.attackBird(bird);
         }

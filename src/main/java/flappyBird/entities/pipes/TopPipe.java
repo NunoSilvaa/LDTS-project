@@ -8,10 +8,15 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.rectangle.Rectangle;
 
 public class TopPipe extends Pipe {
     public TopPipe(Position position, Dimension dimension, int speed, Move move){
         super(position,dimension, speed, move);
+    }
+
+    public TopPipe(Rectangle rectangle, int speed, Move move){
+        super(rectangle, speed, move);
     }
 
     @Override

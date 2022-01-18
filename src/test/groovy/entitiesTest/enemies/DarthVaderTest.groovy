@@ -4,22 +4,32 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.enemies.*
 import flappyBird.entities.weapons.*
 import flappyBird.entities.*
+import flappyBird.move.Diagonal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
+import flappyBird.rectangle.Rectangle
 import spock.lang.Specification
 
 class DarthVaderTest extends Specification{
-    def"Create Weapon"(){
-        given:
-        def darthVader = Mock(DarthVader)
+    private DarthVader darthVader
+    private DarthVader specialDarthVader
 
-        expect:
-        LaserSword in darthVader.getWeapon()
+    void setup(){
+        darthVader = new DarthVader(new Position(25,25), new Dimension(10,10),2, new Vertical())
+        specialDarthVader = Mock(DarthVader.class)
+    }
+
+    def"Create Weapon"(){
+        when:
+        def weapon = darthVader.getWeapon()
+
+        then:
+        weapon instanceof LaserSword
     }
 
     def"Draw"(){
         given:
-        def darthVader = Mock(DarthVader)
         def screen = Mock(TextGraphics)
 
         when:
@@ -34,62 +44,64 @@ class DarthVaderTest extends Specification{
 
     def"Attack Bird-(True)"(){
         given:
-        def bird = Mock(Bird.class)
-        def darthVader = Mock(DarthVader.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        darthVader.intersect(bird) >> true
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        darthVader.setRectangle(r2)
+        darthVader.setWeapon(weapon)
+        r2.intersect(r1) >> true
 
         when:
         darthVader.attack(bird)
 
         then:
-        bird.getHealth() == 100
-        bird.getLives() == 3
-
+        1 * weapon.attackBird(_)
     }
 
     def"Attack Bird-(False)"(){
         given:
-        def bird = Mock(Bird.class)
-        def darthVader = Mock(DarthVader.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        darthVader.intersect(bird) >> false
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        darthVader.setRectangle(r2)
+        darthVader.setWeapon(weapon)
+        r2.intersect(r1) >> false
 
         when:
         darthVader.attack(bird)
 
         then:
-        bird.getHealth() == 100
-        bird.getLives() == 4
-
+        0 * weapon.attackBird(_)
     }
 
-    def"Update DarthVader"(){
-        given:
-
-        DarthVader  darthVader = new DarthVader(new Position(25,25),new Dimension(1,1), 2)
-
+    def"Update"(){
         when:
-        boolean result = darthVader.update(0)
+        darthVader.move()
 
         then:
-        darthVader.getPosition() == new Position(25, 23)
-        result == false
+        darthVader.getPosition() == new Position(25, 27)
     }
 
-    def"Update DarthVader  - Limits"(){
-        given:
-
-        DarthVader  darthVader = new DarthVader(new Position(25,25),new Dimension(1,1), 2)
-        boolean result
-
+    def"Increase Speed"(){
         when:
-        for(int i = 0; i < 15; i++)
-            result = darthVader.update(0)
-
+        darthVader.increaseSpeed(2)
         then:
-        result == true
+        darthVader.getSpeed() == 4
     }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = darthVader.getNumObserver();
+        darthVader.addObserver(observer)
+        int end = darthVader.getNumObserver();
+        then:
+        end - begin == 1
+    }
+
 }
