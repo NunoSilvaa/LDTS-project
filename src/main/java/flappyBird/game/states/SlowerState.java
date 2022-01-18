@@ -21,6 +21,7 @@ public class SlowerState extends ArenaState {
         arena.addPipes();
     };
 
+    @Override
     public void collideEntities(){
         arena.collideEntities();
     };

@@ -11,6 +11,7 @@ public abstract class Pipe extends Entities{
         super(position,dimension, speed, move);
     }
 
+    @Override
     public abstract void draw(TextGraphics screen);//to be implemented later
 
 

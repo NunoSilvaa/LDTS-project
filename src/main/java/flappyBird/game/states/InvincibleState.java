@@ -13,6 +13,7 @@ public class InvincibleState extends ArenaState {
     };
 
     //when our hero is invincible the collisions should not affect him and he should hover just like a ghost going through pipes and enemy attacks
+    @Override
     public void collideEntities(){
     };
 }
