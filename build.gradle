@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'application'
+    id 'info.solidsoft.pitest' version '1.6.0'
     id 'groovy'
 }
 
-group 'com.TWEgit.example'
+group 'flappyBird'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -20,13 +21,16 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
-
 }
 
 test {
     useJUnitPlatform()
 }
 
-application {
-    mainClass.set("Application")
+pitest {
+    junit5PluginVersion = '0.15'
+    pitestVersion = '1.6.7'
+    verbose = true
 }
+
+mainClassName = 'flappyBird.game.Application'
