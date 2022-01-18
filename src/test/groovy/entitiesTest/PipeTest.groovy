@@ -1,65 +1,44 @@
 package entitiesTest
 
+import flappyBird.entities.pipes.Pipe
+import flappyBird.move.Horizontal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.*
+import flappyBird.entities.*
 
-import flappyBird.entities.BottomPipe
-import flappyBird.entities.TopPipe
+import flappyBird.entities.pipes.BottomPipe
+import flappyBird.entities.pipes.TopPipe
 import com.googlecode.lanterna.graphics.TextGraphics
+import org.w3c.dom.css.Rect
 import spock.lang.Specification
 
 class PipeTest extends Specification{
     private def topPipe
     private def bottomPipe
+    private Pipe pipe
     private def screen;
 
     def setup(){
-        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2)
-        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2)
+        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2, new Horizontal())
+        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2, new Horizontal())
+        pipe = new BottomPipe(new Position(10,10), new Dimension(10,10), 2, new Horizontal())
         screen = Mock(TextGraphics)
     }
 
     def"Update test (Bottom Pipe)"(){
         when:
-            boolean result = bottomPipe.update(0)
+            bottomPipe.move()
 
         then:
             bottomPipe.getPosition() == new Position(18, 30)
-            result == true
     }
 
     def"Update test (Top Pipe)"(){
         when:
-            boolean result = topPipe.update(0)
+            topPipe.move()
 
         then:
             topPipe.getPosition() == new Position(18, 0)
-            result == true
-    }
-
-    def"Update test limits (Bottom Pipe)"(){
-        given:
-            boolean result
-
-        when:
-        for(int i = 0; i < 20; i++)
-            result = bottomPipe.update(0);
-
-        then:
-            result == false
-    }
-
-
-
-    def"Update test limits (Top Pipe)"(){
-        given:
-            boolean result
-
-        when:
-        for(int i = 0; i < 20; i++)
-            result = topPipe.update(0);
-
-        then:
-            result == false
     }
 
     def"Draw test(Bottom Pipe)"(){
@@ -82,6 +61,56 @@ class PipeTest extends Specification{
         then:
             1 * screen.fillRectangle(_,_,_)
 
+    }
+
+    def"Bird Collide - True"(){
+        given:
+        Rectangle r1 = Mock(Rectangle)
+        Rectangle r2 = Mock(Rectangle)
+        def bird = Spy(Bird, constructorArgs:[r1, 1, new Vertical(), 1, 1])
+        pipe.setRectangle(r2)
+        r2.intersect(r1)>>true
+
+        when:
+        pipe.collideBird(bird)
+
+        then:
+        1 * bird.decreaseLives(1)
+
+    }
+
+    def"Bird Collide - False"(){
+        given:
+        Rectangle r1 = Mock(Rectangle)
+        Rectangle r2 = Mock(Rectangle)
+        def bird = Spy(Bird, constructorArgs:[r1, 1, new Vertical(), 1, 1])
+        pipe.setRectangle(r2)
+        r2.intersect(r1)>>false
+
+        when:
+        pipe.collideBird(bird)
+
+        then:
+        0 * bird.decreaseLives(1)
+
+    }
+
+    def"Increase Speed"(){
+        when:
+        bottomPipe.increaseSpeed(2)
+        then:
+        bottomPipe.getSpeed() == 4
+    }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = bottomPipe.getNumObserver()
+        bottomPipe.addObserver(observer)
+        int end = bottomPipe.getNumObserver()
+        then:
+        end - begin == 1
     }
 
 }

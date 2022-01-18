@@ -1,5 +1,6 @@
 package gameTest
 
+import flappyBird.entities.pipes.Pipe
 import flappyBird.game.Arena
 import flappyBird.entities.*
 import com.googlecode.lanterna.graphics.TextGraphics

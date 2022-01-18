@@ -54,15 +54,16 @@ public class Game {
             else
                 pressArrowUp = false;
 
-            if(!arena.update(pressArrowUp) || arena.verifyPipeCollisions()){
-                gameOver = true;
-                continue;
-            }
+            arena.update(pressArrowUp);
 
             if(counter == 25){
-                arena.createPipes();
+                arena.addPipes();
                 counter = 0;
             }
+
+            if(arena.gameOver())
+                gameOver = true;
+
             score++;
             counter++;
 
