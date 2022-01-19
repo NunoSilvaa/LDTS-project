@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.entities.EntitiesObserver;
 import flappyBird.entities.powerups.Powerup;
 import flappyBird.game.Arena;
 import flappyBird.game.states.SlowerState;
@@ -33,7 +34,12 @@ public class Slower extends Powerup {
 
     @Override
     public void effect(Arena arena){
-        if(arena.getBird().intersect(this)){arena.setState(new SlowerState(arena));}
+        if(arena.getBird().intersect(this)){
+            arena.setState(new SlowerState(arena));
+            for(EntitiesObserver observer: observers){
+                observer.collideBird(this);
+            }
+        }
     }
 }
 

@@ -3,6 +3,7 @@ package flappyBird.entities.enemies;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
+import flappyBird.entities.EntitiesObserver;
 import flappyBird.entities.weapons.*;
 import flappyBird.move.Move;
 import flappyBird.rectangle.*;
@@ -33,6 +34,9 @@ public abstract class Enemy extends Entities{
 
         if(this.intersect(bird)){
             weapon.attackBird(bird);
+            for(EntitiesObserver observer: observers){
+                observer.collideBird(this);
+            }
         }
     }
 

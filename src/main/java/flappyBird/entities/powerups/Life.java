@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.entities.EntitiesObserver;
 import flappyBird.entities.powerups.Powerup;
 import flappyBird.game.Arena;
 import flappyBird.move.Move;
@@ -32,7 +33,12 @@ public class Life extends Powerup {
 
     @Override
     public void effect(Arena arena){
-        if(arena.getBird().intersect(this)){arena.getBird().increaseLives(1);}
+        if(arena.getBird().intersect(this)) {
+            arena.getBird().increaseLives(1);
+            for(EntitiesObserver observer: observers){
+                observer.collideBird(this);
+            }
+        }
     }
 }
 

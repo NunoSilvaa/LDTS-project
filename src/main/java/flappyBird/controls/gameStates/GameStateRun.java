@@ -14,7 +14,7 @@ public class GameStateRun extends GameState {
     @Override
     public boolean execute(Gui gui) throws Throwable {
         game.draw();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         game.run();
         Thread.sleep(1000);
         game.changeGameState(new GameStateEnd(game));

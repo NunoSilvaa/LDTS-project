@@ -11,6 +11,7 @@ import flappyBird.entities.weapons.Sting
 import flappyBird.entities.weapons.Weapon
 import flappyBird.game.Arena
 import flappyBird.entities.*
+import flappyBird.entities.pipes.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.game.states.ArenaState
 import flappyBird.entities.enemies.Enemy

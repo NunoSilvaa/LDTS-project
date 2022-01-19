@@ -1,6 +1,7 @@
 package flappyBird.game;
 
 import flappyBird.entities.*;
+import flappyBird.entities.enemies.DarthVader;
 import flappyBird.entities.enemies.Enemy;
 import flappyBird.entities.pipes.BottomPipe;
 import flappyBird.entities.pipes.Pipe;
@@ -23,11 +24,12 @@ import java.util.*;
 
 public class Arena {
     private static Bird singleton = null;
-    private int width;
-    private int height;
-    private Bird bird;
+    private final int width;
+    private final int height;
+    private final  Bird bird;
     private List<Pipe> pipes;
     private List<Enemy> enemies;
+    private List<Powerup> powerUps;
     private ArenaState state;
 
     public Arena(int width, int height){
@@ -36,6 +38,7 @@ public class Arena {
         bird = getInstance();
         addBird();
         enemies = new ArrayList<Enemy>();
+        powerUps = new ArrayList<Powerup>();
         pipes = new ArrayList<Pipe>();
         addPipes();
         state = new NormalState(this);
@@ -60,7 +63,7 @@ public class Arena {
     }
 
     public void addBird(){
-        bird.addObserver(new EntitiesObserver() true{
+        bird.addObserver(new EntitiesObserver() {
             @Override
             public void positionChanged(Entities entity) {
                 if (entity.getPosition().getY() < 0)
@@ -71,6 +74,9 @@ public class Arena {
                     pipes.clear();
                 }
             }
+
+            @Override
+            public void collideBird(Entities entity) {}
         });
     }
 
@@ -82,21 +88,53 @@ public class Arena {
         pipes.add(bottomPipe);
         pipes.add(topPipe);
 
-        bottomPipe.addObserver(new EntitiesObserver(){
+        EntitiesObserver pipeObserver = new EntitiesObserver() {
             @Override
             public void positionChanged(Entities entity){
                 if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
                     pipes.remove(entity);
                 }
             }
-        });
-
-        topPipe.addObserver(new EntitiesObserver(){
             @Override
-            public void positionChanged(Entities entity){
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
-                    pipes.remove(entity);
-                }
+            public void collideBird(Entities entity){
+                pipes.clear();
+            }
+        };
+
+        bottomPipe.addObserver(pipeObserver);
+        topPipe.addObserver(pipeObserver);
+    }
+
+    public void addEnemies(){
+
+
+        enemy.addObserver(new EntitiesObserver() {
+            @Override
+            public void positionChanged(Entities entity) {
+                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
+                    enemies.remove(entity);
+            }
+
+            @Override
+            public void collideBird(Entities entity) {
+                    enemies.remove(entity);
+            }
+        });
+    }
+
+    public void addPowerUp(Powerup powerup){
+        powerUps.add(powerup);
+
+        powerup.addObserver(new EntitiesObserver() {
+            @Override
+            public void positionChanged(Entities entity) {
+                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
+                    powerUps.remove(entity);
+            }
+
+            @Override
+            public void collideBird(Entities entity) {
+                    powerUps.remove(entity);
             }
         });
     }
@@ -131,11 +169,14 @@ public class Arena {
             pipe.move();
         for(Enemy enemy: enemies)
             enemy.move();
+        for(Powerup powerup: powerUps)
+            powerup.move();
     }
 
     public boolean gameOver(){
         return bird.isDead();
     }
+
 
     //-----------
 
@@ -149,7 +190,7 @@ public class Arena {
 
     public void injectEnemy(Enemy enemy){enemies.add(enemy);}
 
-    public void injectPowerUps(Powerup powerup){powerups.add(powerup);}
+    public void injectPowerUps(Powerup powerup){powerUps.add(powerup);}
 
     public Bird getBird() {
         return this.bird;
