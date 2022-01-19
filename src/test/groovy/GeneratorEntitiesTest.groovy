@@ -7,18 +7,7 @@ import spock.lang.Specification
 class generatorEntitiesTest extends Specification{
     private def generator
     void setup(){
-        def powerUps = new ArrayList<String>()
-        def enemies = new ArrayList<String>()
-        powerUps.add("Faster")
-        powerUps.add("Health")
-        powerUps.add("Invincible")
-        powerUps.add("Life")
-        powerUps.add("Slower")
-        enemies.add("Bee")
-        enemies.add("DarthVader")
-        enemies.add("Falcon")
-        enemies.add("Wasp")
-        generator = new GeneratorEntities(40,40, enemies, powerUps)
+        generator = new GeneratorEntities(40,40)
     }
 
     def"Generate Enemy"(){

@@ -106,20 +106,6 @@ public class Arena {
     }
 
     public void addEnemies(){
-
-
-        enemy.addObserver(new EntitiesObserver() {
-            @Override
-            public void positionChanged(Entities entity) {
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
-                    enemies.remove(entity);
-            }
-
-            @Override
-            public void collideBird(Entities entity) {
-                    enemies.remove(entity);
-            }
-        });
     }
 
     public void addPowerUp(Powerup powerup){
