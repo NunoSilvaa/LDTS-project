@@ -5,6 +5,7 @@ import flappyBird.entities.enemies.Enemy;
 import flappyBird.entities.pipes.BottomPipe;
 import flappyBird.entities.pipes.Pipe;
 import flappyBird.entities.pipes.TopPipe;
+import flappyBird.entities.powerups.Powerup;
 import flappyBird.game.states.ArenaState;
 import flappyBird.game.states.FasterState;
 import flappyBird.game.states.NormalState;
@@ -59,7 +60,7 @@ public class Arena {
     }
 
     public void addBird(){
-        bird.addObserver(new EntitiesObserver() {
+        bird.addObserver(new EntitiesObserver() true{
             @Override
             public void positionChanged(Entities entity) {
                 if (entity.getPosition().getY() < 0)
@@ -146,6 +147,9 @@ public class Arena {
         pipes.add(pipe);
     }
 
+    public void injectEnemy(Enemy enemy){enemies.add(enemy);}
+
+    public void injectPowerUps(Powerup powerup){powerups.add(powerup);}
 
     public Bird getBird() {
         return this.bird;

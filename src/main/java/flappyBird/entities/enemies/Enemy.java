@@ -5,8 +5,7 @@ import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
 import flappyBird.entities.weapons.*;
 import flappyBird.move.Move;
-import flappyBird.rectangle.Dimension;
-import flappyBird.rectangle.Position;
+import flappyBird.rectangle.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,11 @@ public abstract class Enemy extends Entities{
 
     public Enemy(Position position, Dimension dimension, int speed, Move move) {
         super(position, dimension, speed, move);
+        this.weapon = createWeapon();
+    }
+
+    public Enemy(Rectangle rectangle, int speed, Move move) {
+        super(rectangle, speed, move);
         this.weapon = createWeapon();
     }
 

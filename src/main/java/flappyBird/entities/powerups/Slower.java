@@ -10,6 +10,7 @@ import flappyBird.game.states.SlowerState;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
+import flappyBird.rectangle.Rectangle;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,11 @@ public class Slower extends Powerup {
         super(position,dimension, speed,move);
     }
 
+    public Slower(Rectangle rectangle, int speed , Move move){
+        super(rectangle, speed, move);
+    }
+
+
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#F30000"));
@@ -27,7 +33,7 @@ public class Slower extends Powerup {
 
     @Override
     public void effect(Arena arena){
-        arena.setState(new SlowerState(arena));
+        if(arena.getBird().intersect(this)){arena.setState(new SlowerState(arena));}
     }
 }
 

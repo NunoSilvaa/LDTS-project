@@ -9,11 +9,16 @@ import flappyBird.entities.weapons.Weapon;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
+import flappyBird.rectangle.Rectangle;
 
 public class Bee extends Enemy{
 
     public Bee(Position position, Dimension dimension, int speed, Move move){
         super(position, dimension, speed, move);
+    }
+
+    public Bee(Rectangle rectangle, int speed, Move move) {
+        super(rectangle, speed, move);
     }
 
     @Override

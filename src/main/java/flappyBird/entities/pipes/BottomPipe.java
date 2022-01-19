@@ -1,6 +1,7 @@
 package flappyBird.entities.pipes;
 
 import flappyBird.entities.Bird;
+import flappyBird.entities.Entities;
 import flappyBird.entities.pipes.Pipe;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
