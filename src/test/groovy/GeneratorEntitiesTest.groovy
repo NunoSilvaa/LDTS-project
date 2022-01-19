@@ -1,12 +1,24 @@
 import flappyBird.entities.enemies.Enemy
 import flappyBird.entities.pipes.Pipe
 import flappyBird.entities.powerups.Powerup
+import flappyBird.GeneratorEntities
 import spock.lang.Specification
 
-class generatorEntities extends Specification{
+class generatorEntitiesTest extends Specification{
     private def generator
     void setup(){
-        generator = new generatorEntities(40,40)
+        def powerUps = new ArrayList<String>()
+        def enemies = new ArrayList<String>()
+        powerUps.add("Faster")
+        powerUps.add("Health")
+        powerUps.add("Invincible")
+        powerUps.add("Life")
+        powerUps.add("Slower")
+        enemies.add("Bee")
+        enemies.add("DarthVader")
+        enemies.add("Falcon")
+        enemies.add("Wasp")
+        generator = new GeneratorEntities(40,40, enemies, powerUps)
     }
 
     def"Generate Enemy"(){
@@ -46,4 +58,5 @@ class generatorEntities extends Specification{
             pipe.getPosition().getY() <= 40
         }
     }
+
 }
