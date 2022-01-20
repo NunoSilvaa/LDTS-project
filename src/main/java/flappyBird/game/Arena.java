@@ -1,5 +1,6 @@
 package flappyBird.game;
 
+import flappyBird.GeneratorEntities;
 import flappyBird.entities.*;
 import flappyBird.entities.enemies.DarthVader;
 import flappyBird.entities.enemies.Enemy;
@@ -30,11 +31,13 @@ public class Arena {
     private List<Pipe> pipes;
     private List<Enemy> enemies;
     private List<Powerup> powerUps;
+    private final GeneratorEntities generatorEntities;
     private ArenaState state;
 
     public Arena(int width, int height){
         this.height = height;
         this.width = width;
+        generatorEntities = new GeneratorEntities(width, height);
         bird = getInstance();
         addBird();
         enemies = new ArrayList<Enemy>();
@@ -44,12 +47,16 @@ public class Arena {
         state = new NormalState(this);
     }
 
-    public Arena(int width, int height, Bird bird){
+    public Arena(int width, int height, Bird bird){//For Mocks
         this.height = height;
         this.width = width;
         this.bird = bird;
+        addBird();
         enemies = new ArrayList<Enemy>();
+        powerUps = new ArrayList<Powerup>();
         pipes = new ArrayList<Pipe>();
+        state = new NormalState(this);
+        generatorEntities = new GeneratorEntities(width, height);
     }
 
     public void setState(ArenaState state) {
@@ -81,18 +88,16 @@ public class Arena {
     }
 
     public void addPipes() {
-        Random random = new Random();
-        int heightPipe = random.nextInt(height/2) + 7;
-        BottomPipe bottomPipe = new BottomPipe(new Position(width,heightPipe+7),  new Dimension(height-heightPipe+7,7),1, new Horizontal());
-        TopPipe topPipe = new TopPipe(new Position(width,0),  new Dimension(heightPipe,7),1, new Horizontal());
-        pipes.add(bottomPipe);
-        pipes.add(topPipe);
-
+        List<Pipe> tempPipeList = generatorEntities.generateRandomPipes();
+        Pipe tempPipe1 = tempPipeList.get(0);
+        Pipe tempPipe2 = tempPipeList.get(1);
+        pipes.add(tempPipe1);
+        pipes.add(tempPipe2);
         EntitiesObserver pipeObserver = new EntitiesObserver() {
             @Override
             public void positionChanged(Entities entity){
                 if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
-                    pipes.remove(entity);
+                    entity.setPosition(new Position(-30,0));
                 }
             }
             @Override
@@ -100,27 +105,39 @@ public class Arena {
                 pipes.clear();
             }
         };
-
-        bottomPipe.addObserver(pipeObserver);
-        topPipe.addObserver(pipeObserver);
+        tempPipe1.addObserver(pipeObserver);
+        tempPipe2.addObserver(pipeObserver);
     }
 
     public void addEnemies(){
+        Enemy enemy = generatorEntities.generateRandomEnemy();
+        enemies.add(enemy);
+        enemy.addObserver(new EntitiesObserver() {
+            @Override
+            public void positionChanged(Entities entity) {
+                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
+                    entity.setPosition(new Position(-30,0));
+            }
+            @Override
+            public void collideBird(Entities entity) {
+                entity.setPosition(new Position(-30,0));
+            }
+        });
     }
 
-    public void addPowerUp(Powerup powerup){
+    public void addPowerUp(){
+        Powerup powerup = generatorEntities.generateRandomPowerUp();
         powerUps.add(powerup);
-
         powerup.addObserver(new EntitiesObserver() {
             @Override
             public void positionChanged(Entities entity) {
                 if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
-                    powerUps.remove(entity);
+                   entity.setPosition(new Position(-40,0));
             }
 
             @Override
             public void collideBird(Entities entity) {
-                    powerUps.remove(entity);
+                entity.setPosition(new Position(-40,0));
             }
         });
     }
@@ -142,6 +159,9 @@ public class Arena {
             pipe.collideBird(bird);
         for(Enemy enemy: enemies)
             enemy.attack(bird);
+        for (Powerup powerup: powerUps)
+            powerup.effect(this);
+
     }
 
     public void update(boolean slapBird){

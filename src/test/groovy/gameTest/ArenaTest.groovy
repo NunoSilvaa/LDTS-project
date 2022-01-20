@@ -83,9 +83,8 @@ class ArenaTest extends Specification{
 
     def"Collide Entities Test - (True)"(){
         given:
-        def bird = Mock(Bird.class)
         def rBird = Mock(Rectangle.class)
-        bird.setRectangle(rBird)
+        def bird = Spy(Bird.class, constructorArgs: [rBird,1,new Vertical(), 1,3])
 
         def arena = new Arena(42,42,bird)
 
@@ -219,7 +218,7 @@ class ArenaTest extends Specification{
         arena.getEnemies().size() * enemy.move()
     }
 
-    def"U+date - Edge Case Pipe"(){
+    def"Update - Edge Case Pipe"(){
         given:
         def arena = new Arena(42, 42)
         def rec1 = new Rectangle(new Position(1,1), new Dimension(10,1))
