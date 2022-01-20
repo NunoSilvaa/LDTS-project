@@ -31,6 +31,9 @@ public class Arena {
         pipes = new ArrayList<Pipe>();
     }
 
+    public Bird getBird(){return bird;}
+    public List<Pipe> getPipes(){return pipes;}
+
 
     public void createPipes() {
         Random random = new Random();
@@ -70,14 +73,6 @@ public class Arena {
         return true;
     }
 
-
-    public boolean verifyPipeCollisions(){
-        for(Pipe pipe: pipes)
-            if(bird.intersect(pipe)){
-                return true;
-            }
-        return false;
-    }
 
     public int getNumberPipes(){
         return pipes.size();

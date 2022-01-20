@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'info.solidsoft.pitest' version '1.6.0'
+    id 'groovy'
 }
 
 group 'flappyBird'

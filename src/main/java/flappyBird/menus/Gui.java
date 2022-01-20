@@ -27,7 +27,7 @@ public class Gui {
 
     public Gui(){
         try {
-            URL resource = getClass().getClassLoader().getResource("monogram.ttf");
+            URL resource = getClass().getClassLoader().getResource("workstest10.ttf");
             File fontFile = new File(resource.toURI());
             Font font = Font.createFont(Font.TRUETYPE_FONT, resource.openStream());
 
@@ -36,11 +36,11 @@ public class Gui {
 
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, 40);
+            Font loadedFont = font.deriveFont(Font.PLAIN, 25);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
             factory.setTerminalEmulatorFontConfiguration(fontConfig);
             factory.setForceAWTOverSwing(true);
-            factory.setInitialTerminalSize(new TerminalSize(42, 42));
+            factory.setInitialTerminalSize(new TerminalSize(60, 30));
 
             terminal = factory.createTerminal();
             ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
@@ -117,29 +117,28 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), new TerminalSize(60, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
-        //loadedFont.deriveFont(30);
-        textGraphics.putString(17, 3, "Flappy Bird", SGR.BOLD);
+        textGraphics.putString(23, 3, "Flappy Bird", SGR.BOLD);
 
         if(i == 3){
-            textGraphics.putString(20, 7, "Play", SGR.BLINK);
-            textGraphics.putString(18, 10, "Scoreboard");
-            textGraphics.putString(20, 13, "Quit");
+            textGraphics.putString(26, 7, "Play", SGR.BLINK);
+            textGraphics.putString(24, 10, "Scoreboard");
+            textGraphics.putString(26, 13, "Quit");
         }
         else if(i == 2){
-            textGraphics.putString(20, 7, "Play");
-            textGraphics.putString(18, 10, "Scoreboard", SGR.BLINK);
-            textGraphics.putString(20, 13, "Quit");
+            textGraphics.putString(26, 7, "Play");
+            textGraphics.putString(24, 10, "Scoreboard", SGR.BLINK);
+            textGraphics.putString(26, 13, "Quit");
         }
         else if(i == 1){
-            textGraphics.putString(20, 7, "Play");
-            textGraphics.putString(18, 10, "Scoreboard");
-            textGraphics.putString(20, 13, "Quit", SGR.BLINK);
+            textGraphics.putString(26, 7, "Play");
+            textGraphics.putString(24, 10, "Scoreboard");
+            textGraphics.putString(26, 13, "Quit", SGR.BLINK);
         }
 
         screen.refresh();
@@ -154,18 +153,18 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(60, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
 
-        if(i == 0){
-            textGraphics.putString(19, 7, "Resume", SGR.BLINK);
-            textGraphics.putString(20, 10, "Quit");
+        if(i == 3){
+            textGraphics.putString(25, 7, "Resume", SGR.BLINK);
+            textGraphics.putString(26, 10, "Quit");
         }
-        else if(i == -1){
-            textGraphics.putString(19, 7, "Resume");
-            textGraphics.putString(20, 10, "Quit", SGR.BLINK);
+        else if(i == 2){
+            textGraphics.putString(25, 7, "Resume");
+            textGraphics.putString(26, 10, "Quit", SGR.BLINK);
         }
 
         screen.refresh();
@@ -179,14 +178,14 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
         textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(60, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
 
-        textGraphics.putString(18, 7, "FlappyBird.Game Over", SGR.BOLD);
-        textGraphics.putString(18, 10, "Score:");
-        textGraphics.putString(24, 10, String.valueOf(score));
+        textGraphics.putString(24, 7, "Game Over", SGR.BOLD);
+        textGraphics.putString(24, 10, "Score:");
+        textGraphics.putString(30, 10, String.valueOf(score));
 
         screen.refresh();
     }
