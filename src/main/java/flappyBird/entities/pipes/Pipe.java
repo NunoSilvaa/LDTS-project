@@ -2,6 +2,7 @@ package flappyBird.entities.pipes;
 
 import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
+import flappyBird.entities.EntitiesObserver;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
@@ -20,9 +21,11 @@ public abstract class Pipe extends Entities {
 
 
     public void collideBird(Bird bird){
-        if(this.intersect(bird))
-            System.out.println("collided");
-            bird.decreaseLives(1);
+        if(this.intersect(bird)){
+           bird.decreaseLives(1);
+           bird.setPosition(new Position(10, 42 / 2));
+        }
+
     }
 
 }

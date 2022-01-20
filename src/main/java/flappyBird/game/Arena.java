@@ -54,7 +54,7 @@ public class Arena {
 
     public Bird getInstance(){
         if(singleton == null)
-            singleton = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,new Vertical(),3,1);
+            singleton = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,new Vertical(),3,6);
         return singleton;
     }
 
@@ -70,6 +70,7 @@ public class Arena {
                     pipes.clear();
                 }
             }
+            public void collideBird(Entities entity){}
         });
     }
 
@@ -78,27 +79,28 @@ public class Arena {
         int heightPipe = random.nextInt(height/2) + 7;
         BottomPipe bottomPipe = new BottomPipe(new Position(width,heightPipe+7),  new Dimension(height-heightPipe+7,7),1, new Horizontal());
         TopPipe topPipe = new TopPipe(new Position(width,0),  new Dimension(heightPipe,7),1, new Horizontal());
+
+
+        EntitiesObserver pipeObserver = new EntitiesObserver() {
+            @Override
+            public void positionChanged(Entities entity){
+                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
+                    entity.setPosition(new Position(-30,0));
+                }
+            }
+            @Override
+            public void collideBird(Entities entity){
+                System.out.println("TESTE");
+                bird.decreaseLives(1);
+            }
+        };
+
+        bottomPipe.addObserver(pipeObserver);
+        topPipe.addObserver(pipeObserver);
+
         pipes.add(bottomPipe);
         pipes.add(topPipe);
 
-        bottomPipe.addObserver(new EntitiesObserver(){
-            @Override
-            public void positionChanged(Entities entity){
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
-                    System.out.println("pipe removed");
-                    pipes.remove(entity);
-                }
-            }
-        });
-
-        topPipe.addObserver(new EntitiesObserver(){
-            @Override
-            public void positionChanged(Entities entity){
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
-                    pipes.remove(entity);
-                }
-            }
-        });
     }
 
     public void draw(TextGraphics screen){
@@ -125,6 +127,7 @@ public class Arena {
         }else{
             bird.move();
         }
+
 
         if(bird.isDead()) {
             System.out.println("Bird died");

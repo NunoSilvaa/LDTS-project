@@ -39,13 +39,12 @@ public class GameStateRun extends GameState {
                 pressArrowUp = true;
                 pressEscape = false;
             }
-
+            game.getArena().collideEntities();
             if (!game.getArena().update(pressArrowUp)) {
                 System.out.println("set running to false");
                 game.setRunning(false);
                 continue;
             }
-
 
             if (counter == 25) {
                 game.getArena().addPipes();
@@ -60,6 +59,7 @@ public class GameStateRun extends GameState {
             Thread.sleep(1000);
             game.setScore(score);
             game.changeGameState(new GameStateEnd(game));
+
             return false;
     }
 
