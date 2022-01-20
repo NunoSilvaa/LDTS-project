@@ -136,8 +136,6 @@ public class Arena {
         return bird.isDead();
     }
 
-    //-----------
-
     public int getNumberPipes(){
         return pipes.size();
     }

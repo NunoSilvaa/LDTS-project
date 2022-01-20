@@ -2,6 +2,7 @@ package flappyBird.entities;
 
 import flappyBird.move.Move;
 import flappyBird.move.Vertical;
+import com.googlecode.lanterna.SGR;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -33,8 +34,8 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setForegroundColor(TextColor.ANSI.BLACK);
+        screen.putString(rectangle.getX(), rectangle.getY(), "+,");
     }
 
     public void slap(){
