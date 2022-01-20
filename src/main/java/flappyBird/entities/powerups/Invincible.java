@@ -4,10 +4,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import flappyBird.entities.EntitiesObserver;
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.game.Arena;
 import flappyBird.game.states.InvincibleState;
-import flappyBird.game.states.SlowerState;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
@@ -34,8 +33,8 @@ public class Invincible extends Powerup{
         if(arena.getBird().intersect(this)){
             arena.setState(new InvincibleState(arena));
             for(EntitiesObserver observer: observers){
-                observer.collideBird(this);
+                observer.executeObserver(this);
             }
-        };
+        }
     }
 }

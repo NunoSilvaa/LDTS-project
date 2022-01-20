@@ -1,7 +1,9 @@
 package move
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.entities.Bird
 import flappyBird.entities.Entities
+import flappyBird.entities.pipes.Pipe
 import flappyBird.move.Diagonal
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
@@ -11,12 +13,7 @@ import spock.lang.Specification
 class VerticalTest extends Specification{
     def"Vertical"(){
         given:
-        Entities entity = new Entities(new Position(10,10), new Dimension(10,10),1, new Vertical()) {
-            @Override
-            void draw(TextGraphics screen) {
-
-            }
-        }
+        Pipe entity = new Pipe(new Position(10,10), new Dimension(10,10),1, new Vertical())
 
         when:
         entity.move()

@@ -4,7 +4,7 @@ import flappyBird.entities.powerups.Powerup
 import flappyBird.GeneratorEntities
 import spock.lang.Specification
 
-class generatorEntitiesTest extends Specification{
+class GeneratorEntitiesTest extends Specification{
     private def generator
     void setup(){
         generator = new GeneratorEntities(40,40)

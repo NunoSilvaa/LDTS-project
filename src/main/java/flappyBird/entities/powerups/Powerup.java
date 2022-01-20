@@ -2,6 +2,7 @@ package flappyBird.entities.powerups;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.Entities;
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.game.Arena;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
@@ -22,4 +23,9 @@ public abstract class Powerup extends Entities {
     public abstract void draw(TextGraphics screen);
 
     public abstract void effect(Arena arena);
+
+    @Override
+    public void move(){
+        move.update(this);
+    }
 }

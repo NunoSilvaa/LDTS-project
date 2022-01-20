@@ -1,10 +1,7 @@
 package flappyBird;
 
-import flappyBird.entities.Entities;
 import flappyBird.entities.enemies.*;
-import flappyBird.entities.pipes.BottomPipe;
 import flappyBird.entities.pipes.Pipe;
-import flappyBird.entities.pipes.TopPipe;
 import flappyBird.entities.powerups.*;
 import flappyBird.move.Diagonal;
 import flappyBird.move.Horizontal;
@@ -54,8 +51,8 @@ public class GeneratorEntities {
     public List<Pipe> generateRandomPipes(){
         List<Pipe> pipes = new ArrayList<Pipe>();
         int heightPipe = random.nextInt(height/2) + 7;
-        BottomPipe bottomPipe = new BottomPipe(new Position(width,heightPipe+7),  new Dimension(height-heightPipe+7,7),1, new Horizontal());
-        TopPipe topPipe = new TopPipe(new Position(width,0),  new Dimension(heightPipe,7),1, new Horizontal());
+        Pipe bottomPipe = new Pipe(new Position(width,heightPipe+7),  new Dimension(height-heightPipe+7,7),1, new Horizontal());
+        Pipe topPipe = new Pipe(new Position(width,0),  new Dimension(heightPipe,7),1, new Horizontal());
         pipes.add(bottomPipe);
         pipes.add(topPipe);
         return pipes;

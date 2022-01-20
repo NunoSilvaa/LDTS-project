@@ -1,6 +1,7 @@
-package flappyBird.entities;
+package flappyBird.entities.observer;
 
-public interface EntitiesObserver {
-    void positionChanged(Entities entity);
-    void collideBird(Entities entity);
+import flappyBird.entities.Entities;
+
+public interface EntitiesObserver{
+    void executeObserver(Entities entity);
 }

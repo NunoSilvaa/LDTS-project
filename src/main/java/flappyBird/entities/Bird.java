@@ -1,7 +1,7 @@
 package flappyBird.entities;
 
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
-import flappyBird.move.Vertical;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -40,7 +40,7 @@ public class Bird extends Entities{
     public void slap(){
         rectangle.updateY(-slapHeight);
         for(EntitiesObserver observer: observers){
-            observer.positionChanged(this);
+            observer.executeObserver(this);
         }
     }
 
@@ -84,4 +84,11 @@ public class Bird extends Entities{
     }
 
     public void setLives(int lives){this.lives = lives;}
+
+    @Override
+    public void move(){
+        move.update(this);
+        for(EntitiesObserver observer: observers)
+            observer.executeObserver(this);
+    }
 }

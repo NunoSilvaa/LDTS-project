@@ -2,17 +2,14 @@ package flappyBird.game;
 
 import flappyBird.GeneratorEntities;
 import flappyBird.entities.*;
-import flappyBird.entities.enemies.DarthVader;
 import flappyBird.entities.enemies.Enemy;
-import flappyBird.entities.pipes.BottomPipe;
+import flappyBird.entities.observer.AgainstBirdObserver;
+import flappyBird.entities.observer.BirdObserver;
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.entities.pipes.Pipe;
-import flappyBird.entities.pipes.TopPipe;
 import flappyBird.entities.powerups.Powerup;
 import flappyBird.game.states.ArenaState;
-import flappyBird.game.states.FasterState;
 import flappyBird.game.states.NormalState;
-import flappyBird.move.Diagonal;
-import flappyBird.move.Horizontal;
 import flappyBird.move.Vertical;
 import flappyBird.rectangle.*;
 import com.googlecode.lanterna.TerminalPosition;
@@ -27,10 +24,15 @@ public class Arena {
     private static Bird singleton = null;
     private final int width;
     private final int height;
+
     private final  Bird bird;
     private List<Pipe> pipes;
     private List<Enemy> enemies;
     private List<Powerup> powerUps;
+
+    private EntitiesObserver againstBird;
+    private EntitiesObserver birdObserver;
+
     private final GeneratorEntities generatorEntities;
     private ArenaState state;
 
@@ -45,6 +47,8 @@ public class Arena {
         pipes = new ArrayList<Pipe>();
         addPipes();
         state = new NormalState(this);
+        againstBird = new AgainstBirdObserver(width, height);
+        birdObserver = new BirdObserver(width, height);
     }
 
     public Arena(int width, int height, Bird bird){//For Mocks
@@ -57,6 +61,8 @@ public class Arena {
         pipes = new ArrayList<Pipe>();
         state = new NormalState(this);
         generatorEntities = new GeneratorEntities(width, height);
+        againstBird = new AgainstBirdObserver(width, height);
+        birdObserver = new BirdObserver(width, height);
     }
 
     public void setState(ArenaState state) {
@@ -70,76 +76,29 @@ public class Arena {
     }
 
     public void addBird(){
-        bird.addObserver(new EntitiesObserver() {
-            @Override
-            public void positionChanged(Entities entity) {
-                if (entity.getPosition().getY() < 0)
-                    entity.setPosition(new Position(width / 2, 0));
-                else if (entity.getPosition().getY() >= height) {
-                    bird.decreaseLives(1);
-                    entity.setPosition(new Position(width / 2, height / 2));
-                    pipes.clear();
-                }
-            }
-
-            @Override
-            public void collideBird(Entities entity) {}
-        });
+        bird.addObserver(birdObserver);
     }
 
     public void addPipes() {
         List<Pipe> tempPipeList = generatorEntities.generateRandomPipes();
         Pipe tempPipe1 = tempPipeList.get(0);
         Pipe tempPipe2 = tempPipeList.get(1);
+        tempPipe1.addObserver(againstBird);
+        tempPipe2.addObserver(againstBird);
         pipes.add(tempPipe1);
         pipes.add(tempPipe2);
-        EntitiesObserver pipeObserver = new EntitiesObserver() {
-            @Override
-            public void positionChanged(Entities entity){
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
-                    entity.setPosition(new Position(-30,0));
-                }
-            }
-            @Override
-            public void collideBird(Entities entity){
-                pipes.clear();
-            }
-        };
-        tempPipe1.addObserver(pipeObserver);
-        tempPipe2.addObserver(pipeObserver);
     }
 
     public void addEnemies(){
         Enemy enemy = generatorEntities.generateRandomEnemy();
+        enemy.addObserver(againstBird);
         enemies.add(enemy);
-        enemy.addObserver(new EntitiesObserver() {
-            @Override
-            public void positionChanged(Entities entity) {
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
-                    entity.setPosition(new Position(-30,0));
-            }
-            @Override
-            public void collideBird(Entities entity) {
-                entity.setPosition(new Position(-30,0));
-            }
-        });
     }
 
     public void addPowerUp(){
         Powerup powerup = generatorEntities.generateRandomPowerUp();
+        powerup.addObserver(againstBird);
         powerUps.add(powerup);
-        powerup.addObserver(new EntitiesObserver() {
-            @Override
-            public void positionChanged(Entities entity) {
-                if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0 || entity.getPosition().getY() > height || entity.getPosition().getY() + entity.getDimension().getHeight() < 0)
-                   entity.setPosition(new Position(-40,0));
-            }
-
-            @Override
-            public void collideBird(Entities entity) {
-                entity.setPosition(new Position(-40,0));
-            }
-        });
     }
 
     public void draw(TextGraphics screen){

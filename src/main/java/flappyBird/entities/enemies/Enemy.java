@@ -1,15 +1,11 @@
 package flappyBird.entities.enemies;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
-import flappyBird.entities.EntitiesObserver;
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.entities.weapons.*;
 import flappyBird.move.Move;
 import flappyBird.rectangle.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Enemy extends Entities{
     private Weapon weapon;
@@ -35,11 +31,16 @@ public abstract class Enemy extends Entities{
         if(this.intersect(bird)){
             weapon.attackBird(bird);
             for(EntitiesObserver observer: observers){
-                observer.collideBird(this);
+                observer.executeObserver(this);
             }
         }
     }
 
     protected abstract Weapon createWeapon();
+
+    @Override
+    public void move(){
+        move.update(this);
+    }
 
 }
