@@ -41,6 +41,7 @@ public class GameStateRun extends GameState {
             }
 
             if (!game.getArena().update(pressArrowUp)) {
+                System.out.println("set running to false");
                 game.setRunning(false);
                 continue;
             }

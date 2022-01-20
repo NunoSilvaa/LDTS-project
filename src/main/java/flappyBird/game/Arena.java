@@ -54,7 +54,7 @@ public class Arena {
 
     public Bird getInstance(){
         if(singleton == null)
-            singleton = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,new Vertical(),1,3);
+            singleton = new Bird(new Position(width/2,height/2),new Dimension(1,1), 1,new Vertical(),3,1);
         return singleton;
     }
 
@@ -85,6 +85,7 @@ public class Arena {
             @Override
             public void positionChanged(Entities entity){
                 if(entity.getPosition().getX() + entity.getDimension().getWidth() < 0){
+                    System.out.println("pipe removed");
                     pipes.remove(entity);
                 }
             }
@@ -109,7 +110,6 @@ public class Arena {
         for(Enemy enemy: enemies){
             enemy.draw(screen);
         }
-
     }
 
     public void collideEntities(){
@@ -119,17 +119,24 @@ public class Arena {
             enemy.attack(bird);
     }
 
-    public void update(boolean slapBird){
+    public boolean update(boolean slapBird){
         if(slapBird){
             bird.slap();
         }else{
             bird.move();
         }
 
+        if(bird.isDead()) {
+            System.out.println("Bird died");
+            return false;
+        }
+
         for(Pipe pipe: pipes)
             pipe.move();
         for(Enemy enemy: enemies)
             enemy.move();
+
+        return true;
     }
 
     public boolean gameOver(){

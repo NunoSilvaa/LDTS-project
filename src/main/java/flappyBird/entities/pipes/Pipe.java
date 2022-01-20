@@ -21,6 +21,7 @@ public abstract class Pipe extends Entities {
 
     public void collideBird(Bird bird){
         if(this.intersect(bird))
+            System.out.println("collided");
             bird.decreaseLives(1);
     }
 
