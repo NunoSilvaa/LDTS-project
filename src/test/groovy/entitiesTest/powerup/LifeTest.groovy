@@ -19,7 +19,9 @@ class LifeTest extends Specification {
     }
 
 
-    def "Draw"() {
+    def
+
+    "Draw"() {
         given:
         def screen = Mock(TextGraphics)
 

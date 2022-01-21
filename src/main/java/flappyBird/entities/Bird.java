@@ -39,7 +39,7 @@ public class Bird extends Entities{
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
-        screen.setForegroundColor(TextColor.Factory.fromString("#f4cf0d"));
+        screen.setForegroundColor(TextColor.Factory.fromString("#dc8e0d"));
         screen.putString(rectangle.getX(), rectangle.getY(), "%&");
         for(int i=0; i < lives;i++){
             screen.setForegroundColor(TextColor.Factory.fromString("#8B0000"));

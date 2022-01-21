@@ -24,7 +24,7 @@ public class InitialGameState extends GameState {
                 case 3:
                     game.changeGameState(new GameStateRun(game));
                     return false;
-                case 1:
+                case 2:
                     return true;
             }
         }

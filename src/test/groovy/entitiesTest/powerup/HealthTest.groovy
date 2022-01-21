@@ -28,7 +28,7 @@ class HealthTest extends Specification{
         then:
         1 * screen.setBackgroundColor(_)
         then:
-        1 * screen.fillRectangle(_,_,_)
+        1 * screen.putString(_,_,_)
 
     }
 

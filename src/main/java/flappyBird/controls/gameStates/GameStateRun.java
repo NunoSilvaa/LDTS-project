@@ -49,8 +49,8 @@ public class GameStateRun extends GameState {
                 game.setRunning(false);
                 continue;
             }
-            if(powerLast == 200 ){game.getArena().setState(new NormalState(game.getArena()));}
-            if (powerCounter == 50){
+            if(powerLast == 40 ){game.getArena().setState(new NormalState(game.getArena()));}
+            if (powerCounter == 55){
                 game.getArena().addPowerUp();
                 powerLast =0;
                 powerCounter = 0;

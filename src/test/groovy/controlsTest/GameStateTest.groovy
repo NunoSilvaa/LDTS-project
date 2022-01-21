@@ -3,6 +3,7 @@ package controlsTest
 import flappyBird.game.*
 import flappyBird.controls.gameStates.*
 import flappyBird.menus.*
+import flappyBird.move.Vertical
 import spock.lang.Specification
 
 import com.googlecode.lanterna.input.KeyStroke;
@@ -18,7 +19,7 @@ class GameStateTest extends Specification{
         expect:
         gameState.rangeLimiter(4) == 3
         gameState.rangeLimiter(2) == 2
-        gameState.rangeLimiter(-1) == 1
+        gameState.rangeLimiter(-1) == 2
 
     }
 
@@ -87,7 +88,7 @@ class GameStateTest extends Specification{
         given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
-        def gameState = Mock(GameStateRun.class)
+        def gameState = Spy(GameState, constructorArgs:[r1, 1, new Vertical(), 1, 1])
         gameState.setGame(game)
 
         when:

@@ -29,7 +29,7 @@ public class Bee extends Enemy{
 
     @Override
     public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#f4ee0d"));
+        screen.setForegroundColor(TextColor.Factory.fromString("#8d0000"));
         screen.putString(rectangle.getX(), rectangle.getY(), "-.");
     }
 

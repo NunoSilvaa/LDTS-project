@@ -83,7 +83,7 @@ public class Arena {
     }
 
     public void addPipes() {
-        List<Pipe> tempPipeList = generatorEntities.generateRandomPipes();
+        List<Pipe> tempPipeList = generatorEntities.generateRandomPipes(this);
         Pipe tempPipe1 = tempPipeList.get(0);
         Pipe tempPipe2 = tempPipeList.get(1);
         tempPipe1.addObserver(againstBird);
@@ -107,15 +107,17 @@ public class Arena {
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-        bird.draw(screen);
         for(Enemy enemy: enemies){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
             enemy.draw(screen);
         }
         for(Powerup powerUp :powerUps){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
             powerUp.draw(screen);
         }
         for(Pipe pipe : pipes)
             pipe.draw(screen);
+        bird.draw(screen);
     }
 
     public void collideEntities(){
