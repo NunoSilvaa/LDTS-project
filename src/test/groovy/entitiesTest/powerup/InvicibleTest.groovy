@@ -1,12 +1,15 @@
 package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.entities.Bird
 import flappyBird.entities.powerups.Faster
 import flappyBird.entities.powerups.Invincible
 import flappyBird.game.Arena
+import flappyBird.game.states.InvincibleState
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
+import flappyBird.rectangle.Rectangle
 import spock.lang.Specification
 
 class InvicibleTest extends Specification {
@@ -34,12 +37,19 @@ class InvicibleTest extends Specification {
     }
 
     def"Effect"(){
-        def arena = Spy(Arena, constructorArgs:[42, 42])
+        Rectangle rBird = Mock(Rectangle.class)
+        def bird = new Bird(rBird, 1, new Vertical(),1,1)
+        def arena = new Arena(60,30, bird)
+        def rInvincible = Mock(Rectangle.class)
+        def specialInvincible = new Invincible(rInvincible,1, new Vertical())
+        arena.injectPowerUps(specialInvincible)
+        rBird.intersect(rInvincible) >> true
 
         when:
-        invincible.effect(arena)
+        specialInvincible.effect(arena)
 
         then:
-        1 * arena.setState(_)
+        arena.getState() instanceof InvincibleState
     }
 }
+

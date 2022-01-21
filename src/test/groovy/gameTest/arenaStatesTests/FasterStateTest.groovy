@@ -21,7 +21,7 @@ class FasterStateTest extends Specification{
         when:
         arena.setState(arenaState)
         then:
-        bird.getSpeed() == 2
+        bird.getSpeed() == 1
         pipe.getSpeed() == 3
     }
 }

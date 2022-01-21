@@ -26,6 +26,7 @@ public class GameStateRun extends GameState {
         game.setRunning(true);
         while(game.isRunning()) {
             KeyStroke key = gui.getTerminal().pollInput();
+            while(gui.getTerminal().pollInput() != null);
             if (key != null && key.getKeyType() == KeyType.ArrowUp)
                 pressArrowUp = true;
             else if (key != null && key.getKeyType() == KeyType.Escape) {
