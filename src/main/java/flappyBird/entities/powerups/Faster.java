@@ -32,6 +32,7 @@ public class Faster extends Powerup {
     @Override
     public void effect(Arena arena){
         if(arena.getBird().intersect(this)){
+            collideBird.playSound();
             arena.setState(new FasterState(arena));
             for(EntitiesObserver observer: observers){
                 observer.executeObserver(this);

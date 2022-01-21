@@ -31,6 +31,7 @@ public class Invincible extends Powerup{
     @Override
     public void effect(Arena arena){
         if(arena.getBird().intersect(this)){
+            collideBird.playSound();
             arena.setState(new InvincibleState(arena));
             for(EntitiesObserver observer: observers){
                 observer.executeObserver(this);

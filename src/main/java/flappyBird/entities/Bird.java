@@ -1,5 +1,6 @@
 package flappyBird.entities;
 
+import flappyBird.MusicPlayer;
 import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
@@ -15,12 +16,15 @@ public class Bird extends Entities{
     private int slapHeight;
     private int lives;
     private int health;
+    private MusicPlayer slapSound;
+
 
     public Bird(Position position, Dimension dimension, int speed, Move move, int slapHeight, int lives) {
         super(position, dimension, speed, move);
         this.slapHeight = slapHeight;
         this.lives = lives;
         health = 100;
+        slapSound = new MusicPlayer("slap.wav");
     }
 
     public Bird(Rectangle rectangle, int speed, Move move, int slapHeight, int lives) {
@@ -46,6 +50,7 @@ public class Bird extends Entities{
 
     public void slap(){
         rectangle.updateY(-slapHeight);
+        slapSound.playSound();
         for(EntitiesObserver observer: observers){
             observer.executeObserver(this);
         }

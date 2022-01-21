@@ -31,6 +31,7 @@ public class Life extends Powerup {
     @Override
     public void effect(Arena arena){
         if(arena.getBird().intersect(this)) {
+            collideBird.playSound();
             arena.getBird().increaseLives(1);
             for(EntitiesObserver observer: observers){
                 observer.executeObserver(this);

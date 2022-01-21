@@ -50,58 +50,7 @@ public class Game {
         gui.getScreen().refresh();
     }
 
-    /*public void run() throws IOException, InterruptedException {
-        score = 0;
-        counter = 0;
-        boolean pressArrowUp;
-
-        while(!gameOver) {
-            KeyStroke key = gui.getTerminal().pollInput();
-            if (key != null && key.getKeyType() == KeyType.ArrowUp)
-                pressArrowUp = true;
-            else if (key != null && key.getKeyType() == KeyType.Escape) {
-                pressArrowUp = false;
-                pressEscape = true;
-            }
-            else
-                pressArrowUp = false;
-
-<<<<<<< HEAD
-            arena.update(pressArrowUp);
-=======
-            if(!arena.update(pressArrowUp) /*|| arena.verifyPipeCollisions()){
-                gameOver = true;
-                continue;
-            }
->>>>>>> origin/fixGameStates
-
-
-            if(counter == 25){
-                arena.addPipes();
-                counter = 0;
-            }
-<<<<<<< HEAD
-
-            if(arena.gameOver())
-                gameOver = true;
-
-            score++;
-=======
-            //score++;
->>>>>>> origin/fixGameStates
-            counter++;
-
-            //System.out.println(arena.getPipes().size());
-
-            draw();
-            addScore(arena);
-            Thread.sleep(100);
-        }
-    }*/
-
     public void addScore(Arena arena){
-        //ListIterator<Pipe> pipe = pipes.listIterator();
-        //System.out.println(arena.getPipes().size());
         System.out.println("Bird");
         System.out.println(arena.getBird().getPosition().getX());
         for(int i = 0; i < arena.getPipes().size(); i++)
@@ -112,7 +61,6 @@ public class Game {
                 i++;
                 i++;
                 break;
-                //System.out.println(i);
             }
     }
 }

@@ -2,17 +2,19 @@ package flappyBird.controls.gameStates;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import flappyBird.MusicPlayer;
 import flappyBird.game.Game;
 import flappyBird.menus.Gui;
 
 import java.io.IOException;
 
 public class GameStateRun extends GameState {
+    protected MusicPlayer gameOver;
+
+
     public GameStateRun(Game game) {
         super(game);
-    }
-    public GameStateRun() {
-        super();
+        gameOver = new MusicPlayer("gameover.wav");
     }
 
     @Override
@@ -70,6 +72,7 @@ public class GameStateRun extends GameState {
             game.draw();
             Thread.sleep(100);
         }
+            gameOver.playSound();
             Thread.sleep(1000);
             game.setScore(score);
             game.changeGameState(new GameStateEnd(game));
