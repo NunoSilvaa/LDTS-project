@@ -2,6 +2,8 @@ package move
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.Entities
+import flappyBird.entities.enemies.Falcon
+import flappyBird.entities.pipes.Pipe
 import flappyBird.move.Diagonal
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
@@ -11,12 +13,7 @@ import spock.lang.Specification
 class DiagonalTest extends Specification{
     def"Vertical"(){
         given:
-        Entities entity = new Entities(new Position(10,10), new Dimension(10,10),1, new Diagonal()) {
-            @Override
-            void draw(TextGraphics screen) {
-
-            }
-        }
+        Falcon entity = new Falcon(new Position(10,10), new Dimension(10,10),1, new Diagonal())
 
         when:
         entity.move()

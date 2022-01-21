@@ -13,7 +13,6 @@ public class Game {
     private Gui gui;
     private GameState gameState;
     private int score;
-    private int counter;
     public boolean gameOver;
     private boolean running;
     private boolean pressEscape;
@@ -31,6 +30,7 @@ public class Game {
 
     public int getScore(){return score;}
     public Arena getArena(){return arena;}
+    public GameState getState(){return gameState;}
 
     public void setRunning(boolean running) { this.running = running; }
     public void setPressEscape(boolean pressEscape) { this.pressEscape = pressEscape; }

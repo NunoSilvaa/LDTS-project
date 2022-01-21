@@ -1,6 +1,5 @@
 package controlsTest
 
-import com.googlecode.lanterna.terminal.Terminal
 import flappyBird.game.*
 import flappyBird.controls.gameStates.*
 import flappyBird.menus.*
@@ -86,7 +85,7 @@ class GameStateTest extends Specification{
     }
 
     def 'GameStateRun'(){
-        /*given:
+        given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
         def gameState = Mock(GameStateRun.class)
@@ -100,17 +99,7 @@ class GameStateTest extends Specification{
             game.draw()
             game.run()
             game.changeGameState(new GameStateEnd(game))
-        }*/
-        given:
-        Terminal terminal = Mock()
-        def game = Mock(Game.class)
-        def gui = Mock(Gui.class)
-        def gameState = Mock(GameStateRun.class)
-        gameState.setGame(game)
-        when:
-        gameState.execute(gui)
-        then:
-        1*terminal.pollInput()
+        }
     }
 
     def 'GameStateEnd'(){

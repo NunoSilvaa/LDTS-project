@@ -1,8 +1,7 @@
 package groovy.entitiesTest
 
 import flappyBird.entities.Bird
-import flappyBird.entities.Entities
-import flappyBird.entities.EntitiesObserver
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position

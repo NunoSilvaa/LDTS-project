@@ -2,6 +2,7 @@ package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.enemies.*
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
 import flappyBird.entities.*
 import flappyBird.move.Diagonal

@@ -1,21 +1,20 @@
 package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.entities.Bird
 import flappyBird.entities.powerups.Faster
 import flappyBird.entities.powerups.Slower
 import flappyBird.game.Arena
+import flappyBird.game.states.SlowerState
 import flappyBird.move.Vertical
-import flappyBird.rectangle.Dimension
-import flappyBird.rectangle.Position
+import flappyBird.rectangle.*
 import spock.lang.Specification
 
 class SlowerTest extends Specification {
     private Slower slower
-    private Slower specialSlower
 
     void setup(){
         slower = new Slower(new Position(25,25), new Dimension(10,10),2, new Vertical())
-        specialSlower = Mock(Slower.class)
     }
 
 
@@ -34,12 +33,18 @@ class SlowerTest extends Specification {
     }
 
     def"Effect"(){
-        def arena = Spy(Arena, constructorArgs:[42, 42])
+        Rectangle rBird = Mock(Rectangle.class)
+        def bird = new Bird(rBird, 1, new Vertical(),1,1)
+        def arena = new Arena(60,30, bird)
+        def rSlower = Mock(Rectangle.class)
+        def specialSlower = new Slower(rSlower,1, new Vertical())
+        arena.injectPowerUps(specialSlower)
+        rBird.intersect(rSlower) >> true
 
         when:
-        slower.effect(arena)
+        specialSlower.effect(arena)
 
         then:
-        1 * arena.setState(_)
+        arena.getState() instanceof SlowerState
     }
 }

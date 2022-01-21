@@ -1,15 +1,13 @@
 package entitiesTest
 
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.pipes.Pipe
 import flappyBird.move.Horizontal
 import flappyBird.move.Vertical
 import flappyBird.rectangle.*
 import flappyBird.entities.*
 
-import flappyBird.entities.pipes.BottomPipe
-import flappyBird.entities.pipes.TopPipe
 import com.googlecode.lanterna.graphics.TextGraphics
-import org.w3c.dom.css.Rect
 import spock.lang.Specification
 
 class PipeTest extends Specification{
@@ -19,47 +17,47 @@ class PipeTest extends Specification{
     private def screen;
 
     def setup(){
-        topPipe = new TopPipe(new Position(20,0), new Dimension(10,10), 2, new Horizontal())
-        bottomPipe = new BottomPipe(new Position(20,30), new Dimension(10,10), 2, new Horizontal())
-        pipe = new BottomPipe(new Position(10,10), new Dimension(10,10), 2, new Horizontal())
+        topPipe = new Pipe(new Position(20,0), new Dimension(10,10), 2, new Horizontal())
+        bottomPipe = new Pipe(new Position(20,30), new Dimension(10,10), 2, new Horizontal())
+        pipe = new Pipe(new Position(10,10), new Dimension(10,10), 2, new Horizontal())
         screen = Mock(TextGraphics)
     }
 
     def"Update test (Bottom Pipe)"(){
         when:
-            bottomPipe.move()
+        bottomPipe.move()
 
         then:
-            bottomPipe.getPosition() == new Position(18, 30)
+        bottomPipe.getPosition() == new Position(18, 30)
     }
 
     def"Update test (Top Pipe)"(){
         when:
-            topPipe.move()
+        topPipe.move()
 
         then:
-            topPipe.getPosition() == new Position(18, 0)
+        topPipe.getPosition() == new Position(18, 0)
     }
 
     def"Draw test(Bottom Pipe)"(){
         when:
-            bottomPipe.draw(screen)
+        bottomPipe.draw(screen)
 
         then:
-            1 * screen.setBackgroundColor(_)
+        1 * screen.setBackgroundColor(_)
         then:
-            1 * screen.fillRectangle(_,_,_)
+        1 * screen.fillRectangle(_,_,_)
 
     }
 
     def"Draw test(Top Pipe)"(){
         when:
-            topPipe.draw(screen)
+        topPipe.draw(screen)
 
         then:
-            1 * screen.setBackgroundColor(_)
+        1 * screen.setBackgroundColor(_)
         then:
-            1 * screen.fillRectangle(_,_,_)
+        1 * screen.fillRectangle(_,_,_)
 
     }
 
@@ -76,7 +74,6 @@ class PipeTest extends Specification{
 
         then:
         1 * bird.decreaseLives(1)
-
     }
 
     def"Bird Collide - False"(){

@@ -18,7 +18,9 @@ public class GameStateRun extends GameState {
     @Override
     public boolean execute(Gui gui) throws Throwable {
         int counter = 0;
+        int powerCounter =0;
         int score = 0;
+        int enemyCounter = 0;
         boolean pressArrowUp;
         boolean pressEscape = false;
         game.setRunning(true);
@@ -46,12 +48,23 @@ public class GameStateRun extends GameState {
                 continue;
             }
 
+            if (powerCounter == 10){
+                game.getArena().addPowerUp();
+                powerCounter = 0;
+            }
+
+            if (enemyCounter == 10){
+                game.getArena().addEnemies();
+                enemyCounter = 0;
+            }
+
             if (counter == 25) {
                 game.getArena().addPipes();
                 counter = 0;
             }
             score++;
             counter++;
+            powerCounter++;
 
             game.draw();
             Thread.sleep(100);

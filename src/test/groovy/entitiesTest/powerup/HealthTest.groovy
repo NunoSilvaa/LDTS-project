@@ -6,6 +6,7 @@ import flappyBird.entities.powerups.Faster
 import flappyBird.entities.powerups.Health
 import flappyBird.entities.powerups.Invincible
 import flappyBird.game.Arena
+import flappyBird.game.states.FasterState
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
@@ -14,11 +15,9 @@ import spock.lang.Specification
 
 class HealthTest extends Specification{
     private Health health
-    private Health specialHealth
 
     void setup(){
         health = new Health(new Position(25,25), new Dimension(10,10),2, new Vertical())
-        specialHealth = Mock(Health.class)
     }
 
 
@@ -36,12 +35,17 @@ class HealthTest extends Specification{
 
     }
 
-    def"Effect "(){
-        def bird = Mock(Bird)
-        def arena = Spy(Arena, constructorArgs:[42, 42, bird])
+    def"Effect"(){
+        def rBird = Mock(Rectangle.class)
+        def bird = Spy(Bird, constructorArgs: [rBird, 2,new Vertical(),2,2])
+        def arena = new Arena(60,30, bird)
+        def rHealth = Mock(Rectangle.class)
+        def specialHealth = new Health(rHealth,1, new Vertical())
+        arena.injectPowerUps(specialHealth)
+        rBird.intersect(rHealth) >> true
 
         when:
-        health.effect(arena)
+        specialHealth.effect(arena)
 
         then:
         1 * bird.setHealth(100)

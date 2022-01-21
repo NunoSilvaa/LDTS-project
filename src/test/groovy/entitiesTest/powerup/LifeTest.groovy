@@ -2,6 +2,7 @@ package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.powerups.Faster
+import flappyBird.entities.powerups.Health
 import flappyBird.entities.powerups.Invincible
 import flappyBird.entities.powerups.Life
 import flappyBird.game.Arena
@@ -15,11 +16,9 @@ import spock.lang.Specification
 
 class LifeTest extends Specification {
     private Life life
-    private Life specialLife
 
     void setup() {
         life = new Life(new Position(25, 25), new Dimension(10, 10), 2, new Vertical())
-        specialLife = Mock(Life.class)
     }
 
 
@@ -38,15 +37,19 @@ class LifeTest extends Specification {
     }
 
 
-    def "Effect "() {
-        def bird = Mock(Bird)
-        def arena = Spy(Arena, constructorArgs: [42, 42, bird])
+    def"Effect"(){
+        def rBird = Mock(Rectangle.class)
+        def bird = Spy(Bird, constructorArgs: [rBird, 2,new Vertical(),2,2])
+        def arena = new Arena(60,30, bird)
+        def rHealth = Mock(Rectangle.class)
+        def specialHealth = new Health(rHealth,1, new Vertical())
+        arena.injectPowerUps(specialHealth)
+        rBird.intersect(rHealth) >> true
 
         when:
-        life.effect(arena)
+        specialHealth.effect(arena)
 
         then:
-        1 * bird.increaseLives(_)
-
+        1 * bird.setHealth(100)
     }
 }
