@@ -80,7 +80,7 @@ class PipeTest extends Specification{
         given:
         Rectangle r1 = Mock(Rectangle)
         Rectangle r2 = Mock(Rectangle)
-        def bird = Spy(Bird, constructorArgs:[r1, 1, new Vertical(), 1, 1])
+        Bird bird = Mock(Bird.class)
         pipe.setRectangle(r2)
         r2.intersect(r1)>>false
 

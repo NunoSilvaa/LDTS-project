@@ -2,19 +2,18 @@ package flappyBird.controls.gameStates;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import flappyBird.MusicPlayer;
 import flappyBird.game.Game;
+import flappyBird.game.states.NormalState;
 import flappyBird.menus.Gui;
 
 import java.io.IOException;
 
 public class GameStateRun extends GameState {
-    protected MusicPlayer gameOver;
-
-
     public GameStateRun(Game game) {
         super(game);
-        gameOver = new MusicPlayer("gameover.wav");
+    }
+    public GameStateRun() {
+        super();
     }
 
     @Override
@@ -23,12 +22,12 @@ public class GameStateRun extends GameState {
         int powerCounter =0;
         int score = 0;
         int enemyCounter = 0;
+        int powerLast =0;
         boolean pressArrowUp;
         boolean pressEscape = false;
         game.setRunning(true);
         while(game.isRunning()) {
             KeyStroke key = gui.getTerminal().pollInput();
-            while(gui.getTerminal().pollInput() != null);
             if (key != null && key.getKeyType() == KeyType.ArrowUp)
                 pressArrowUp = true;
             else if (key != null && key.getKeyType() == KeyType.Escape) {
@@ -50,9 +49,10 @@ public class GameStateRun extends GameState {
                 game.setRunning(false);
                 continue;
             }
-
-            if (powerCounter == 10){
+            if(powerLast == 200 ){game.getArena().setState(new NormalState(game.getArena()));}
+            if (powerCounter == 50){
                 game.getArena().addPowerUp();
+                powerLast =0;
                 powerCounter = 0;
             }
 
@@ -68,11 +68,12 @@ public class GameStateRun extends GameState {
             score++;
             counter++;
             powerCounter++;
+            enemyCounter++;
+            powerLast++;
 
             game.draw();
             Thread.sleep(100);
         }
-            gameOver.playSound();
             Thread.sleep(1000);
             game.setScore(score);
             game.changeGameState(new GameStateEnd(game));

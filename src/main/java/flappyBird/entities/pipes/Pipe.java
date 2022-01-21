@@ -23,6 +23,7 @@ public class Pipe extends Entities {
 
     public Pipe(Rectangle rectangle, int speed, Move move){
         super(rectangle, speed, move);
+        collideBird = new MusicPlayer("collide.wav");
     }
 
 
