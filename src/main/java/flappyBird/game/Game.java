@@ -50,17 +50,4 @@ public class Game {
         gui.getScreen().refresh();
     }
 
-    public void addScore(Arena arena){
-        System.out.println("Bird");
-        System.out.println(arena.getBird().getPosition().getX());
-        for(int i = 0; i < arena.getPipes().size(); i++)
-            if(arena.getBird().getPosition().getX() > arena.getPipes().get(i).getPosition().getX()){
-                System.out.println("Pipe");
-                System.out.println(arena.getPipes().get(i).getPosition().getX());
-                score++;
-                i++;
-                i++;
-                break;
-            }
-    }
 }

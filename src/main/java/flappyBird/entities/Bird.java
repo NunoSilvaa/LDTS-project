@@ -1,5 +1,6 @@
 package flappyBird.entities;
 
+import com.googlecode.lanterna.TextCharacter;
 import flappyBird.MusicPlayer;
 import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
@@ -37,14 +38,14 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setForegroundColor(TextColor.Factory.fromString("#f4cf0d"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "%&");
         for(int i=0; i < lives;i++){
-            screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-            screen.fillRectangle(new TerminalPosition(1+(2*i),1), new TerminalSize(1, 1),  ' ');
+            screen.setForegroundColor(TextColor.Factory.fromString("#8B0000"));
+            screen.putString(new TerminalPosition(1+(2*i),1),"#$");
         }
-        screen.setBackgroundColor(TextColor.Factory.fromString("#2B0000"));
-        screen.fillRectangle(new TerminalPosition(45,1), new TerminalSize(health/10 , 1),  ' ');
+        screen.setForegroundColor(TextColor.Factory.fromString("#2B0000"));
+        screen.putString(new TerminalPosition(45,1),"%&");
 
     }
 

@@ -105,10 +105,8 @@ public class Arena {
     }
 
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-        for(Pipe pipe : pipes)
-            pipe.draw(screen);
         bird.draw(screen);
         for(Enemy enemy: enemies){
             enemy.draw(screen);
@@ -116,6 +114,8 @@ public class Arena {
         for(Powerup powerUp :powerUps){
             powerUp.draw(screen);
         }
+        for(Pipe pipe : pipes)
+            pipe.draw(screen);
     }
 
     public void collideEntities(){

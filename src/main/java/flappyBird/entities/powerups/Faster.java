@@ -25,8 +25,8 @@ public class Faster extends Powerup {
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#F30000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(), rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setForegroundColor(TextColor.Factory.fromString("#fff900"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "[?");
     }
 
     @Override
