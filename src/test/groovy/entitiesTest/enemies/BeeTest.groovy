@@ -37,7 +37,7 @@ class BeeTest extends Specification{
         bee.draw(screen)
 
         then:
-        1_ * screen.setBackgroundColor(_)
+        1 * screen.setBackgroundColor(_)
         then:
         1 * screen.putString(_,_,_)
 

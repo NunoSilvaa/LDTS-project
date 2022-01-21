@@ -10,7 +10,10 @@ public class GameStateEnd extends GameState{
         super(game);
         collideBird = new MusicPlayer("gameover.wav");
     }
-    public GameStateEnd() {super();}
+    public GameStateEnd() {
+        super();
+        collideBird = new MusicPlayer("gameover.wav");
+    }
 
     @Override
     public boolean execute(Gui gui) throws Throwable {

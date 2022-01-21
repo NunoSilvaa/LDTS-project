@@ -39,12 +39,8 @@ class GameStateTest extends Specification{
         gameState.processOption(gui)
 
         then:
-        verifyAll {
-            option - 1 == 2
-            option
-            gui.mainMenu(option)
-        }
-
+        option - 1 == 2
+        gui.mainMenu(option)
     }
 
     def 'processOption (ArrowUP)'() {
@@ -56,16 +52,15 @@ class GameStateTest extends Specification{
         def gameState = Mock(InitialGameState.class)
         gameState.setGame(game)
         gui.getKeyStroke() >> k
-        k.getKeyType() >> KeyType.ArrowDown >> KeyType.Enter
-        gameState.rangeLimiter(3) >> 3
+        k.getKeyType() >> KeyType.ArrowUp >> KeyType.Enter
 
         when:
         gameState.processOption(gui)
+
         then:
-        verifyAll {
-            option + 1 == 3
-            gui.mainMenu(option)
-        }
+        option + 1 == 3
+        gui.mainMenu(option)
+
     }
 
     def 'InitialGameState'(){
@@ -88,18 +83,18 @@ class GameStateTest extends Specification{
         given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
-        def gameState = Spy(GameState, constructorArgs:[r1, 1, new Vertical(), 1, 1])
+        def gameState = new GameStateRun()
+        def score = 0
         gameState.setGame(game)
 
         when:
         gameState.execute(gui)
 
         then:
-        verifyAll {
-            game.draw()
-            game.run()
-            game.changeGameState(new GameStateEnd(game))
-        }
+        game.setRunning(true)
+        game.draw()
+        game.setScore(score)
+        game.changeGameState(new GameStateEnd(game))
     }
 
     def 'GameStateEnd'(){
