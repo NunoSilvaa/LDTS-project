@@ -93,13 +93,13 @@ public class Arena {
     }
 
     public void addEnemies(){
-        Enemy enemy = generatorEntities.generateRandomEnemy();
+        Enemy enemy = generatorEntities.generateRandomEnemy(this);
         enemy.addObserver(againstBird);
         enemies.add(enemy);
     }
 
     public void addPowerUp(){
-        Powerup powerup = generatorEntities.generateRandomPowerUp();
+        Powerup powerup = generatorEntities.generateRandomPowerUp(this);
         powerup.addObserver(againstBird);
         powerUps.add(powerup);
     }
@@ -180,5 +180,11 @@ public class Arena {
         return pipes;
     }
 
+    public List<Powerup> getPowerups() {
+        return powerUps;
+    }
+
     public ArenaState getState(){return state;}
+
+    public EntitiesObserver getEntities(){return againstBird;};
 }
