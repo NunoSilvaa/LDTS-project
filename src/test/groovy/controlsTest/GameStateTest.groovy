@@ -83,12 +83,8 @@ class GameStateTest extends Specification{
         given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
-<<<<<<< HEAD
-        def gameState = Spy(GameState, constructorArgs:[])
-=======
         def gameState = new GameStateRun()
         def score = 0
->>>>>>> b2e562b746d12a686cadd61e41e38bd79a39e5f9
         gameState.setGame(game)
 
         when:
