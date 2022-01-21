@@ -3,8 +3,6 @@ package flappyBird.game;
 
 import flappyBird.controls.gameStates.GameState;
 import flappyBird.controls.gameStates.InitialGameState;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import java.io.IOException;
 import flappyBird.menus.Gui;
 

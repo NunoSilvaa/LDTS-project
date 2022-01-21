@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import flappyBird.entities.Bird;
 import flappyBird.entities.weapons.Bite;
 import flappyBird.entities.weapons.Weapon;
 import flappyBird.move.Move;

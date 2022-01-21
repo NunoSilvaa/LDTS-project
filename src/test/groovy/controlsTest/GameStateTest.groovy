@@ -8,7 +8,6 @@ import spock.lang.Specification
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType
 
-import javax.xml.stream.events.EndDocument;
 
 class GameStateTest extends Specification{
 

@@ -2,13 +2,9 @@ package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.Bird
-import flappyBird.entities.enemies.Bee
 import flappyBird.entities.powerups.*
-import flappyBird.entities.weapons.Sting
 import flappyBird.game.Arena
 import flappyBird.game.states.FasterState
-import flappyBird.game.states.SlowerState
-import flappyBird.move.Diagonal
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position

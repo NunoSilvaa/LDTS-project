@@ -1,19 +1,13 @@
 package gameTest
 
-import entitiesTest.enemies.DarthVaderTest
 import flappyBird.entities.enemies.Bee
 import flappyBird.entities.enemies.DarthVader
 import flappyBird.entities.pipes.Pipe
 import flappyBird.entities.powerups.Faster
-import flappyBird.entities.powerups.Invincible
-import flappyBird.entities.powerups.Life
-import flappyBird.entities.powerups.Powerup
-import flappyBird.entities.weapons.LaserSword
 import flappyBird.game.Arena
 import flappyBird.entities.*
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.game.states.ArenaState
-import flappyBird.entities.enemies.Enemy
 import flappyBird.game.states.FasterState
 import flappyBird.game.states.NormalState
 import flappyBird.move.Diagonal
@@ -45,7 +39,7 @@ class ArenaTest extends Specification{
         given:
         def specialArena = new Arena(10,10,Mock(Bird.class))
         when:
-        def result = arena.getInstance()
+        def result = specialArena.getInstance()
         then:
         result instanceof Bird
     }

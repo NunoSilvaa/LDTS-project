@@ -2,7 +2,6 @@ package flappyBird.entities.powerups;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.Entities;
-import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.game.Arena;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;

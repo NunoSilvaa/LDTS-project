@@ -7,9 +7,7 @@ import flappyBird.game.Arena;
 import flappyBird.move.Horizontal;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
-import flappyBird.rectangle.Rectangle;
 
-import java.util.List;
 import java.util.Random;
 
 public class FasterState extends ArenaState {

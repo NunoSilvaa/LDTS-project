@@ -2,7 +2,6 @@ package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.Bird
-import flappyBird.entities.powerups.Faster
 import flappyBird.entities.powerups.Slower
 import flappyBird.game.Arena
 import flappyBird.game.states.SlowerState

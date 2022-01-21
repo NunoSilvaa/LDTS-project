@@ -42,7 +42,7 @@ public class Arena {
         this.width = width;
         generatorEntities = new GeneratorEntities(width, height);
         againstBird = new AgainstBirdObserver(width, height);
-        birdObserver = new BirdObserver(width, height);
+        birdObserver = new BirdObserver(height);
         bird = getInstance();
         addBird();
         enemies = new ArrayList<Enemy>();
@@ -56,7 +56,7 @@ public class Arena {
         this.height = height;
         this.width = width;
         againstBird = new AgainstBirdObserver(width, height);
-        birdObserver = new BirdObserver(width, height);
+        birdObserver = new BirdObserver(height);
 
         this.bird = bird;
         addBird();

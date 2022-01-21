@@ -3,7 +3,6 @@ package gameTest.arenaStatesTests
 import flappyBird.entities.Bird
 import flappyBird.entities.pipes.Pipe
 import flappyBird.game.Arena
-import flappyBird.game.states.FasterState
 import flappyBird.game.states.SlowerState
 import flappyBird.move.Horizontal
 import flappyBird.move.Vertical

@@ -2,12 +2,9 @@ package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.Bird
-import flappyBird.entities.powerups.Faster
 import flappyBird.entities.powerups.Invincible
-import flappyBird.entities.powerups.Slower
 import flappyBird.game.Arena
 import flappyBird.game.states.InvincibleState
-import flappyBird.game.states.SlowerState
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
@@ -16,9 +13,11 @@ import spock.lang.Specification
 
 class InvincibleTest extends Specification {
     private Invincible invincible
+    private Invincible specialInvincible
 
     void setup(){
         invincible = new Invincible(new Position(25,25), new Dimension(10,10),2, new Vertical())
+        specialInvincible = Mock(Invincible.class)
     }
 
 
@@ -52,3 +51,4 @@ class InvincibleTest extends Specification {
         arena.getState() instanceof InvincibleState
     }
 }
+

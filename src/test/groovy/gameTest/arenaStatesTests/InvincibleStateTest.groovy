@@ -3,12 +3,9 @@ package gameTest.arenaStatesTests
 import flappyBird.entities.Bird
 import flappyBird.entities.pipes.Pipe
 import flappyBird.game.Arena
-import flappyBird.game.states.FasterState
 import flappyBird.game.states.InvincibleState
 import flappyBird.move.Horizontal
 import flappyBird.move.Vertical
-import flappyBird.rectangle.Dimension
-import flappyBird.rectangle.Position
 import flappyBird.rectangle.Rectangle
 import spock.lang.Specification
 

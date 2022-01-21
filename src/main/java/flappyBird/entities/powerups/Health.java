@@ -5,14 +5,12 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.entities.observer.EntitiesObserver;
-import flappyBird.entities.powerups.Powerup;
 import flappyBird.game.Arena;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import flappyBird.rectangle.Rectangle;
 
-import java.util.ArrayList;
 
 public class Health extends Powerup {
 

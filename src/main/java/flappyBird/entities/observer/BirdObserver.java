@@ -2,14 +2,11 @@ package flappyBird.entities.observer;
 
 import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
-import flappyBird.rectangle.Position;
 
 public class BirdObserver implements EntitiesObserver{
-    private int width;
     private int height;
 
-    public BirdObserver(int width, int height){
-        this.width = width;
+    public BirdObserver(int height){
         this.height = height;
     }
 
