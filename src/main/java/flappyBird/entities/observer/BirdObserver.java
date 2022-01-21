@@ -17,12 +17,12 @@ public class BirdObserver implements EntitiesObserver{
     @Override
     public void executeObserver(Entities entity) {
         if (entity.getPosition().getY() < 0)
-            entity.setPosition(new Position(width / 2, 0));
-        else if (entity.getPosition().getY() >= height) {
+            entity.setY(0);
+        else if (entity.getPosition().getY() + entity.getDimension().getHeight() >= height) {
             if(entity instanceof Bird){
                 ((Bird) entity).decreaseLives(1);
             }
-            entity.setPosition(new Position(width / 2, height / 2));
+            entity.setY(height/2);
         }
     }
 }

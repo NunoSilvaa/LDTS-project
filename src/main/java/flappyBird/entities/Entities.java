@@ -66,6 +66,10 @@ public abstract class Entities {
 
     public void updateY(){rectangle.updateY(speed);}
 
+    public void setX(int x){rectangle.setX(x);}
+
+    public void setY(int y){rectangle.setY(y);}
+
     protected abstract void move();
 
     public abstract void draw(TextGraphics screen);

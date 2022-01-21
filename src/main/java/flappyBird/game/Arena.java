@@ -93,13 +93,13 @@ public class Arena {
     }
 
     public void addEnemies(){
-        Enemy enemy = generatorEntities.generateRandomEnemy(this);
+        Enemy enemy = generatorEntities.generateRandomEnemy();
         enemy.addObserver(againstBird);
         enemies.add(enemy);
     }
 
     public void addPowerUp(){
-        Powerup powerup = generatorEntities.generateRandomPowerUp(this);
+        Powerup powerup = generatorEntities.generateRandomPowerUp();
         powerup.addObserver(againstBird);
         powerUps.add(powerup);
     }

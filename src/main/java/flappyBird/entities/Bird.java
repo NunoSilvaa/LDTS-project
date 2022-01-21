@@ -1,8 +1,7 @@
 package flappyBird.entities;
 
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
-import flappyBird.move.Vertical;
-import com.googlecode.lanterna.SGR;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -34,14 +33,21 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
-        //screen.setForegroundColor(TextColor.ANSI.BLACK);
-        screen.putString(rectangle.getX(), rectangle.getY(), "+,");
+        screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
+        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        for(int i=0; i < lives;i++){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
+            screen.fillRectangle(new TerminalPosition(1+(2*i),1), new TerminalSize(1, 1),  ' ');
+        }
+        screen.setBackgroundColor(TextColor.Factory.fromString("#2B0000"));
+        screen.fillRectangle(new TerminalPosition(45,1), new TerminalSize(health/10 , 1),  ' ');
+
     }
 
     public void slap(){
         rectangle.updateY(-slapHeight);
         for(EntitiesObserver observer: observers){
-            observer.positionChanged(this);
+            observer.executeObserver(this);
         }
     }
 
@@ -85,4 +91,11 @@ public class Bird extends Entities{
     }
 
     public void setLives(int lives){this.lives = lives;}
+
+    @Override
+    public void move(){
+        move.update(this);
+        for(EntitiesObserver observer: observers)
+            observer.executeObserver(this);
+    }
 }

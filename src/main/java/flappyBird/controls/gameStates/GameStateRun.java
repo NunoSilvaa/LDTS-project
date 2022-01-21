@@ -3,7 +3,6 @@ package flappyBird.controls.gameStates;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import flappyBird.game.Game;
-import flappyBird.game.states.NormalState;
 import flappyBird.menus.Gui;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class GameStateRun extends GameState {
         int powerCounter =0;
         int score = 0;
         int enemyCounter = 0;
-        int powerLast =0;
         boolean pressArrowUp;
         boolean pressEscape = false;
         game.setRunning(true);
@@ -49,10 +47,9 @@ public class GameStateRun extends GameState {
                 game.setRunning(false);
                 continue;
             }
-            if(powerLast == 200 ){game.getArena().setState(new NormalState(game.getArena()));}
-            if (powerCounter == 50){
+
+            if (powerCounter == 10){
                 game.getArena().addPowerUp();
-                powerLast =0;
                 powerCounter = 0;
             }
 
@@ -68,8 +65,6 @@ public class GameStateRun extends GameState {
             score++;
             counter++;
             powerCounter++;
-            enemyCounter++;
-            powerLast++;
 
             game.draw();
             Thread.sleep(100);
