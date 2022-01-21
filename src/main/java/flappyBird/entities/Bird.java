@@ -1,13 +1,14 @@
 package flappyBird.entities;
 
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
-import flappyBird.move.Vertical;
 import flappyBird.rectangle.Dimension;
 import flappyBird.rectangle.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import flappyBird.rectangle.Rectangle;
 
 
 public class Bird extends Entities{
@@ -22,16 +23,31 @@ public class Bird extends Entities{
         health = 100;
     }
 
+    public Bird(Rectangle rectangle, int speed, Move move, int slapHeight, int lives) {
+        super(rectangle, speed, move);
+        this.slapHeight = slapHeight;
+        this.lives = lives;
+        health = 100;
+    }
+
+
     @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
         screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        for(int i=0; i < lives;i++){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
+            screen.fillRectangle(new TerminalPosition(1+(2*i),1), new TerminalSize(1, 1),  ' ');
+        }
+        screen.setBackgroundColor(TextColor.Factory.fromString("#2B0000"));
+        screen.fillRectangle(new TerminalPosition(45,1), new TerminalSize(health/10 , 1),  ' ');
+
     }
 
     public void slap(){
         rectangle.updateY(-slapHeight);
         for(EntitiesObserver observer: observers){
-            observer.positionChanged(this);
+            observer.executeObserver(this);
         }
     }
 
@@ -62,14 +78,12 @@ public class Bird extends Entities{
             this.lives -= numOfLives;
             this.health = 100;
         }
+
+
     }
 
     public void increaseLives(int numOfLives){
         this.lives += numOfLives;
-    }
-
-    public void increaseHealth(){
-        this.health = 100;
     }
 
     public void setHealth(int health){
@@ -77,4 +91,11 @@ public class Bird extends Entities{
     }
 
     public void setLives(int lives){this.lives = lives;}
+
+    @Override
+    public void move(){
+        move.update(this);
+        for(EntitiesObserver observer: observers)
+            observer.executeObserver(this);
+    }
 }

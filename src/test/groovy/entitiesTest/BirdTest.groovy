@@ -1,6 +1,7 @@
 package groovy.entitiesTest
 
 import flappyBird.entities.Bird
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
@@ -106,7 +107,7 @@ class BirdTest extends Specification{
         bird.setHealth(0)
 
         expect:
-        bird.isDead() == true
+        bird.isDead()
     }
 
     def"isDead - False(Lives == 0 && Health != 0)"(){
@@ -115,7 +116,7 @@ class BirdTest extends Specification{
         bird.setHealth(50)
 
         expect:
-        bird.isDead() == false
+        !bird.isDead()
     }
 
     def"isDead - False"(){
@@ -124,7 +125,7 @@ class BirdTest extends Specification{
         bird.setLives(50)
 
         expect:
-        bird.isDead() == false
+        !bird.isDead()
     }
 
     def"Increase Speed"(){
@@ -132,5 +133,16 @@ class BirdTest extends Specification{
         bird.increaseSpeed(2)
         then:
         bird.getSpeed() == 4
+    }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = bird.getNumObserver();
+        bird.addObserver(observer)
+        int end = bird.getNumObserver();
+        then:
+        end - begin == 1
     }
 }

@@ -6,7 +6,8 @@ import flappyBird.menus.*
 import spock.lang.Specification
 
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.input.KeyType
+
 
 class GameStateTest extends Specification{
 
@@ -104,7 +105,7 @@ class GameStateTest extends Specification{
         given:
         def game = Mock(Game.class)
         def gui = Mock(Gui.class)
-        def gameState = Mock(GameStateEnd.class)
+        def gameState = new GameStateEnd()
         def score = 0;
         gameState.setGame(game)
 
@@ -112,9 +113,7 @@ class GameStateTest extends Specification{
         gameState.execute(gui)
 
         then:
-        verifyAll {
-            gui.endMenu(score)
-        }
+        gui.endMenu(score)
     }
 
 }

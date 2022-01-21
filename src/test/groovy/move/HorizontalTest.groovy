@@ -1,23 +1,19 @@
 package move
 
-import flappyBird.entities.Entities
+import flappyBird.entities.pipes.Pipe
 import flappyBird.move.Horizontal
-import flappyBird.move.Vertical
+import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
 import spock.lang.Specification
 
 class HorizontalTest extends Specification{
     def"Horizontal"(){
         given:
-        def entity = Mock(Entities.class)
-        def move = new Horizontal()
-        entity.setSpeed(1)
-        entity.setPosition(new Position(10,10))
+        Pipe entity = new Pipe(new Position(10,10), new Dimension(10,10),1, new Horizontal())
 
         when:
-        move.update(entity)
-
+        entity.move()
         then:
-        entity.getPosition() == new Position(9,11)
+        entity.getPosition() == new Position(9,10)
     }
 }

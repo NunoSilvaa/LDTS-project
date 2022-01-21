@@ -2,24 +2,35 @@ package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.enemies.*
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
 import flappyBird.entities.*
+import flappyBird.move.Diagonal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
+import flappyBird.rectangle.Rectangle
 import spock.lang.Specification
 
-class  FalconTest extends Specification{
-    def"Create Weapon"(){
-        given:
-        def  falcon = Mock(Falcon.class)
+class FalconTest extends Specification{
+    private Falcon falcon
+    private Falcon specialFalcon
 
-        expect:
-        Bite in falcon.getWeapon()
+    void setup(){
+        falcon = new Falcon(new Position(25,25), new Dimension(10,10),2, new Diagonal())
+        specialFalcon = Mock(Falcon.class)
+    }
+
+    def"Create Weapon"(){
+        when:
+        def weapon = falcon.getWeapon()
+
+        then:
+        weapon instanceof Bite
     }
 
     def"Draw"(){
         given:
-        def falcon = Mock(Falcon.class)
         def screen = Mock(TextGraphics)
 
         when:
@@ -34,62 +45,64 @@ class  FalconTest extends Specification{
 
     def"Attack Bird-(True)"(){
         given:
-        def  falcon = Mock(Falcon.class)
-        def  bird = Mock(Bird.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        falcon.intersect(bird) >> true
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        falcon.setRectangle(r2)
+        falcon.setWeapon(weapon)
+        r2.intersect(r1) >> true
 
         when:
         falcon.attack(bird)
 
         then:
-        bird.getHealth() == 75
-        bird.getLives() == 4
-
+        1 * weapon.attackBird(_)
     }
 
     def"Attack Bird-(False)"(){
         given:
-        def bird = Mock(Bird.class)
-        def  falcon = Mock(Falcon.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        falcon.intersect(bird) >> false
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        falcon.setRectangle(r2)
+        falcon.setWeapon(weapon)
+        r2.intersect(r1) >> false
 
         when:
         falcon.attack(bird)
 
         then:
-        bird.getHealth() == 100
-        bird.getLives() == 4
-
+        0 * weapon.attackBird(_)
     }
 
-    def"Update Falcon"(){
-        given:
-
-        Falcon falcon = new Falcon(new Position(25,25),new Dimension(1,1), 2)
-
+    def"Update"(){
         when:
-        boolean result = falcon.update(30)
+        falcon.move()
 
         then:
         falcon.getPosition() == new Position(23, 27)
-        result == false
     }
 
-    def"Update Falcon - Limits"(){
-        given:
-
-        Falcon falcon = new Falcon(new Position(25,25),new Dimension(1,1), 2)
-        boolean result
-
+    def"Increase Speed"(){
         when:
-        for(int i = 0; i < 15; i++)
-            result = falcon.update(30)
-
+        falcon.increaseSpeed(2)
         then:
-        result == true
+        falcon.getSpeed() == 4
     }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = falcon.getNumObserver();
+        falcon.addObserver(observer)
+        int end = falcon.getNumObserver();
+        then:
+        end - begin == 1
+    }
+
 }

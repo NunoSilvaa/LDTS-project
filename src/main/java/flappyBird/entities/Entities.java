@@ -1,5 +1,5 @@
 package flappyBird.entities;
-import flappyBird.entities.enemies.Enemy;
+import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
 import flappyBird.rectangle.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -21,11 +21,20 @@ public abstract class Entities {
         observers = new ArrayList<>();
     }
 
+    public Entities(Rectangle rectangle, int speed, Move move){
+        this.rectangle = rectangle;
+        this.speed = speed;
+        this.move = move;
+        observers = new ArrayList<>();
+    }
+
     public void setMove(Move move){this.move = move;}
 
     public void addObserver(EntitiesObserver observer){
         observers.add(observer);
     }
+
+    public int getNumObserver(){return observers.size();}
 
     public Rectangle getRectangle(){return rectangle;}
 
@@ -57,12 +66,11 @@ public abstract class Entities {
 
     public void updateY(){rectangle.updateY(speed);}
 
-    public void move(){
-        move.update(this);
-        for(EntitiesObserver observer: observers){
-            observer.positionChanged(this);
-        }
-    }
+    public void setX(int x){rectangle.setX(x);}
+
+    public void setY(int y){rectangle.setY(y);}
+
+    protected abstract void move();
 
     public abstract void draw(TextGraphics screen);
 

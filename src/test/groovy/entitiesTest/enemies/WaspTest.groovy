@@ -2,24 +2,35 @@ package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
 import flappyBird.entities.enemies.*
+import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
 import flappyBird.entities.*
+import flappyBird.move.Horizontal
+import flappyBird.move.Vertical
 import flappyBird.rectangle.Dimension
 import flappyBird.rectangle.Position
+import flappyBird.rectangle.Rectangle
 import spock.lang.Specification
 
 class WaspTest extends Specification{
-    def"Create Weapon"(){
-        given:
-        def wasp = Mock(Wasp)
+    private Wasp wasp
+    private Wasp specialWasp
 
-        expect:
-        Poison in wasp.getWeapon()
+    void setup(){
+        wasp = new Wasp(new Position(25,25), new Dimension(10,10),2, new Horizontal())
+        specialWasp = Mock(Wasp.class)
+    }
+
+    def"Create Weapon"(){
+        when:
+        def weapon = wasp.getWeapon()
+
+        then:
+        weapon instanceof Poison
     }
 
     def"Draw"(){
         given:
-        def wasp = Mock(Wasp)
         def screen = Mock(TextGraphics)
 
         when:
@@ -34,62 +45,63 @@ class WaspTest extends Specification{
 
     def"Attack Bird-(True)"(){
         given:
-        def bird = Mock(Bird.class)
-        def wasp = Mock(Wasp.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        wasp.intersect(bird) >> true
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        wasp.setRectangle(r2)
+        wasp.setWeapon(weapon)
+        r2.intersect(r1) >> true
 
         when:
         wasp.attack(bird)
 
         then:
-        bird.getHealth() == 50
-        bird.getLives() == 3
-
+        1 * weapon.attackBird(_)
     }
 
     def"Attack Bird-(False)"(){
         given:
-        def bird = Mock(Bird.class)
-        def wasp = Mock(Wasp.class)
-        bird.setHealth(100)
-        bird.setLives(4)
-        wasp.intersect(bird) >> false
+        def bird = new Bird(new Position(10,10), new Dimension(10,10), 2, new Vertical(),3 ,3)
+        def r1 = Mock(Rectangle)
+        bird.setRectangle(r1);
+        def weapon = Mock(Sting)
+        def r2 = Mock(Rectangle)
+        wasp.setRectangle(r2)
+        wasp.setWeapon(weapon)
+        r2.intersect(r1) >> false
 
         when:
         wasp.attack(bird)
 
         then:
-        bird.getHealth() == 100
-        bird.getLives() == 4
-
+        0 * weapon.attackBird(_)
     }
 
-    def"Update Wasp Test"(){
-        given:
-
-        Wasp  wasp = new Wasp(new Position(25,25),new Dimension(1,1), 2)
-
+    def"Update"(){
         when:
-        boolean result = wasp.update(0)
+        wasp.move()
 
         then:
         wasp.getPosition() == new Position(23, 25)
-        result == false
     }
 
-    def"Update Wasp  - Limits"(){
-        given:
-
-        Wasp  wasp = new Wasp(new Position(25,25),new Dimension(1,1), 2)
-        boolean result
-
+    def"Increase Speed"(){
         when:
-        for(int i = 0; i < 15; i++)
-            result = wasp.update(0)
-
+        wasp.increaseSpeed(2)
         then:
-         result == true
+        wasp.getSpeed() == 4
+    }
+
+    def"Add EntityObserver"(){
+        given:
+        def observer = Mock(EntitiesObserver)
+        when:
+        int begin = wasp.getNumObserver();
+        wasp.addObserver(observer)
+        int end = wasp.getNumObserver();
+        then:
+        end - begin == 1
     }
 }

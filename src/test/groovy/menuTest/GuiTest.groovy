@@ -1,5 +1,6 @@
-package menuTest
+package controlsTest
 
+import flappyBird.menus.Moves
 import com.googlecode.lanterna.SGR
 import com.googlecode.lanterna.TerminalPosition
 import com.googlecode.lanterna.TerminalSize
@@ -8,7 +9,6 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.screen.Screen
 import flappyBird.menus.Gui
-import flappyBird.menus.Moves
 import spock.lang.Specification
 import static com.googlecode.lanterna.input.KeyType.*;
 
@@ -17,7 +17,7 @@ class GuiTest extends Specification{
     def 'close'() {
         given:
         Screen screen = Mock(Screen.class)
-        Gui gui = new Gui(screen)
+        def gui = new Gui(screen)
 
         when:
         gui.close()
@@ -130,21 +130,21 @@ class GuiTest extends Specification{
         gui.endMenu(0)
 
         then:
-        1 * screen.clear();
-        1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
-        1 * textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ');
-        1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
-        1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ');
+        1 * screen.clear()
+        1 * textGraphics.setBackgroundColor(_);
+        1 * textGraphics.fillRectangle(_, _, _)
+        1 * textGraphics.setBackgroundColor(_)
+        1 * textGraphics.fillRectangle(_, _, _)
+        1 * textGraphics.setBackgroundColor(_)
+        1 * textGraphics.fillRectangle(_, _, _)
 
-        1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
-        1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
+        1 * textGraphics.setForegroundColor(_)
+        1 * textGraphics.setBackgroundColor(_)
 
-        1 * textGraphics.putString(18, 7, "Game Over", SGR.BOLD);
-        1 * textGraphics.putString(18, 10, "Score:");
-        1 * textGraphics.putString(24, 10, String.valueOf(0));
+        1 * textGraphics.putString(_, _, _, _)
+        1 * textGraphics.putString(_, _, _)
+        1 * textGraphics.putString(_, _, _)
 
-        1 * screen.refresh();
+        1 * screen.refresh()
     }
 }
