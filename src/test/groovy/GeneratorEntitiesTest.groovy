@@ -2,17 +2,20 @@ import flappyBird.entities.enemies.Enemy
 import flappyBird.entities.pipes.Pipe
 import flappyBird.entities.powerups.Powerup
 import flappyBird.GeneratorEntities
+import flappyBird.game.Arena
 import spock.lang.Specification
 
 class GeneratorEntitiesTest extends Specification{
     private def generator
+    private def arena
     void setup(){
         generator = new GeneratorEntities(40,40)
+        arena = new Arena(40,40)
     }
 
     def"Generate Enemy"(){
         when:
-        def enemy =  generator.generateRandomEnemy()
+        def enemy =  generator.generateRandomEnemy(arena)
 
         then:
         enemy instanceof Enemy
@@ -24,7 +27,7 @@ class GeneratorEntitiesTest extends Specification{
 
     def"Generate PowerUp"(){
         when:
-        def powerUp = generator.generateRandomPowerUp()
+        def powerUp = generator.generateRandomPowerUp(arena)
 
         then:
         powerUp instanceof Powerup
@@ -36,7 +39,7 @@ class GeneratorEntitiesTest extends Specification{
 
     def"Generate Pipes"(){
         when:
-        def pipes = generator.generateRandomPipes()
+        def pipes = generator.generateRandomPipes(arena)
 
         then:
         pipes.size() == 2

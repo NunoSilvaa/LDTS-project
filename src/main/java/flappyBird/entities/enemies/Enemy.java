@@ -21,6 +21,7 @@ public abstract class Enemy extends Entities{
     public Enemy(Rectangle rectangle, int speed, Move move) {
         super(rectangle, speed, move);
         this.weapon = createWeapon();
+        collideBird = new MusicPlayer("collide.wav");
     }
 
     public Weapon getWeapon(){
