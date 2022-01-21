@@ -20,8 +20,8 @@ public class Life extends Powerup {
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#F30000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(), rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  'L');
+        screen.setForegroundColor(TextColor.Factory.fromString("#F30000"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "#$");
     }
 
     @Override

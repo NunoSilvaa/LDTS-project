@@ -24,7 +24,7 @@ public class DarthVader extends Enemy {
 
     @Override
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(TextColor.Factory.fromString("#030300"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setForegroundColor(TextColor.Factory.fromString("#030300"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "'(");
     }
 }

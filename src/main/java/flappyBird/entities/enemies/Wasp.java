@@ -23,7 +23,7 @@ public class Wasp extends Enemy{
 
     @Override
     public void draw(TextGraphics screen) {
-        screen.setBackgroundColor(TextColor.Factory.fromString("#C6EA0F"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setForegroundColor(TextColor.Factory.fromString("#C6EA0F"));
+        screen.putString(rectangle.getX(), rectangle.getY(), ")*");
     }
 }
