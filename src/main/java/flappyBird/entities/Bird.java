@@ -34,8 +34,8 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setForegroundColor(TextColor.ANSI.BLACK);
-        screen.putString(rectangle.getX(), rectangle.getY(), "%&");
+        //screen.setForegroundColor(TextColor.ANSI.BLACK);
+        screen.putString(rectangle.getX(), rectangle.getY(), "+,");
     }
 
     public void slap(){

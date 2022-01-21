@@ -24,8 +24,8 @@ public class Bee extends Enemy{
 
     @Override
     public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#E1DD19"));
-        screen.putString(rectangle.getX(), rectangle.getY(), "-.");
+        screen.setBackgroundColor(TextColor.Factory.fromString("#E1DD19"));
+        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
     }
 
 }

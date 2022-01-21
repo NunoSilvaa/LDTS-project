@@ -54,6 +54,9 @@ public class InitialGameState extends GameState {
                 System.out.println(option);
                 gui.mainMenu(option);
             }
+            if (keyType == KeyType.Escape || keyType == KeyType.EOF) {
+                //game.changeGameState(new GameStateReady(game));
+            }
         } while (keyType != KeyType.Enter);
 
         System.out.println(option);
@@ -64,8 +67,8 @@ public class InitialGameState extends GameState {
     public int rangeLimiter(int num){
         if(num > 3)
             num = 3;
-        if(num < 2)
-            num = 2;
+        if(num < 1)
+            num = 1;
         return num;
     }
 }
