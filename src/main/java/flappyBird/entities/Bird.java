@@ -38,14 +38,15 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
+        screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         screen.setForegroundColor(TextColor.Factory.fromString("#f4cf0d"));
         screen.putString(rectangle.getX(), rectangle.getY(), "%&");
         for(int i=0; i < lives;i++){
             screen.setForegroundColor(TextColor.Factory.fromString("#8B0000"));
             screen.putString(new TerminalPosition(1+(2*i),1),"#$");
         }
-        screen.setForegroundColor(TextColor.Factory.fromString("#2B0000"));
-        screen.fillRectangle(new TerminalPosition(40,1), new TerminalSize(health/10,1),  ' ');
+        screen.setBackgroundColor(TextColor.Factory.fromString("#d95244"));
+        screen.fillRectangle(new TerminalPosition(45,1), new TerminalSize(health/10 , 1),  ' ');
 
     }
 
