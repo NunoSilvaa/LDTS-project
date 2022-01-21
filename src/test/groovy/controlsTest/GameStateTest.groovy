@@ -19,7 +19,7 @@ class GameStateTest extends Specification{
         expect:
         gameState.rangeLimiter(4) == 3
         gameState.rangeLimiter(2) == 2
-        gameState.rangeLimiter(-1) == 2
+        gameState.rangeLimiter(-1) == 1
 
     }
 

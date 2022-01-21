@@ -77,16 +77,17 @@ class GuiTest extends Specification{
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
         1 * textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ')
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"))
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 25), screen.getTerminalSize(), ' ')
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ')
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"))
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 25), new TerminalSize(60, 1), ' ')
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ')
 
         1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK)
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
-        1 * textGraphics.putString(23, 3, "Flappy Bird", SGR.BOLD)
+        1 * textGraphics.putString(17, 3, "Flappy Bird", SGR.BOLD)
 
-        1 * textGraphics.putString(26, 7, "Play", SGR.BLINK)
-        1 * textGraphics.putString(26, 10, "Quit")
+        1 * textGraphics.putString(20, 7, "Play", SGR.BLINK)
+        1 * textGraphics.putString(18, 10, "Scoreboard")
+        1 * textGraphics.putString(20, 13, "Quit")
 
         1 * screen.refresh()
 
@@ -101,20 +102,20 @@ class GuiTest extends Specification{
         screen.newTextGraphics() >> textGraphics
 
         when:
-        gui.pauseMenu(3)
+        gui.pauseMenu(0)
 
         then:
         1 * screen.clear()
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
         1 * textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ')
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"))
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 25), screen.getTerminalSize(), ' ')
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ')
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"))
-        1 * textGraphics.fillRectangle(new TerminalPosition(0, 25), new TerminalSize(60, 1), ' ')
+        1 * textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(42, 1), ' ')
         1 * textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         1 * textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"))
-        1 * textGraphics.putString(25, 7, "Resume", SGR.BLINK);
-        1 * textGraphics.putString(26, 10, "Quit");
+        1 * textGraphics.putString(19, 7, "Resume", SGR.BLINK);
+        1 * textGraphics.putString(20, 10, "Quit");
     }
 
     def 'endMenu'(){
