@@ -45,7 +45,7 @@ public class Bird extends Entities{
             screen.putString(new TerminalPosition(1+(2*i),1),"#$");
         }
         screen.setForegroundColor(TextColor.Factory.fromString("#2B0000"));
-        screen.putString(new TerminalPosition(45,1),"%&");
+        screen.fillRectangle(new TerminalPosition(40,1), new TerminalSize(health/10,1),  ' ');
 
     }
 
