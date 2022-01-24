@@ -1,26 +1,49 @@
-# LDTS_T06_G01 - OVERKILL
+# LDTS_T06_G01 - Flappy Bird
 
 ## Game Description
 
-The OVERKILL is a rogue-like shooter based game where you have to murder different waves of enemies, obtaining coins with each kill and having the chance to level up your power with the help of new guns.
-The variety of levels will have increased difficulty with different bullet speeds and strategic enemies.
+In this amazing game you will guide flappy, our little bird, through a world of obstacles. Just like in life, the game gets harder and harder and when you think you've mastered the skill of flying through pipes more and different pipes and potions will appear.
+Press Arrow up to slap your wings, dodge the enemies and their different attacks and pay attentions to your life and health.
+Some postion will make faster, some will make you slower so be very careful with the potions you drink.
+If you want to stop the game at any given point just press esc !
 
-This project was developed by Donal Knuth (knuth@edu.fe.up.pt), Timothy J. Berners-Lee (timothy@edu.fe.up.pt) and Vinton G. Cerf (vinton@edu.fe.up.pt) for LDTS 2021-22.
+This project was developed by *Daniel Rodrigues* (*up202006562*@fe.up.pt), *Nuno Silva* (*up202005501*@fe.up.pt) and *Pedro Moreira* (*up201905429*@fe.up.pt) for LDTS 2021⁄22.
 
-## Implemented Features
+### IMPLEMENTED FEATURES
 
-- **Connected Menus** - The user has the capability of browsing through the different menus including in game ones. (Ex: Main Menu, Instructions, Play, Shop and Pause).
-- **Buttons** - Functional and interactive buttons.
-- **Mouse and Keyboard control** - The mouse and keyboard inputs are received through the respective events and interpreted according to the current game state.
-- **Player control** - The player may move with the keyboard control and shoot his gun when the left mouse button is pressed.
-- **Collisions detection** - Collisions between different objects are verified. (Ex: Player, Bombs, Enemies, Obstacles).
-- **Different levels** - 7 different levels with an increasing difficulty were implemented.
-- **Shop interaction and money management** - The player may buy new items in the in game shop, some of which consist of new weapons, power ups and potions.
-- **Animations** - Several animations are incorporated in this game, from bomb explosions to level loading and the effects of consuming potions.
+- Pipe (rectangles that kill flappy if he touches them)
+- Flappy Bird (flies when arrow up is pressed
+- flappyBird.game Views & States 
+- Random Pipe Creation
+- Collision Detection
+- Power-ups
+- Power-Downs
+- Enemies with difference
+- Score
+- Text based entities
 
-## Planned Features
+<img src="https://user-images.githubusercontent.com/80840262/148662678-ba7558f1-cc9d-4430-9c2a-a5742004b644.png" width="250">    <img src="https://user-images.githubusercontent.com/80840262/148662686-ce990760-0412-47f1-ad01-561468908d9d.png" width ="250"><img src="https://user-images.githubusercontent.com/80840262/148662689-c108c05f-0dc5-45e4-ab32-e658f53d592a.png" width="250">
 
-All the planned features were successfully implemented.
+
+
+### PLANNED FEATURES
+
+- Pipe (rectangles that kill flappy if he touches them)
+- Flappy Bird (flies when arrow up is pressed
+- flappyBird.game Views & States 
+- Random Pipe Creation
+- Collision Detection
+- Hovering Pipes
+- Moving Pipes
+- Coins
+- Score & LeaderBoard
+- Power ups
+- "Power downs" - for example if you catch a donut you'll get bigger making it more difficult to go through the pipes
+- Improved Graphics and actual "images" in place of characters
+
+
+<img src="https://user-images.githubusercontent.com/80840262/148662762-b21bd9dc-12f6-4574-8e1f-60c106ac4c9b.png" width = "700">
+<img src="https://user-images.githubusercontent.com/80840262/148662768-9043a3e7-4eb9-446a-82e7-66382cd3f963.png" width = "450">
 
 ## Design
 
@@ -192,11 +215,11 @@ Also, in order to access a certain model's parameter it is mandatory to start by
 ### Link to mutation testing report
 [Mutation tests](../build/reports/pitest/202105302045/index.html)
 
-## Self-evaluation
+### SELF-EVALUATION
 
-The work was divided in a mutual way and we all contributed with our best. It helped us to enrich our java and principle/pattern knwoledge, as well as our team work.
+Despite a late and bumpy start the project is improving day by day. Tested throughly ( with the exception of getters and setters ) our project is now a playable game with a very decent amount of fearures
 
-- Donal Knuth: 33.3%
-- Timothy J. Berners-Lee: 33.3%
-- Vinton G. Cerf: 33.3%
+- Daniel Rodrigues: 33,3%
+- Nuno Silva : 33,3%
+- Pedro Moreira : 33,3%
 
