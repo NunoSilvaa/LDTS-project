@@ -26,6 +26,7 @@ public class Pipe extends Entities {
         collideBird = new MusicPlayer("collide.wav");
     }
 
+    public void setSound(MusicPlayer sound){this.collideBird = sound;}
 
     public void collideBird(Bird bird){
        if(this.intersect(bird)){

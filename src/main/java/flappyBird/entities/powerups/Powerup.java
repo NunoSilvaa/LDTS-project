@@ -31,4 +31,7 @@ public abstract class Powerup extends Entities {
     public void move(){
         move.update(this);
     }
+
+    public void setSound(MusicPlayer sound){this.collideBird = sound;}
+
 }

@@ -1,5 +1,6 @@
 package controlsTest
 
+import flappyBird.MusicPlayer
 import flappyBird.game.*
 import flappyBird.controls.gameStates.*
 import flappyBird.menus.*
@@ -85,6 +86,7 @@ class GameStateTest extends Specification{
         def gui = Mock(Gui.class)
         def gameState = new GameStateRun()
         def score = 0
+        MusicPlayer sound = Mock(MusicPlayer)
         gameState.setGame(game)
 
         when:
@@ -94,7 +96,7 @@ class GameStateTest extends Specification{
         game.setRunning(true)
         game.draw()
         game.setScore(score)
-        game.changeGameState(new GameStateEnd(game))
+        game.changeGameState((new GameStateEnd().setSound(sound)))
     }
 
     def 'GameStateEnd'(){

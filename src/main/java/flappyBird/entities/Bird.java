@@ -105,4 +105,7 @@ public class Bird extends Entities{
         for(EntitiesObserver observer: observers)
             observer.executeObserver(this);
     }
+
+    public void setSound(MusicPlayer sound){this.slapSound = sound;}
+
 }

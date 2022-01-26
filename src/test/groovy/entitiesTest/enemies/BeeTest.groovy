@@ -1,6 +1,7 @@
 package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.enemies.*
 import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
@@ -18,6 +19,8 @@ class BeeTest extends Specification{
 
     void setup(){
         bee = new Bee(new Position(25,25), new Dimension(10,10),2, new Diagonal())
+        MusicPlayer sound = Mock(MusicPlayer)
+        bee.setSound(sound)
         specialBee = Mock(Bee.class)
     }
 
@@ -37,7 +40,7 @@ class BeeTest extends Specification{
         bee.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
         1 * screen.putString(_,_,_)
 

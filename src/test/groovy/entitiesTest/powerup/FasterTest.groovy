@@ -1,6 +1,7 @@
 package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.Bird
 import flappyBird.entities.powerups.*
 import flappyBird.game.Arena
@@ -16,6 +17,8 @@ class FasterTest extends Specification{
 
     void setup(){
         faster = new Faster(new Position(25,25), new Dimension(10,10),2, new Vertical())
+        MusicPlayer sound = Mock(MusicPlayer)
+        faster.setSound(sound)
     }
 
 
@@ -27,9 +30,9 @@ class FasterTest extends Specification{
         faster.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
-        1 * screen.fillRectangle(_,_,_)
+        1 * screen.putString(_,_,_)
 
     }
 

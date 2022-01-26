@@ -1,6 +1,7 @@
 package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.Bird
 import flappyBird.entities.powerups.Slower
 import flappyBird.game.Arena
@@ -14,6 +15,8 @@ class SlowerTest extends Specification {
 
     void setup(){
         slower = new Slower(new Position(25,25), new Dimension(10,10),2, new Vertical())
+        MusicPlayer sound = Mock(MusicPlayer)
+        slower.setSound(sound)
     }
 
 
@@ -25,9 +28,9 @@ class SlowerTest extends Specification {
         slower.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
-        1 * screen.fillRectangle(_,_,_)
+        1 * screen.putString(_,_,_)
 
     }
 

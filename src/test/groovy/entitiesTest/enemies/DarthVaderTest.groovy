@@ -1,6 +1,7 @@
 package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.enemies.*
 import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
@@ -18,6 +19,8 @@ class DarthVaderTest extends Specification{
     void setup(){
         darthVader = new DarthVader(new Position(25,25), new Dimension(10,10),2, new Vertical())
         specialDarthVader = Mock(DarthVader.class)
+        MusicPlayer sound = Mock(MusicPlayer)
+        darthVader.setSound(sound)
     }
 
     def"Create Weapon"(){
@@ -36,9 +39,9 @@ class DarthVaderTest extends Specification{
         darthVader.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
-        1 *screen.putString(_,_,_)
+        1 * screen.putString(_,_,_)
 
     }
 

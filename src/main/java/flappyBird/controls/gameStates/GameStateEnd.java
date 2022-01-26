@@ -15,6 +15,8 @@ public class GameStateEnd extends GameState{
         collideBird = new MusicPlayer("gameover.wav");
     }
 
+    public void setSound(MusicPlayer sound){this.collideBird = sound;}
+
     @Override
     public boolean execute(Gui gui) throws Throwable {
         collideBird.playSound();

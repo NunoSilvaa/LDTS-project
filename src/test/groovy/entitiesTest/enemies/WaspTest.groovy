@@ -1,6 +1,7 @@
 package entitiesTest.enemies
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.enemies.*
 import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.entities.weapons.*
@@ -19,6 +20,8 @@ class WaspTest extends Specification{
     void setup(){
         wasp = new Wasp(new Position(25,25), new Dimension(10,10),2, new Horizontal())
         specialWasp = Mock(Wasp.class)
+        MusicPlayer sound = Mock(MusicPlayer)
+        wasp.setSound(sound)
     }
 
     def"Create Weapon"(){
@@ -37,7 +40,7 @@ class WaspTest extends Specification{
         wasp.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
         1 * screen.putString(_,_,_)
 

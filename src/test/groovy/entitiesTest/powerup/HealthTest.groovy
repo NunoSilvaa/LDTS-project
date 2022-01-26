@@ -1,6 +1,7 @@
 package entitiesTest.powerup
 
 import com.googlecode.lanterna.graphics.TextGraphics
+import flappyBird.MusicPlayer
 import flappyBird.entities.Bird
 import flappyBird.entities.powerups.Health
 import flappyBird.game.Arena
@@ -15,6 +16,8 @@ class HealthTest extends Specification{
 
     void setup(){
         health = new Health(new Position(25,25), new Dimension(10,10),2, new Vertical())
+        MusicPlayer sound = Mock(MusicPlayer)
+        health.setSound(sound)
     }
 
 
@@ -26,7 +29,7 @@ class HealthTest extends Specification{
         health.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
+        1 * screen.setForegroundColor(_)
         then:
         1 * screen.putString(_,_,_)
 

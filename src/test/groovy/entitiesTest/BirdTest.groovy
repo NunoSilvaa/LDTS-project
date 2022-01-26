@@ -1,5 +1,9 @@
 package groovy.entitiesTest
 
+import com.googlecode.lanterna.TerminalPosition
+import com.googlecode.lanterna.TerminalSize
+import com.googlecode.lanterna.TextColor
+import flappyBird.MusicPlayer
 import flappyBird.entities.Bird
 import flappyBird.entities.observer.EntitiesObserver
 import flappyBird.move.Vertical
@@ -15,6 +19,8 @@ class BirdTest extends Specification{
     def setup(){
         bird = new Bird(new Position(20,20), new Dimension(10,10), 2, new Vertical(), 3, 5)
         screen = Mock(TextGraphics)
+        MusicPlayer sound = Mock(MusicPlayer)
+        bird.setSound(sound)
     }
 
     def"Decrease Health - 2"(){
@@ -55,9 +61,12 @@ class BirdTest extends Specification{
 
         then:
         1 * screen.setBackgroundColor(_)
-        then:
-        1 * screen.fillRectangle(_,_,_)
-
+        1 * screen.setForegroundColor(_)
+        1 * screen.putString(_, _,_)
+        _ * screen.setForegroundColor(_)
+        _ * screen.putString(_,_)
+        1 * screen.setBackgroundColor(_);
+        1 * screen.fillRectangle(_, _,  _);
     }
     def"Increase Lives"(){
         when:

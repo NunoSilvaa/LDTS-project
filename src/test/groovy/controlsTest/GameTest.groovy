@@ -1,5 +1,0 @@
-package controlsTest
-
-class GameTest {
-
-}

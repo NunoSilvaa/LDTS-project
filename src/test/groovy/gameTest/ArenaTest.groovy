@@ -1,5 +1,8 @@
 package gameTest
 
+import com.googlecode.lanterna.TerminalPosition
+import com.googlecode.lanterna.TerminalSize
+import com.googlecode.lanterna.TextColor
 import flappyBird.entities.enemies.Bee
 import flappyBird.entities.enemies.DarthVader
 import flappyBird.entities.pipes.Pipe
@@ -53,14 +56,17 @@ class ArenaTest extends Specification{
         arena.draw(screen)
 
         then:
-        1 * screen.setBackgroundColor(_)
-        1 * screen.fillRectangle(_,_,_)
-        then:
-        1 * screen.setBackgroundColor(_)
-        1 * screen.fillRectangle(_,_,_)
-        then:
-        2 * screen.setBackgroundColor(_)
-        2 * screen.fillRectangle(_,_,_)
+        _ * screen.setBackgroundColor(_)
+        _ * screen.fillRectangle(_, _, _)
+        _ * screen.setForegroundColor(_)
+        _ * screen.putString(_,_,_)
+        _ * screen.setBackgroundColor(_)
+        _ * screen.setForegroundColor(_)
+        _ * screen.putString(_, _,_)
+        _ * screen.setForegroundColor(_)
+        _ * screen.putString(_,_)
+        _ * screen.setBackgroundColor(_);
+        _ * screen.fillRectangle(_, _,  _);
     }
 
 

@@ -24,6 +24,8 @@ public abstract class Enemy extends Entities{
         collideBird = new MusicPlayer("collide.wav");
     }
 
+    public void setSound(MusicPlayer sound){this.collideBird = sound;}
+
     public Weapon getWeapon(){
         return weapon;
     }
