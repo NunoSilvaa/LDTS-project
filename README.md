@@ -59,9 +59,10 @@ To become a master at Flappy Bird there are a few thing you should know.
 - Health Elixir - your health is restored to 100%
 
 **Enemies**
-- Bee
-- Wasp
-- Darth Vader
+- Bee - -25% health
+- Darth Vader - -1 life
+- Falcon - -50% health
+- Wasp - -1 live && -50% health
 
 <p align="center" justify="center">
   <img src="https://user-images.githubusercontent.com/80840262/151601121-9fa4d87a-5eef-4f4e-be3b-6d39bbc750b4.png" width ="250">
