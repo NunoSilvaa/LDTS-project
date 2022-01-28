@@ -38,6 +38,7 @@ public class Pipe extends Entities {
        }
     }
 
+    @Override
     public void draw(TextGraphics screen){
         screen.setBackgroundColor(TextColor.Factory.fromString("#28a41a"));
         screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(),rectangle.getHeight()),  ' ');

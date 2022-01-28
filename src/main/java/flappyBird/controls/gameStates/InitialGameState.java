@@ -43,13 +43,11 @@ public class InitialGameState extends GameState {
             if (keyType == KeyType.ArrowDown) {
                 option = Math.abs(option - 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.mainMenu(option);
             }
             if (keyType == KeyType.ArrowUp) {
                 option = Math.abs(option + 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.mainMenu(option);
             }
         } while (keyType != KeyType.Enter);

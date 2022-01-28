@@ -41,7 +41,7 @@ public class Arena {
         this.height = height;
         this.width = width;
         generatorEntities = new GeneratorEntities(width, height);
-        againstBird = new AgainstBirdObserver(width, height);
+        againstBird = new AgainstBirdObserver();
         birdObserver = new BirdObserver(height);
         bird = getInstance();
         addBird();
@@ -55,7 +55,7 @@ public class Arena {
     public Arena(int width, int height, Bird bird){//For Mocks
         this.height = height;
         this.width = width;
-        againstBird = new AgainstBirdObserver(width, height);
+        againstBird = new AgainstBirdObserver();
         birdObserver = new BirdObserver(height);
 
         this.bird = bird;

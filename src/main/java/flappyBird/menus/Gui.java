@@ -28,7 +28,6 @@ public class Gui {
     public Gui(){
         try {
             URL resource = getClass().getClassLoader().getResource("workstest19.ttf");
-            File fontFile = new File(resource.toURI());
             Font font = Font.createFont(Font.TRUETYPE_FONT, resource.openStream());
 
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -53,7 +52,7 @@ public class Gui {
             setScreen(new TerminalScreen(terminal));
 
             startScreen();
-        }catch (IOException | FontFormatException | URISyntaxException e){
+        }catch (IOException | FontFormatException  e){
             e.printStackTrace();
         }
     }

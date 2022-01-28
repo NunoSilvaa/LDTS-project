@@ -45,7 +45,6 @@ public class GameStateRun extends GameState {
             }
             game.getArena().collideEntities();
             if (!game.getArena().update(pressArrowUp)) {
-                System.out.println("set running to false");
                 game.setRunning(false);
                 continue;
             }
@@ -90,13 +89,11 @@ public class GameStateRun extends GameState {
             if (keyType == KeyType.ArrowDown) {
                 option = Math.abs(option - 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.pauseMenu(option);
             }
             if (keyType == KeyType.ArrowUp) {
                 option = Math.abs(option + 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.pauseMenu(option);
             }
         }while (keyType != KeyType.Enter);
