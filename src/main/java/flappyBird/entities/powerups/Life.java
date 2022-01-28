@@ -24,13 +24,14 @@ public class Life extends Powerup {
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#F30000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(), rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  'L');
+        screen.setForegroundColor(TextColor.Factory.fromString("#ff1800"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "#$");
     }
 
     @Override
     public void effect(Arena arena){
         if(arena.getBird().intersect(this)) {
+            collideBird.playSound();
             arena.getBird().increaseLives(1);
             for(EntitiesObserver observer: observers){
                 observer.executeObserver(this);

@@ -1,5 +1,7 @@
 package flappyBird.entities;
 
+import com.googlecode.lanterna.TextCharacter;
+import flappyBird.MusicPlayer;
 import flappyBird.entities.observer.EntitiesObserver;
 import flappyBird.move.Move;
 import flappyBird.rectangle.Dimension;
@@ -15,12 +17,15 @@ public class Bird extends Entities{
     private int slapHeight;
     private int lives;
     private int health;
+    private MusicPlayer slapSound;
+
 
     public Bird(Position position, Dimension dimension, int speed, Move move, int slapHeight, int lives) {
         super(position, dimension, speed, move);
         this.slapHeight = slapHeight;
         this.lives = lives;
         health = 100;
+        slapSound = new MusicPlayer("slap.wav");
     }
 
     public Bird(Rectangle rectangle, int speed, Move move, int slapHeight, int lives) {
@@ -33,19 +38,21 @@ public class Bird extends Entities{
 
     @Override
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-        screen.fillRectangle(new TerminalPosition(rectangle.getX(),rectangle.getY()), new TerminalSize(rectangle.getWidth(), rectangle.getHeight()),  ' ');
+        screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
+        screen.setForegroundColor(TextColor.Factory.fromString("#dc8e0d"));
+        screen.putString(rectangle.getX(), rectangle.getY(), "%&");
         for(int i=0; i < lives;i++){
-            screen.setBackgroundColor(TextColor.Factory.fromString("#8B0000"));
-            screen.fillRectangle(new TerminalPosition(1+(2*i),1), new TerminalSize(1, 1),  ' ');
+            screen.setForegroundColor(TextColor.Factory.fromString("#8B0000"));
+            screen.putString(new TerminalPosition(1+(2*i),1),"#$");
         }
-        screen.setBackgroundColor(TextColor.Factory.fromString("#2B0000"));
+        screen.setBackgroundColor(TextColor.Factory.fromString("#d95244"));
         screen.fillRectangle(new TerminalPosition(45,1), new TerminalSize(health/10 , 1),  ' ');
 
     }
 
     public void slap(){
         rectangle.updateY(-slapHeight);
+        slapSound.playSound();
         for(EntitiesObserver observer: observers){
             observer.executeObserver(this);
         }
@@ -98,4 +105,7 @@ public class Bird extends Entities{
         for(EntitiesObserver observer: observers)
             observer.executeObserver(this);
     }
+
+    public void setSound(MusicPlayer sound){this.slapSound = sound;}
+
 }

@@ -41,7 +41,7 @@ public class Arena {
         this.height = height;
         this.width = width;
         generatorEntities = new GeneratorEntities(width, height);
-        againstBird = new AgainstBirdObserver(width, height);
+        againstBird = new AgainstBirdObserver();
         birdObserver = new BirdObserver(height);
         bird = getInstance();
         addBird();
@@ -55,7 +55,7 @@ public class Arena {
     public Arena(int width, int height, Bird bird){//For Mocks
         this.height = height;
         this.width = width;
-        againstBird = new AgainstBirdObserver(width, height);
+        againstBird = new AgainstBirdObserver();
         birdObserver = new BirdObserver(height);
 
         this.bird = bird;
@@ -83,7 +83,7 @@ public class Arena {
     }
 
     public void addPipes() {
-        List<Pipe> tempPipeList = generatorEntities.generateRandomPipes();
+        List<Pipe> tempPipeList = generatorEntities.generateRandomPipes(this);
         Pipe tempPipe1 = tempPipeList.get(0);
         Pipe tempPipe2 = tempPipeList.get(1);
         tempPipe1.addObserver(againstBird);
@@ -93,29 +93,31 @@ public class Arena {
     }
 
     public void addEnemies(){
-        Enemy enemy = generatorEntities.generateRandomEnemy();
+        Enemy enemy = generatorEntities.generateRandomEnemy(this);
         enemy.addObserver(againstBird);
         enemies.add(enemy);
     }
 
     public void addPowerUp(){
-        Powerup powerup = generatorEntities.generateRandomPowerUp();
+        Powerup powerup = generatorEntities.generateRandomPowerUp(this);
         powerup.addObserver(againstBird);
         powerUps.add(powerup);
     }
 
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         screen.fillRectangle(new TerminalPosition(0,0), new TerminalSize(width, height), ' ');
-        for(Pipe pipe : pipes)
-            pipe.draw(screen);
-        bird.draw(screen);
         for(Enemy enemy: enemies){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
             enemy.draw(screen);
         }
         for(Powerup powerUp :powerUps){
+            screen.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
             powerUp.draw(screen);
         }
+        for(Pipe pipe : pipes)
+            pipe.draw(screen);
+        bird.draw(screen);
     }
 
     public void collideEntities(){

@@ -3,6 +3,7 @@ package flappyBird.controls.gameStates;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import flappyBird.game.Game;
+import flappyBird.game.states.NormalState;
 import flappyBird.menus.Gui;
 
 import java.io.IOException;
@@ -21,12 +22,12 @@ public class GameStateRun extends GameState {
         int powerCounter =0;
         int score = 0;
         int enemyCounter = 0;
+        int powerLast =0;
         boolean pressArrowUp;
         boolean pressEscape = false;
         game.setRunning(true);
         while(game.isRunning()) {
             KeyStroke key = gui.getTerminal().pollInput();
-            while(gui.getTerminal().pollInput() != null);
             if (key != null && key.getKeyType() == KeyType.ArrowUp)
                 pressArrowUp = true;
             else if (key != null && key.getKeyType() == KeyType.Escape) {
@@ -44,13 +45,13 @@ public class GameStateRun extends GameState {
             }
             game.getArena().collideEntities();
             if (!game.getArena().update(pressArrowUp)) {
-                System.out.println("set running to false");
                 game.setRunning(false);
                 continue;
             }
-
-            if (powerCounter == 10){
+            if(powerLast == 40 ){game.getArena().setState(new NormalState(game.getArena()));}
+            if (powerCounter == 55){
                 game.getArena().addPowerUp();
+                powerLast =0;
                 powerCounter = 0;
             }
 
@@ -66,6 +67,8 @@ public class GameStateRun extends GameState {
             score++;
             counter++;
             powerCounter++;
+            enemyCounter++;
+            powerLast++;
 
             game.draw();
             Thread.sleep(100);
@@ -86,13 +89,11 @@ public class GameStateRun extends GameState {
             if (keyType == KeyType.ArrowDown) {
                 option = Math.abs(option - 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.pauseMenu(option);
             }
             if (keyType == KeyType.ArrowUp) {
                 option = Math.abs(option + 1);
                 option = rangeLimiter(option);
-                System.out.println(option);
                 gui.pauseMenu(option);
             }
         }while (keyType != KeyType.Enter);

@@ -27,8 +27,7 @@ public class Gui {
 
     public Gui(){
         try {
-            URL resource = getClass().getClassLoader().getResource("workstest10.ttf");
-            File fontFile = new File(resource.toURI());
+            URL resource = getClass().getClassLoader().getResource("workstest19.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, resource.openStream());
 
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -53,7 +52,7 @@ public class Gui {
             setScreen(new TerminalScreen(terminal));
 
             startScreen();
-        }catch (IOException | FontFormatException | URISyntaxException e){
+        }catch (IOException | FontFormatException  e){
             e.printStackTrace();
         }
     }
@@ -127,18 +126,11 @@ public class Gui {
 
         if(i == 3){
             textGraphics.putString(26, 7, "Play", SGR.BLINK);
-            textGraphics.putString(24, 10, "Scoreboard");
-            textGraphics.putString(26, 13, "Quit");
+            textGraphics.putString(26, 10, "Quit");
         }
         else if(i == 2){
             textGraphics.putString(26, 7, "Play");
-            textGraphics.putString(24, 10, "Scoreboard", SGR.BLINK);
-            textGraphics.putString(26, 13, "Quit");
-        }
-        else if(i == 1){
-            textGraphics.putString(26, 7, "Play");
-            textGraphics.putString(24, 10, "Scoreboard");
-            textGraphics.putString(26, 13, "Quit", SGR.BLINK);
+            textGraphics.putString(26, 10, "Quit", SGR.BLINK);
         }
 
         screen.refresh();
@@ -151,9 +143,9 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(60, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), new TerminalSize(60, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
@@ -176,9 +168,9 @@ public class Gui {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));
         textGraphics.fillRectangle(TerminalPosition.TOP_LEFT_CORNER, screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#E0D796"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), screen.getTerminalSize(), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), screen.getTerminalSize(), ' ');
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71BF2E"));
-        textGraphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(60, 1), ' ');
+        textGraphics.fillRectangle(new TerminalPosition(0, 25), new TerminalSize(60, 1), ' ');
 
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK);
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#71C5CF"));

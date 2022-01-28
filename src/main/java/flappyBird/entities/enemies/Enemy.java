@@ -1,5 +1,6 @@
 package flappyBird.entities.enemies;
 
+import flappyBird.MusicPlayer;
 import flappyBird.entities.Bird;
 import flappyBird.entities.Entities;
 import flappyBird.entities.observer.EntitiesObserver;
@@ -8,17 +9,22 @@ import flappyBird.move.Move;
 import flappyBird.rectangle.*;
 
 public abstract class Enemy extends Entities{
+    private MusicPlayer collideBird;
     private Weapon weapon;
 
     public Enemy(Position position, Dimension dimension, int speed, Move move) {
         super(position, dimension, speed, move);
         this.weapon = createWeapon();
+        collideBird = new MusicPlayer("collide.wav");
     }
 
     public Enemy(Rectangle rectangle, int speed, Move move) {
         super(rectangle, speed, move);
         this.weapon = createWeapon();
+        collideBird = new MusicPlayer("collide.wav");
     }
+
+    public void setSound(MusicPlayer sound){this.collideBird = sound;}
 
     public Weapon getWeapon(){
         return weapon;
@@ -29,6 +35,7 @@ public abstract class Enemy extends Entities{
     public void attack(Bird bird){
 
         if(this.intersect(bird)){
+            collideBird.playSound();
             weapon.attackBird(bird);
             for(EntitiesObserver observer: observers){
                 observer.executeObserver(this);
