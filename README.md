@@ -177,10 +177,17 @@ The class Move for example decides to make use only of features not implemented 
 
 ### Screenshot of coverage report
 <p align="center" justify="center">
-  <img src="images/screenshots/codeCoverage"/>
+  <img src="https://user-images.githubusercontent.com/80840262/151610326-461fe3f5-c96c-4449-afdf-53470adf7242.png" width="250">
 </p>
 <p align="center">
-  <b><i>Fig 6. Code coverage screenshot</i></b>
+  <b><i>Fig 4. Pitest Mutation Test </i></b>
+</p>
+
+<p align="center" justify="center">
+  <img src="https://user-images.githubusercontent.com/80840262/151610519-2c52f4f9-3103-48e6-85d5-6d8a38e947f7.png" width="250">
+</p>
+<p align="center">
+  <b><i>Fig 5. Test Coverage </i></b>
 </p>
 
 ### Link to mutation testing report
