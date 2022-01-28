@@ -53,10 +53,10 @@ To become a master at Flappy Bird there are a few thing you should know.
 - When you collide against the floor or a pipe(the pipe is deleted) you lose a life
 
 **Potions**
--Faster - the games becomes 2x faster
--Slower - the game is played at half the speed
--Life Elixir - you win a life
--Health Elixir - your health is restored to 100%
+- Faster - the games becomes 2x faster
+- Slower - the game is played at half the speed
+- Life Elixir - you win a life
+- Health Elixir - your health is restored to 100%
 
 **Enemies**
 -Bee
