@@ -191,7 +191,7 @@ The class Move for example decides to make use only of features not implemented 
 </p>
 
 ### Link to mutation testing report
-[Mutation tests](../build/reports/pitest/202105302045/index.html)
+[Mutation tests](../docs/Pitest/pitest/202201281956/index.html)
 
 ### SELF-EVALUATION
 
