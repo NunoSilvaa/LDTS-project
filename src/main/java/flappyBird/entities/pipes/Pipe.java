@@ -14,7 +14,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import flappyBird.rectangle.Rectangle;
 
 public class Pipe extends Entities {
-    private MusicPlayer collideBird;
+    public MusicPlayer collideBird;
 
     public Pipe(Position position, Dimension dimension, int speed, Move move){
         super(position,dimension, speed, move);
