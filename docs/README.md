@@ -200,7 +200,7 @@ After the anlysis of bettercode hub we found some duplicated code in the powerup
 
 ## Testing
 
-Disclaimer: because we used Spock as a platform for our unit tests bettercode hub is not able to show an analysis one our test quality.
+Disclaimer: because we used Spock as a platform for our unit tests bettercode hub is not able to show an analysis on the test.
 
 ### Screenshot of coverage report
 <p align="center" justify="center">
