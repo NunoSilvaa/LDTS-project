@@ -77,7 +77,6 @@ The use of these patterns in the current design allow the following benefits:
 
 
 
-
 ### Arena - State Pattern
 #### Problem in Context:  
 When the bird "eats" a powerup it can make the bird faster or slower. Since we're playing from the reference point of the bird the bird has no speed along th x axis, everything else moves and the bird remains static. Therefore if we want to make the bird faster what we actually need to do is make everuthing else in arena faster. To handle that we have different arena states.
@@ -106,6 +105,30 @@ Some consequences of using the stated pattern:
 
 
 
+### Entities - Observer Pattern
+#### Problem in Context:  
+Our bird dies when you he touches the floor, changes speed and other atributtes when eats powerups or faces enemies. To know when such things happen we implemented an observer. Our observer is in the lookout for changes and when that happens notifies the interested parties.
+
+#### The Pattern:
+We have applied the **_obeserver pattern_** which is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+
+#### Implementation:
+When something significant happens to any of our entities the observer will notify and trigger changes to Arena and in some cases other objects (music).
+
+<p align="center" justify="center">
+  <img src="https://user-images.githubusercontent.com/80840262/151694865-6ece4e1c-a81b-4c86-9f34-5763a84fae2d.png" width="250">
+</p>
+<p align="center">
+  <b><i>Fig 2. Entities Observer </i></b>
+</p>
+
+These classes can be found in the following files:
+- [Entities Observer](../src/main/java/flappyBird/entities/observer/)
+
+#### Consequences:
+Some consequences of using the stated pattern:
+- Open/Closed Principle. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface).
+- You can establish relations between objects at runtime.
 
 
 
@@ -124,7 +147,7 @@ Trivial Implementation of both methods without meaningful variations
   <img src="https://user-images.githubusercontent.com/80840262/151605642-10c5f2d3-f0c6-4ecf-b50c-0abb0b5a1e85.png" width="250">
 </p>
 <p align="center">
-  <b><i>Fig 2. Enemies</i></b>
+  <b><i>Fig 3. Enemies</i></b>
 </p>
 
 
@@ -132,7 +155,7 @@ Trivial Implementation of both methods without meaningful variations
   <img src="https://user-images.githubusercontent.com/80840262/151606754-3eda5287-7341-4327-8bdb-e1ccc61c29f9.png" width="250">
 </p>
 <p align="center">
-  <b><i>Fig 3. Powerups</i></b>
+  <b><i>Fig 4. Powerups</i></b>
 </p>
 
 These classes can be found in the following files:
@@ -142,7 +165,6 @@ These classes can be found in the following files:
 The Command Pattern allows the following consequences:
 -  You can be sure that the products you’re getting from a factory are compatible with each other.
 -  Open/Closed Principle. You can introduce new variants of products without breaking existing client code.
-
 
 
 
@@ -168,26 +190,31 @@ The use of the Facade Pattern in the current design allows the following benefit
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-Some classes (e.g. Game, Arena) contain many fields and others contain many methods. In both cases, we find it justifiable as the classes require these fields, in one hand the Game class is the main class of the program and it needs to store a considerable amount of data, on the other hand various methods are needed for the interface and it wouldn't make sense to split it into two separate ones (extract method).
+Some classes (e.g. Game, Arena, Rectangle) contain many fields and others contain many methods. In both cases, we find it justifiable as the classes require these fields, in one hand the Game class is the main class of the program and it needs to store a considerable amount of data, on the other hand various methods are needed for the interface and it wouldn't make sense to split them into two separate ones
 
 #### **Feature envy and message chains**
-The class Move for example decides to make use only of features not implemented in itself
+The class Move for example decides to make use only of features not implemented in itself and most of what it does is delegating to other classes
+
+#### **Duplicate**
+After the anlysis of bettercode hub we found some duplicated code in the powerups draw method. However there wasn't much we could do because every draw mwthod in powerups is the same with the very important exception of the character that represents them.
 
 ## Testing
+
+Disclaimer: because we used Spock as a platform for our unit tests bettercode hub is not able to show an analysis one our test quality.
 
 ### Screenshot of coverage report
 <p align="center" justify="center">
   <img src="https://user-images.githubusercontent.com/80840262/151610326-461fe3f5-c96c-4449-afdf-53470adf7242.png" width="250">
 </p>
 <p align="center">
-  <b><i>Fig 4. Pitest Mutation Test </i></b>
+  <b><i>Fig 5. Pitest Mutation Test </i></b>
 </p>
 
 <p align="center" justify="center">
   <img src="https://user-images.githubusercontent.com/80840262/151610519-2c52f4f9-3103-48e6-85d5-6d8a38e947f7.png" width="250">
 </p>
 <p align="center">
-  <b><i>Fig 5. Test Coverage </i></b>
+  <b><i>Fig 6. Test Coverage </i></b>
 </p>
 
 ### Link to mutation testing report
